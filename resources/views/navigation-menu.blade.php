@@ -81,6 +81,13 @@
                                 </button>
                             @else
                                 <span class="inline-flex rounded-md">
+                                <form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+
+                                <x-dropdown-link onclick="event.preventDefault(); this.closest('form').submit();" href="{{ route('logout') }}">
+                                    {{ __('Log Out') }}
+                                </x-dropdown-link>
+                            </form>
                                     <button type="button" class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white hover:text-gray-700 focus:outline-none focus:bg-gray-50 active:bg-gray-50 transition ease-in-out duration-150">
                                         {{ Auth::user()->name }}
 
@@ -111,14 +118,7 @@
                             <div class="border-t border-gray-200"></div>
 
                             <!-- Authentication -->
-                            <form method="POST" action="{{ route('logout') }}" x-data>
-                                @csrf
-
-                                <x-dropdown-link href="{{ route('logout') }}"
-                                         @click.prevent="$root.submit();">
-                                    {{ __('Log Out') }}
-                                </x-dropdown-link>
-                            </form>
+                            
                         </x-slot>
                     </x-dropdown>
                 </div>

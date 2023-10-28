@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
+// use App\Http\Controllers
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,6 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 });
+
+// Route::get('/loginview', 'App\Http\Controllers\LoginController@showpage');
+Route::get('/loginview', [LoginController::class, 'showpage'])->name('loginview');
+
 
 Route::middleware([
     'auth:sanctum',

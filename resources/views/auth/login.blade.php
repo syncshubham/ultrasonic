@@ -4,7 +4,6 @@
             <x-authentication-card-logo />
         </x-slot>
 
-        <x-validation-errors class="mb-4" />
 
         @if (session('status'))
             <div class="mb-4 font-medium text-sm text-green-600">
@@ -16,8 +15,8 @@
             @csrf
 
             <div>
-                <x-label for="email" value="{{ __('Email') }}" />
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
+                <div>Email</div>
+                <x-input id="" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
             </div>
 
             <div class="mt-4">
@@ -39,9 +38,9 @@
                     </a>
                 @endif
 
-                <x-button class="ml-4">
+                <button class="ml-4">
                     {{ __('Log in') }}
-                </x-button>
+                </button>
             </div>
         </form>
     </x-authentication-card>
