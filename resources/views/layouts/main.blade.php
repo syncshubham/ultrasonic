@@ -16,9 +16,7 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}" media="all" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}" media="all" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icons.css') }}" media="all" />
-
-
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body class="bg-theme bg-theme2">
@@ -97,7 +95,7 @@
                     <div class="row align-items-center">
                         <div class="col col-md-auto">
                             <div class="d-flex align-items-center">
-                                <div class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i rbclass='bx bx-menu'></i></div>
+                                <div class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i class='fa-solid fa-bars'></i></div>
                                 <div style="margin-left:40px;" class="logo d-lg-flex">
                                     <a href="index.html">
                                         <img style="width:4rem;" src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon" alt="">
@@ -118,17 +116,16 @@
                             </div>
                         </div>
                         <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
-                            <div class="fs-1 text-white"><i class='bx bx-headphone'></i></div>
+                            <div class="fs-1 text-white"><a href="{{route('login')}}" class="nav-link cart-link"><i class='bx bx-user'></i></a></div>
                             <div class="ms-2">
-                                <p class="mb-0 font-13">CALL US NOW</p>
-                                <h5 class="mb-0">+81 3 5962 0611</h5>
+                                <p class="mb-0 font-13"><a href="{{route('login')}}">Hello, sign in</a></p>
+                                <h5 class="mb-0"><a href="{{route('login')}}">to Accounts</a></h5>
                             </div>
                         </div>
                         <div class="col col-md-auto order-2 order-md-4">
                             <div class="top-cart-icons">
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav ms-auto">
-                                        <li class="nav-item"><a href="account-dashboard.html" class="nav-link cart-link"><i class='bx bx-user'></i></a></li>
                                         <li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i class='bx bx-heart'></i></a></li>
                                         <li class="nav-item dropdown dropdown-large">
                                             <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown">

@@ -20,6 +20,8 @@
 </head>
 
 <body class="bg-theme bg-theme2"> <b class="screen-overlay"></b>
+
+<!-- In page styling, in future it should be settled to main style sheets order wise. -->
 <style>
 	.font-medium{
 		color: #ff4d4d;
