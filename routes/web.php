@@ -22,12 +22,14 @@ Route::get('/', function () {
 // Route::get('/loginview', 'App\Http\Controllers\LoginController@showpage');
 Route::get('/loginview', [LoginController::class, 'showpage'])->name('loginview');
 
+
 Route::middleware([
-    'auth:sanctum',
+    'auth',
     config('jetstream.auth_session'),
     'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+    
 });
