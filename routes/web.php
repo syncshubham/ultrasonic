@@ -22,7 +22,6 @@ Route::get('/', function () {
 // Route::get('/loginview', 'App\Http\Controllers\LoginController@showpage');
 Route::get('/loginview', [LoginController::class, 'showpage'])->name('loginview');
 
-
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
