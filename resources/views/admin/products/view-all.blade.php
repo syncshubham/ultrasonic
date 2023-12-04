@@ -1,5 +1,6 @@
 @extends('admin.layout.main')
 @section('admincontent')
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-12">
@@ -49,26 +50,35 @@
                                         <td class="td-price">{{$product->price}}</td>
                                             @if($product->status == 0)
                                         <td class="status-danger">
-                                            <span>Pending</span>
+                                            <span class="unverifytext">Unverified</span>
+                                            <img style="display: none;" class="unverifyimage" style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
                                         </td>
-
                                             @elseif($product->status == 1)
                                             <td class="status-success">
-                                                <span>Verified</span>
+                                                <span class="verifytext">Verified</span>
+                                                <img style="display: none;" class="verifyimage" style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
                                             </td>
                                             @endif
                                         <td>
                                             <ul>
                                                 <li>
-                                                    <a href="{{ url('admin/product/edit', ['id' => $product->id]) }}">
+                                                    <a title="edit product" href="{{ url('admin/product/edit', ['id' => $product->id]) }}">
                                                         <i class="ri-pencil-line"></i>
                                                     </a>
                                                 </li>
 
                                                 <li>
-                                                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#exampleModalToggle">
+                                                    <form method="post" action="{{ route('product.destroy', $product->id) }}">
+                                                        @csrf
+                                                    <button style="color:red;border:0px solid white;font-size:17px;" title="Delete product" onclick="return confirm('Are you sure you want to delete this item?')">
                                                         <i class="ri-delete-bin-line"></i>
-                                                    </a>
+                                                    </button>
+                                                    </form>
+                                                </li>
+                                                <li>
+                                                    <button class="product-verification" data-product-id="{{$product->id}}" style="color:red;border:0px solid white;font-size:17px;" title="Unverify product">
+                                                        <i class="fa-solid fa-certificate"></i>
+                                                    </button>
                                                 </li>
                                             </ul>
                                         </td>
@@ -96,8 +106,7 @@
                 </div>
                 <div class="modal-body">
                     <div class="remove-box">
-                        <p>The permission for the use/group, preview is inherited from the object, object will create a
-                            new permission for this object</p>
+                        <p>You Want to delete it permanently</p>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -138,4 +147,56 @@
     <!-- Delete Modal Box End -->
     <script src="{{ asset('adminassets/js/jquery-3.6.0.min.js')}}"></script>
 <script src="{{ asset('adminassets/js/notify/bootstrap-notify.min.js')}}"></script>
+@if(session('successproductupdation'))
+<script>
+    'use strict';
+    var notify = $.notify('<i class="fas fa-bell"></i></i><strong>Success</strong> task done', {
+        type: 'theme',
+        allow_dismiss: true,
+        delay: 4000,
+        showProgressbar: true,
+        timer: 300,
+        animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+        }
+    });
+
+    setTimeout(function() {
+        notify.update('message', '<i class="fas fa-bell"></i></i><strong>Product</strong> Updated.');
+    }, 1800);
+</script>
+@endif
+
+
+@if(session('successproductdelete'))
+<script>
+    'use strict';
+    var notify = $.notify('<i class="fas fa-bell"></i></i><strong>Success</strong> task done', {
+        type: 'theme',
+        allow_dismiss: true,
+        delay: 4000,
+        showProgressbar: true,
+        timer: 300,
+        animate: {
+            enter: 'animated fadeInDown',
+            exit: 'animated fadeOutUp'
+        }
+    });
+
+    setTimeout(function() {
+        notify.update('message', '<i class="fas fa-bell"></i></i><strong>Product</strong> Deleted.');
+    }, 1800);
+</script>
+@endif
+
+<script>
+    $(document).ready(function () {
+        $('.product-verification').on('click', function() {
+        var verifyText = $(this).closest('tr').find('.status-success .verifytext').css('color','white');
+        console.log(verifyText); // This will log the text 'Verified' to the console
+        // You can use verifyText in your further logic here
+    });
+    });
+</script>
 @endsection

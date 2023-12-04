@@ -13,11 +13,14 @@ Route::get('/', function () {
 Route::get('/admin/dashboard', [AdminDashboardController::class, 'index']);
 
 // Admin panel products routes
-Route::get('/admin/products/view', [AdminProductController::class, 'view_all_products']);
+Route::get('/admin/products/view', [AdminProductController::class, 'view_all_products'])->name('admin.products.view');
 Route::get('/admin/product/create', [AdminProductController::class, 'create_product_view'])->name('create.productview');
 Route::post('/admin/product/create', [AdminProductController::class, 'create_product'])->name('create.product');
-Route::get('/admin/product/edit/{slug}', [AdminProductController::class, 'edit_product']);
-Route::post('/admin/product/update/{slug}', [AdminProductController::class, 'update_product']);
+Route::get('/admin/product/edit/{slug}', [AdminProductController::class, 'edit_product_view']);
+Route::post('/admin/product/edit', [AdminProductController::class, 'edit_product'])->name('edit.product');
+Route::post('/admin/product/destroy/{id}', [AdminProductController::class, 'destroy_product'])->name('product.destroy');
+
+
 
 // Users/customers login routes
 Route::middleware([
