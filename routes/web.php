@@ -19,6 +19,7 @@ Route::post('/admin/product/create', [AdminProductController::class, 'create_pro
 Route::get('/admin/product/edit/{slug}', [AdminProductController::class, 'edit_product_view']);
 Route::post('/admin/product/edit', [AdminProductController::class, 'edit_product'])->name('edit.product');
 Route::post('/admin/product/destroy/{id}', [AdminProductController::class, 'destroy_product'])->name('product.destroy');
+Route::post('/admin/product/status/{id}/{status}', [AdminProductController::class, 'update_product_status'])->name('product-update-status');
 
 
 

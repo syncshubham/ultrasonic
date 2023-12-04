@@ -588,6 +588,38 @@
         </div>
     </div>
 </div>
+<!-- latest js -->
+<script src="{{ asset('adminassets/js/jquery-3.6.0.min.js')}}"></script>
+<script src="{{ asset('adminassets/js/notify/bootstrap-notify.min.js')}}"></script>
+<script>
+    // Get references to the input fields
+    const originalPriceInput = document.getElementById("originalPrice");
+    const discountPercentageInput = document.getElementById("discountPercentage");
+    const discountAmountInput = document.getElementById("discountAmount");
+    const finalPriceInput = document.getElementById("finalPrice");
+
+    // Add event listeners to calculate the discount and final price
+    originalPriceInput.addEventListener("input", updatePrice);
+    discountPercentageInput.addEventListener("input", updatePrice);
+
+    function updatePrice() {
+        console.log("first")
+        // Get the original price and discount percentage
+        const originalPrice = parseFloat(originalPriceInput.value) || 0;
+        const discountPercentage = parseFloat(discountPercentageInput.value) || 0;
+
+        // Calculate the discount amount and final price
+        const discountAmount = (originalPrice * discountPercentage) / 100;
+        let finalPrice = originalPrice - discountAmount;
+
+        // Round up the final price to the nearest whole number
+        finalPrice = Math.ceil(finalPrice);
+
+        // Update the input fields with the calculated values
+        discountAmountInput.value = discountAmount;
+        finalPriceInput.value = finalPrice;
+    }
+</script>
 <script>
     function CustomAlert() {
         this.alert = function(message, title) {
@@ -643,46 +675,16 @@
             if (fileSize > maxSize) {
                 customAlert.alert('File size exceeds' + '<br>' + 'Max allowed size (150 KB)', 'Alert !!!');
                 fileInput.value = '';
-                return false;
+                // return false;
             }
         }
 
-        return true; // Add this line to indicate validation success
+        // return true; // Add this line to indicate validation success
     }
 </script>
 <!-- New Product Add End -->
-<script>
-    // Get references to the input fields
-    const originalPriceInput = document.getElementById("originalPrice");
-    const discountPercentageInput = document.getElementById("discountPercentage");
-    const discountAmountInput = document.getElementById("discountAmount");
-    const finalPriceInput = document.getElementById("finalPrice");
 
-    // Add event listeners to calculate the discount and final price
-    originalPriceInput.addEventListener("input", updatePrice);
-    discountPercentageInput.addEventListener("input", updatePrice);
 
-    function updatePrice() {
-        console.log("first")
-        // Get the original price and discount percentage
-        const originalPrice = parseFloat(originalPriceInput.value) || 0;
-        const discountPercentage = parseFloat(discountPercentageInput.value) || 0;
-
-        // Calculate the discount amount and final price
-        const discountAmount = (originalPrice * discountPercentage) / 100;
-        let finalPrice = originalPrice - discountAmount;
-
-        // Round up the final price to the nearest whole number
-        finalPrice = Math.ceil(finalPrice);
-
-        // Update the input fields with the calculated values
-        discountAmountInput.value = discountAmount;
-        finalPriceInput.value = finalPrice;
-    }
-</script>
-<!-- latest js -->
-<script src="{{ asset('adminassets/js/jquery-3.6.0.min.js')}}"></script>
-<script src="{{ asset('adminassets/js/notify/bootstrap-notify.min.js')}}"></script>
 @if(session('success'))
 <script>
     'use strict';

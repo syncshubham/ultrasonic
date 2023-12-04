@@ -49,14 +49,14 @@
                                         <td>12</td>
                                         <td class="td-price">{{$product->price}}</td>
                                             @if($product->status == 0)
-                                        <td class="status-danger">
-                                            <span class="unverifytext">Unverified</span>
-                                            <img style="display: none;" class="unverifyimage" style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
+                                        <td class="status-danger status-block">
+                                            <span class="statustext">Unverified</span>
+                                            <img style="display: none;" style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
                                         </td>
                                             @elseif($product->status == 1)
-                                            <td class="status-success">
-                                                <span class="verifytext">Verified</span>
-                                                <img style="display: none;" class="verifyimage" style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
+                                            <td class="status-success status-block">
+                                                <span class="statustext">Verified</span>
+                                                <img style="display: none;"  style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
                                             </td>
                                             @endif
                                         <td>
@@ -66,7 +66,6 @@
                                                         <i class="ri-pencil-line"></i>
                                                     </a>
                                                 </li>
-
                                                 <li>
                                                     <form method="post" action="{{ route('product.destroy', $product->id) }}">
                                                         @csrf
@@ -76,7 +75,7 @@
                                                     </form>
                                                 </li>
                                                 <li>
-                                                    <button class="product-verification" data-product-id="{{$product->id}}" style="color:red;border:0px solid white;font-size:17px;" title="Unverify product">
+                                                    <button class="product-verification" data-product-id="{{$product->id}}" data-product-status="{{$product->status}}" style="color:red;border:0px solid white;font-size:17px;" title="Unverify product">
                                                         <i class="fa-solid fa-certificate"></i>
                                                     </button>
                                                 </li>
@@ -193,9 +192,27 @@
 <script>
     $(document).ready(function () {
         $('.product-verification').on('click', function() {
-        var verifyText = $(this).closest('tr').find('.status-success .verifytext').css('color','white');
-        console.log(verifyText); // This will log the text 'Verified' to the console
-        // You can use verifyText in your further logic here
+        var statusText = $(this).closest('tr').find('.status-block .statustext');
+        var statuscode = $(this).data('product-status');
+        var productid = $(this).data('product-id');
+        var statusLoader = $(this).closest('tr').find('.status-block img').css({
+            'height': '3rem',
+            'width': '3.5rem'
+        });
+        console.log(statuscode)
+        statusText.hide();
+        statusLoader.show();
+        var url = "{{ route('product-update-status')}}";
+        console.log(url);
+        // $.ajax({
+        //     url: "{{ route('product-update-status')}}",
+        //     type: 'POST',
+        //     // Rest of the AJAX settings
+        // });
+
+
+            // console.log("verifyText"); // This will log the text 'Verified' to the console
+            // // You can use verifyText in your further logic here
     });
     });
 </script>

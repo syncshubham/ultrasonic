@@ -21,6 +21,11 @@ class AdminProductController extends Controller
         return view("admin.products.create");
     }
 
+    public function update_product_status($id, $status)
+    {
+        echo $id;
+        echo $status;
+    }
     public function create_product(Request $request)
     {
         // Validate the request data
