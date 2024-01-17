@@ -20,12 +20,28 @@ class AdminProductController extends Controller
     {
         return view("admin.products.create");
     }
-
-    public function update_product_status($id, $status)
+    
+    public function update_product_status(Request $request, $id, $status)
     {
-        echo $id;
-        echo $status;
+        $newStatus = ($status == 1) ? 0 : 1;
+
+        Products::where('id', $id)
+            ->update(['status' => $newStatus]);
+
+            // if($status == 0)
+            // {
+            //     return response()->json(['success' => "verified"], 200);
+            // }
+            // elseif($status == 1)
+            // {
+            //     return response()->json(['success' => "notverified"], 200);
+            // }
+
+            $response = ($status == 0) ? response()->json(['success' => "verified"], 200) : response()->json(['success' => "notverified"], 200);
+
+            return $response;
     }
+
     public function create_product(Request $request)
     {
         // Validate the request data

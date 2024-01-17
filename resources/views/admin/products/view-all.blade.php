@@ -1,5 +1,8 @@
 @extends('admin.layout.main')
 @section('admincontent')
+<head>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+</head>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 <div class="container-fluid">
     <div class="row">
@@ -75,9 +78,15 @@
                                                     </form>
                                                 </li>
                                                 <li>
-                                                    <button class="product-verification" data-product-id="{{$product->id}}" data-product-status="{{$product->status}}" style="color:red;border:0px solid white;font-size:17px;" title="Unverify product">
-                                                        <i class="fa-solid fa-certificate"></i>
+                                                    @if($product->status == 1)
+                                                    <button class="product-verification" data-product-id="{{$product->id}}" data-product-status="{{$product->status}}" style="border:0px solid white;background-color:transparent;">
+                                                        <img alt="" style="height:2rem;width:2rem;" src="{{asset('adminassets/images/loader/unverified.svg')}}" title="Unverify product">
                                                     </button>
+                                                    @elseif($product->status == 0)
+                                                    <button class="product-verification" data-product-id="{{$product->id}}" data-product-status="{{$product->status}}" style="border:0px solid white;background-color:transparent;">
+                                                        <img alt="" style="height:2rem;width:2rem;" src="{{asset('adminassets/images/loader/verified.svg')}}" title="Verify product">
+                                                    </button>
+                                                    @endif
                                                 </li>
                                             </ul>
                                         </td>
@@ -190,30 +199,65 @@
 @endif
 
 <script>
-    $(document).ready(function () {
-        $('.product-verification').on('click', function() {
+   $(document).ready(function () {
+    $('.product-verification').on('click', function () {
+        var tempbutton = $(this);
+        var mainsection = $(this).closest('tr').find('.status-block');
         var statusText = $(this).closest('tr').find('.status-block .statustext');
-        var statuscode = $(this).data('product-status');
+        var statuscode = tempbutton.attr('data-product-status');
         var productid = $(this).data('product-id');
         var statusLoader = $(this).closest('tr').find('.status-block img').css({
             'height': '3rem',
             'width': '3.5rem'
         });
-        console.log(statuscode)
+        var newSrc = (statuscode == 1) ? '{{ asset('adminassets/images/loader/verified.svg') }}' : '{{ asset('adminassets/images/loader/unverified.svg') }}';
+        var url = "{{ route('product-update-status', ['id' => ':id', 'status' => ':status']) }}";
+        url = url.replace(':id', productid).replace(':status', statuscode);
+        console.log(statuscode);
+        var csrfToken = '{{ csrf_token() }}';
+
         statusText.hide();
         statusLoader.show();
-        var url = "{{ route('product-update-status')}}";
-        console.log(url);
-        // $.ajax({
-        //     url: "{{ route('product-update-status')}}",
-        //     type: 'POST',
-        //     // Rest of the AJAX settings
-        // });
 
+        $.ajax({
+            url: url,
+            type: 'POST',
+            data: {
+                _token: csrfToken,
+            },
+            success: function (response) {
+                setTimeout(function () {
+                    console.log(response.success);
+                    if (response.success == "verified") {
+                        console.log("test done")
+                        tempbutton.attr('data-product-status', '1');
+                        statusText.show();
+                        statusText.text("Verified");
+                        mainsection.removeClass('status-danger');
+                        mainsection.addClass('status-success');
+                        statusLoader.hide();
+                        tempbutton.find('img').attr('src', newSrc);
+                        tempbutton.find('img').attr('title', "Unverify product");
+                    }
+                    if (response.success == "notverified") {
+                        console.log("test not done")
+                        tempbutton.attr('data-product-status', '0');
+                        statusText.show();
+                        statusText.text("Unverified");
+                        mainsection.removeClass('status-success');
+                        mainsection.addClass('status-danger');
+                        statusLoader.hide();
+                        tempbutton.find('img').attr('src', newSrc);
+                        tempbutton.find('img').attr('title', "Verify product");
+                    }
+                }, 1300);
+            },
+            error: function () {
+                alert('There might be some problem happened while updating status');
+            }
+        });
+    });
+});
 
-            // console.log("verifyText"); // This will log the text 'Verified' to the console
-            // // You can use verifyText in your further logic here
-    });
-    });
 </script>
 @endsection

@@ -4,7 +4,7 @@ use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\AdminProductController;
 use Illuminate\Support\Facades\Route;
 
-// Main website pages routes
+// Main website routes
 Route::get('/', function () {
     return view('home');
 });
