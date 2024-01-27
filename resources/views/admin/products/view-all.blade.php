@@ -20,12 +20,13 @@
                                     <a href="javascript:void(0)">Export</a>
                                 </li> -->
                                 <li>
-                                    <a class="btn btn-solid" href="add-new-product.html">Add Product</a>
+                                    <a class="btn btn-solid" href="{{ route('create.productview') }}">Add Product</a>
                                 </li>
                             </ul>
                         </div>
                     </div>
                     <div>
+                        @if($productCount !== 0)
                         <div class="table-responsive">
                             <table class="table all-package theme-table table-product" id="table_id">
                                 <thead>
@@ -38,7 +39,6 @@
                                         <th>Option</th>
                                     </tr>
                                 </thead>
-
                                 <tbody>
                                     @foreach($products as $product)
                                     <tr>
@@ -51,17 +51,17 @@
                                         <td>{{$product->product_name}}</td>
                                         <td>12</td>
                                         <td class="td-price">{{$product->price}}</td>
-                                            @if($product->status == 0)
+                                        @if($product->status == 0)
                                         <td class="status-danger status-block">
                                             <span class="statustext">Unverified</span>
                                             <img style="display: none;" style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
                                         </td>
-                                            @elseif($product->status == 1)
-                                            <td class="status-success status-block">
-                                                <span class="statustext">Verified</span>
-                                                <img style="display: none;"  style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
-                                            </td>
-                                            @endif
+                                        @elseif($product->status == 1)
+                                        <td class="status-success status-block">
+                                            <span class="statustext">Verified</span>
+                                            <img style="display: none;"  style="height:7rem;width:7rem;" src="{{asset('adminassets/images/loader/verification.gif')}}" alt="">
+                                        </td>
+                                        @endif
                                         <td>
                                             <ul>
                                                 <li>
@@ -95,6 +95,10 @@
                                 </tbody>
                             </table>
                         </div>
+                        @else
+                        <h3 class="text-danger">No Records found</h3>
+                        @endif
+
                     </div>
                 </div>
             </div>

@@ -27,8 +27,9 @@
         <div class="discount-alert bg-dark-1 d-none d-lg-block">
             <div class="alert alert-dismissible fade show shadow-none rounded-0 mb-0 border-bottom">
                 <div class="d-lg-flex align-items-center gap-2 justify-content-center">
-                    <p class="mb-0 text-white">Get Up to <strong>20% OFF</strong> on every</p> <a href="javascript:;" class="bg-dark text-white px-1 font-13 cursor-pointer">Products</a>
-                    <p class="mb-0 font-13 text-light-3">*Limited time only</p>
+                    <p class="mb-0 text-white">Discover the power of <strong>crystal-clear sound</strong> with our premium</p>
+                    <a href="javascript:;" class="bg-dark text-white px-1 font-13 cursor-pointer">Hearing Aids</a>
+                    <p class="mb-0 font-13 text-light-3">*Get it now</p>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>

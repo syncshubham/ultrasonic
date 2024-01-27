@@ -95,7 +95,6 @@
 															@if (Route::has('password.request'))
 															<a href="{{ route('password.request') }}">Forgot Your Password ?</a>
 															@endif
-
 														</div>
 														<div class="col-12">
 															<div class="d-grid">

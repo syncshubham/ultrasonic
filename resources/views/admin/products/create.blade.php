@@ -489,7 +489,7 @@
                                 <div class="mb-4 row align-items-center">
                                     <label class="col-sm-3 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 1</label>
                                     <div class="col-sm-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_1" type="file" id="file">
+                                        <input onchange="fileValidation(this)" class="form-control form-choose" name="image_1" type="file" id="file">
                                         @if ($errors->has('image_1'))
                                         <div class="alert alert-danger">{{ $errors->first('image_1') }}</div>
                                         @endif
@@ -500,7 +500,7 @@
                                 <div class="mb-4 row align-items-center">
                                     <label class="col-sm-3 col-form-label form-label-title">Image 2</label>
                                     <div class="col-sm-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_2" type="file" id="formFile">
+                                        <input onchange="fileValidation(this)" class="form-control form-choose" name="image_2" type="file" id="formFile">
                                         @if ($errors->has('image_2'))
                                         <div class="alert alert-danger">{{ $errors->first('image_2') }}</div>
                                         @endif
@@ -512,7 +512,7 @@
                                 <div class="mb-4 row align-items-center">
                                     <label class="col-sm-3 col-form-label form-label-title">Image 3</label>
                                     <div class="col-sm-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_3" type="file" id="formFile">
+                                        <input onchange="fileValidation(this)" class="form-control form-choose" name="image_3" type="file" id="formFile">
                                         @if ($errors->has('image_3'))
                                         <div class="alert alert-danger">{{ $errors->first('image_3') }}</div>
                                         @endif
@@ -523,7 +523,7 @@
                                 <div class="mb-4 row align-items-center">
                                     <label class="col-sm-3 col-form-label form-label-title">Image 4</label>
                                     <div class="col-sm-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_4" type="file" id="formFile">
+                                        <input onchange="fileValidation(this)" class="form-control form-choose" name="image_4" type="file" id="formFile">
                                         @if ($errors->has('image_4'))
                                         <div class="alert alert-danger">{{ $errors->first('image_4') }}</div>
                                         @endif
@@ -534,7 +534,7 @@
                                 <div class="mb-4 row align-items-center">
                                     <label class="col-sm-3 col-form-label form-label-title">Image 5</label>
                                     <div class="col-sm-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_5" type="file" id="formFile">
+                                        <input onchange="fileValidation(this)" class="form-control form-choose" name="image_5" type="file" id="formFile">
                                         @if ($errors->has('image_5'))
                                         <div class="alert alert-danger">{{ $errors->first('image_5') }}</div>
                                         @endif
@@ -619,68 +619,91 @@
         discountAmountInput.value = discountAmount;
         finalPriceInput.value = finalPrice;
     }
-</script>
-<script>
+
     function CustomAlert() {
-        this.alert = function(message, title) {
-            document.body.innerHTML = document.body.innerHTML + '<div id="dialogoverlay"></div><div id="dialogbox" class="slit-in-vertical"><div><div id="dialogboxhead"></div><div id="dialogboxbody"></div><div id="dialogboxfoot"></div></div></div>';
+    this.alert = function(message, title) {
+        // Create elements for the alert
+        let dialogOverlay = document.createElement('div');
+        dialogOverlay.id = 'dialogoverlay';
+        document.body.appendChild(dialogOverlay);
 
-            let dialogoverlay = document.getElementById('dialogoverlay');
-            let dialogbox = document.getElementById('dialogbox');
+        let dialogBox = document.createElement('div');
+        dialogBox.id = 'dialogbox';
+        dialogBox.className = 'slit-in-vertical';
+        document.body.appendChild(dialogBox);
 
-            let winH = window.innerHeight;
-            dialogoverlay.style.height = winH + "px";
+        let innerDiv = document.createElement('div');
+        dialogBox.appendChild(innerDiv);
 
-            dialogbox.style.top = "100px";
+        let dialogBoxHead = document.createElement('div');
+        dialogBoxHead.id = 'dialogboxhead';
+        innerDiv.appendChild(dialogBoxHead);
 
-            dialogoverlay.style.display = "block";
-            dialogbox.style.display = "block";
+        let dialogBoxBody = document.createElement('div');
+        dialogBoxBody.id = 'dialogboxbody';
+        innerDiv.appendChild(dialogBoxBody);
 
-            document.getElementById('dialogboxhead').style.display = 'block';
+        let dialogBoxFoot = document.createElement('div');
+        dialogBoxFoot.id = 'dialogboxfoot';
+        innerDiv.appendChild(dialogBoxFoot);
 
-            if (typeof title === 'undefined') {
-                document.getElementById('dialogboxhead').style.display = 'none';
-            } else {
-                document.getElementById('dialogboxhead').innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ' + title;
-            }
-            document.getElementById('dialogboxbody').innerHTML = message;
-            document.getElementById('dialogboxfoot').innerHTML = '<button class="pure-material-button-contained active" onclick="customAlert.ok()">OK</button>';
+        let winH = window.innerHeight;
+        dialogOverlay.style.height = winH + "px";
+        
+        dialogBox.style.top = "100px";
+
+        dialogOverlay.style.display = "block";
+        dialogBox.style.display = "block";
+
+        dialogBoxHead.style.display = 'block';
+
+        if (typeof title === 'undefined') {
+            dialogBoxHead.style.display = 'none';
+        } else {
+            dialogBoxHead.innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ' + title;
         }
 
-        this.ok = function() {
-            document.getElementById('dialogbox').style.display = "none";
-            document.getElementById('dialogoverlay').style.display = "none";
-        }
+        dialogBoxBody.innerHTML = message;
+        dialogBoxFoot.innerHTML = '<button class="pure-material-button-contained active" onclick="customAlert.ok()">OK</button>';
     }
 
-    let customAlert = new CustomAlert();
+    this.ok = function() {
+        // Remove the dynamically created elements
+        let dialogOverlay = document.getElementById('dialogoverlay');
+        let dialogBox = document.getElementById('dialogbox');
+        document.body.removeChild(dialogOverlay);
+        document.body.removeChild(dialogBox);
+    }
+}
+
+let customAlert = new CustomAlert();
 
 
-    function fileValidation(element) {
-        var fileInput = element;
-        var filePath = fileInput.value;
 
-        // Allowing file type
-        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    function fileValidation(fileInput) {
+    var filePath = fileInput.value;
 
-        if (!allowedExtensions.exec(filePath)) {
-            customAlert.alert('Invalid file type' + '<br>' + 'Allowed Types (PDF, PNG, JPEG)', 'Alert !!!');
+    // Allowing file type
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
+    if (!allowedExtensions.exec(filePath)) {
+        customAlert.alert('Invalid file type' + '<br>' + 'Allowed Types (JPG, PNG, JPEG)', 'Alert !!!');
+        fileInput.value = '';
+        return false;
+    } else {
+        // Check file size
+        var fileSize = fileInput.files[0].size; // in bytes
+        var maxSize = 1024 * 158; // 1 MB
+
+        if (fileSize > maxSize) {
+            customAlert.alert('File size exceeds' + '<br>' + 'Max allowed size (150 KB)', 'Alert !!!');
             fileInput.value = '';
             return false;
-        } else {
-            // Check file size
-            var fileSize = fileInput.files[0].size; // in bytes
-            var maxSize = 1024 * 158; // 1 MB
-
-            if (fileSize > maxSize) {
-                customAlert.alert('File size exceeds' + '<br>' + 'Max allowed size (150 KB)', 'Alert !!!');
-                fileInput.value = '';
-                // return false;
-            }
         }
-
-        // return true; // Add this line to indicate validation success
     }
+
+    return true; // Add this line to indicate validation success
+}
 </script>
 <!-- New Product Add End -->
 

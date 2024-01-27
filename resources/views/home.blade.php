@@ -3,6 +3,54 @@
 <head>
 <title>Online Able Plus, Hearing Aid - Ultrasonic Ltd</title>
 </head>
+<style>
+    .product_image_homepage{
+        min-height:15rem;
+        max-height:15rem;
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .quickviewbuttonimages{
+        min-height:5rem;
+        max-height:5rem;
+        min-width: 5rem;
+        max-width: 5rem;
+    }
+
+    .quickviewimagesection{
+        display: flex;
+        justify-content: center;
+    }
+    .quickviewimages{
+        width: 75% !important;
+        height: 16rem;
+    }
+
+    @media(max-width:565px)
+    {
+        .product_image_homepage
+        {
+        min-height:18rem;
+        max-height:18rem;
+        min-width: 100%;
+        max-width: 100%;
+        }
+        
+        .quickviewimages{
+        width: 100% !important;
+        height: 16rem;
+        }
+
+        .quickviewbuttonimages{
+        min-height:3rem;
+        max-height:3rem;
+        min-width: 3rem;
+        max-width: 3rem;
+    }
+
+    }
+</style>
 <!--start slider section-->
 <section class="slider-section">
     <div class="first-slider">
@@ -64,8 +112,8 @@
                         <div class="d-flex align-items-center">
                             <div class="fs-1 text-white"> <i class='bx bx-taxi'></i></div>
                             <div class="info-box-content ps-3">
-                                <h6 class="mb-0">FREE SHIPPING &amp; RETURN</h6>
-                                <p class="mb-0">Free shipping on all orders over $49</p>
+                                <h6 class="mb-0">CONVENIENT SHIPPING</h6>
+                                <p class="mb-0">Experience hassle-free shopping with our convenient shipping options</p>
                             </div>
                         </div>
                     </div>
@@ -74,8 +122,8 @@
                                     <div class="fs-1 text-white"> <i class='bx bx-dollar-circle'></i>
                                     </div>
                                     <div class="info-box-content ps-3">
-                                        <h6 class="mb-0">MONEY BACK GUARANTEE</h6>
-                                        <p class="mb-0">100% money back guarantee</p>
+                                        <h6 class="mb-0">MONEY VALUE</h6>
+                                        <p class="mb-0">Discover our high-quality products that blend affordability with excellence</p>
                                     </div>
                                 </div>
                             </div>
@@ -103,189 +151,186 @@
                         <hr>
                         <div class="product-grid">
                             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
+                                @foreach ($products as $product)
                                 <div class="col">
                                     <div class="border card rounded-0 product-card">
                                         <div class="card-header bg-transparent border-bottom-0">
                                             <div class="d-flex align-items-center justify-content-end gap-3">
-                                                <a href="javascript:;">
-                                                    <div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
-                                                    </div>
-                                                </a>
+                                                @if($product->disc_rate)
+                                                @if ($product->disc_rate <= 20)
+                                                <div class="product-compare"><span>Save {{$product->disc_rate}}%</span>
+                                                </div>
+                                                @else
+                                                <div class="product-compare"><span>Super Saver {{$product->disc_rate}}%</span>
+                                                </div>
+                                                @endif
+                                                @endif
                                                 <a href="javascript:;">
                                                     <div class="product-wishlist"> <i class='bx bx-heart'></i>
                                                     </div>
                                                 </a>
                                             </div>
                                         </div>
+                                        <a href="product-details.html">
+                                            <img src="{{ asset($product->image_1) }}" class="card-img-top product_image_homepage" alt="...">
+                                        </a>
+                                        <div class="card-body">
+                                            <div class="product-info">
+                                                <a href="javascript:;">
+                                                    <p class="product-catergory font-13 mb-1">Hearing Aid</p>
+                                                </a>
+                                                <a href="javascript:;">
+                                                    <h6 class="product-name mb-2">{{$product->product_name}}</h6>
+                                                </a>
+                                                <div class="d-flex align-items-center">
+                                                    <div class="mb-1 product-price">
+                                                        @if ($product->disc_price > 0 || $product->price == null)  
+                                                        <span class="me-1 text-decoration-line-through">¥{{$product->price}}</span>
+                                                        @endif 
 
+                                                        <span class="text-white fs-5">¥{{$product->final_price}}</span>
+                                                    </div>
+                                                    <div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-white"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                        <i class="bx bxs-star text-white"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="mt-2">
+                                                    <div class="d-grid gap-2">
+                                                        <a href="javascript:;" class="btn btn-light btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> <a href="javascript:;" class="btn btn-link btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct{{$product->id}}"><i class='bx bx-zoom-in'></i>Quick View</a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Modal -->
+                                <div class="modal fade" id="QuickViewProduct{{$product->id}}">
+                                    <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">
+                                        <div class="modal-content bg-dark-4 rounded-0 border-0">
+                                            <div class="modal-body">
+                                                <button type="button" class="btn-close float-end" data-bs-dismiss="modal"></button>
+                                                <div class="row g-0">
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="image-zoom-section">
+                                                            <div class="product-gallery owl-carousel owl-theme border mb-3 p-3" data-slider-id="1">
+                                                                @for($i = 1; $i <= 5; $i++)
+                                                                    @php
+                                                                        $imageVariable = "image_" . $i;
+                                                                        $imageUrl = $product->$imageVariable;
+                                                                    @endphp
 
-                                        <a href="product-details.html">
-                                            <img src="{{ asset('assets/images/products/featured/ABLE_AID.png') }}" class="card-img-top" alt="...">
-                                        </a>
-                                        <div class="card-body">
-                                            <div class="product-info">
-                                                <a href="javascript:;">
-                                                    <p class="product-catergory font-13 mb-1">Hearing Aid</p>
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <h6 class="product-name mb-2">Able Aid</h6>
-                                                </a>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">$99.00</span>
-                                                        <span class="text-white fs-5">$49.00</span>
-                                                    </div>
-                                                    <div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <div class="d-grid gap-2">
-                                                        <a href="javascript:;" class="btn btn-light btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> <a href="javascript:;" class="btn btn-link btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct"><i class='bx bx-zoom-in'></i>Quick View</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="border card rounded-0 product-card">
-                                        <div class="card-header bg-transparent border-bottom-0">
-                                            <div class="d-flex align-items-center justify-content-end gap-3">
-                                                <a href="javascript:;">
-                                                    <div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <div class="product-wishlist"> <i class='bx bx-heart'></i>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <a href="product-details.html">
-                                            <img src="{{ asset('assets/images/products/featured/ABLE_EQ.png') }}" class="card-img-top" alt="...">
-                                        </a>
-                                        <div class="card-body">
-                                            <div class="product-info">
-                                                <a href="javascript:;">
-                                                    <p class="product-catergory font-13 mb-1">Hearing Aid</p>
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <h6 class="product-name mb-2">Able EQ</h6>
-                                                </a>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">$99.00</span>
-                                                        <span class="text-white fs-5">$49.00</span>
-                                                    </div>
-                                                    <div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <div class="d-grid gap-2">
-                                                        <a href="javascript:;" class="btn btn-light btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> <a href="javascript:;" class="btn btn-link btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct2"><i class='bx bx-zoom-in'></i>Quick View</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="border card rounded-0 product-card">
-                                        <div class="card-header bg-transparent border-bottom-0">
-                                            <div class="d-flex align-items-center justify-content-end gap-3">
-                                                <a href="javascript:;">
-                                                    <div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <div class="product-wishlist"> <i class='bx bx-heart'></i>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <a href="product-details.html">
-                                            <img src="{{ asset('assets/images/products/featured/ABLE_GLASS.png') }}" class="card-img-top" alt="...">
-                                        </a>
-                                        <div class="card-body">
-                                            <div class="product-info">
-                                                <a href="javascript:;">
-                                                    <p class="product-catergory font-13 mb-1">Hearing Aid</p>
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <h6 class="product-name mb-2">Able Glass</h6>
-                                                </a>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">$99.00</span>
-                                                        <span class="text-white fs-5">$49.00</span>
-                                                    </div>
-                                                    <div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <div class="d-grid gap-2">
-                                                        <a href="javascript:;" class="btn btn-light btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> <a href="javascript:;" class="btn btn-link btn-ecomm" data-bs-toggle="modal" data-bs-target="#QuickViewProduct3"><i class='bx bx-zoom-in'></i>Quick View</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <div class="border card rounded-0 product-card">
-                                        <div class="card-header bg-transparent border-bottom-0">
-                                            <div class="d-flex align-items-center justify-content-end gap-3">
-                                                <a href="javascript:;">
-                                                    <div class="product-compare"><span><i class='bx bx-git-compare'></i> Compare</span>
-                                                    </div>
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <div class="product-wishlist"> <i class='bx bx-heart'></i>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <a href="product-details.html">
-                                            <img src="{{ asset('assets/images/products/featured/ABLE_PLUS.png') }}" class="card-img-top" alt="...">
-                                        </a>
-                                        <div class="card-body">
-                                            <div class="product-info">
-                                                <a href="javascript:;">
-                                                    <p class="product-catergory font-13 mb-1">Hearing Aid</p>
-                                                </a>
-                                                <a href="javascript:;">
-                                                    <h6 class="product-name mb-2">Able Plus</h6>
-                                                </a>
-                                                <div class="d-flex align-items-center">
-                                                    <div class="mb-1 product-price"> <span class="me-1 text-decoration-line-through">$99.00</span>
-                                                        <span class="text-white fs-5">$49.00</span>
-                                                    </div>
-                                                    <div class="cursor-pointer ms-auto"> <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                        <i class="bx bxs-star text-white"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="mt-2">
-                                                    <div class="d-grid gap-2">
-                                                        <a href="javascript:;" class="btn btn-light btn-ecomm"> <i class='bx bxs-cart-add'></i>Add to Cart</a> <a href="javascript:;" class="btn btn-link btn-ecomm" data-bs-toggle="modal"data-bs-target="#QuickViewProduct4"><i class='bx bx-zoom-in'></i>Quick View</a>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                                                    @if($imageUrl != null)
+                                                                    <div class="item quickviewimagesection">
+                                                                        <img src="{{ asset($imageUrl) }}" class="img-fluid quickviewimages" alt="">
+                                                                    </div>
+                                                                    @endif
+                                                                @endfor
+                                                                
 
+                                                            </div>
+
+                                                            <div class="owl-thumbs d-flex justify-content-center" data-slider-id="1">
+                                                                @for($i = 1; $i <= 5; $i++)
+                                                                @php
+                                                                    $imageVariable = "image_" . $i;
+                                                                    $imageUrl = $product->$imageVariable;
+                                                                @endphp
+
+                                                                @if($imageUrl != null)
+                                                                <button class="owl-thumb-item">
+                                                                    <img src="{{ asset($imageUrl) }}" class="quickviewbuttonimages" alt="">
+                                                                </button>
+                                                                @endif
+                                                                @endfor
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-12 col-lg-6">
+                                                        <div class="product-info-section p-3">
+                                                            <h3 class="mt-3 mt-lg-0 mb-0">Able Aid</h3>
+                                                            <div class="product-rating d-flex align-items-center mt-2">
+                                                                <div class="rates cursor-pointer font-13"> <i class="bx bxs-star text-warning"></i>
+                                                                    <i class="bx bxs-star text-warning"></i>
+                                                                    <i class="bx bxs-star text-warning"></i>
+                                                                    <i class="bx bxs-star text-warning"></i>
+                                                                    <i class="bx bxs-star text-light-4"></i>
+                                                                </div>
+                                                                <div class="ms-1">
+                                                                    <p class="mb-0">(24 Ratings)</p>
+                                                                </div>
+                                                            </div>
+                                                            <div class="d-flex align-items-center mt-3 gap-2">
+                                                                @if ($product->disc_price > 0 || $product->disc_price == null)
+                                                                <h5 class="mb-0 text-decoration-line-through text-light-3">¥{{$product->price}}</h5>
+                                                                @endif 
+                                                                <h4 class="mb-0">¥{{$product->final_price}}</h4>
+                                                            </div>
+                                                            @if($product->disc_rate)
+                                                            @if ($product->disc_rate <= 20)
+                                                            <p>(Save @ {{$product->disc_rate}}%)</p>
+                                                            @else
+                                                            <p>(Super Saver @ {{$product->disc_rate}}%)</p>
+                                                            @endif
+                                                            @endif
+                                                            <div class="mt-3">
+                                                                <h6>Description :</h6>
+                                                                <p class="mb-0">Focus on your ears and clear the sound you want to hear!</p>
+                                                                
+                                                            </div>
+                                                            <dl class="row mt-3">
+                                                                <dt class="col-sm-3">Product id</dt>
+                                                                <dd class="col-sm-9">#BHU5879</dd>
+                                                                <dt class="col-sm-3">Delivery</dt>
+                                                                <dd class="col-sm-9">Russia, USA, and Europe</dd>
+                                                            </dl>
+                                                            <div class="row row-cols-auto align-items-center mt-3">
+                                                                <div class="col">
+                                                                    <label class="form-label">Quantity</label>
+                                                                    <select class="form-select form-select-sm">
+                                                                        <option>1</option>
+                                                                        <option>2</option>
+                                                                        <option>3</option>
+                                                                        <option>4</option>
+                                                                        <option>5</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label class="form-label">Size</label>
+                                                                    <select class="form-select form-select-sm">
+                                                                        <option>S</option>
+                                                                        <option>M</option>
+                                                                        <option>L</option>
+                                                                        <option>XS</option>
+                                                                        <option>XL</option>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col">
+                                                                    <label class="form-label">Colors</label>
+                                                                    <div class="color-indigators d-flex align-items-center gap-2">
+                                                                        <div class="color-indigator-item bg-primary"></div>
+                                                                        <div class="color-indigator-item bg-danger"></div>
+                                                                        <div class="color-indigator-item bg-success"></div>
+                                                                        <div class="color-indigator-item bg-warning"></div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!--end row-->
+                                                            <div class="d-flex gap-2 mt-3">
+                                                                <a href="javascript:;" class="btn btn-white btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <!--end row-->
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--end quick view product-->
+                                @endforeach
                             </div>
                             <!--end row-->
                         </div>
@@ -382,8 +427,8 @@
                                 <div class="text-center">
                                     <div class="font-50 text-white"> <i class='bx bx-cart'></i>
                                     </div>
-                                    <h2 class="fs-5 text-uppercase mb-0">Free delivery</h2>
-                                    <p class="text-capitalize">Free delivery over $199</p>
+                                    <h2 class="fs-5 text-uppercase mb-0">Timely delivery</h2>
+                                    <p class="text-capitalize">Ultrasoinc delivery, always on time.</p>
                                 </div>
                             </div>
                             <div class="col">
@@ -398,8 +443,8 @@
                                 <div class="text-center">
                                     <div class="font-50 text-white"> <i class='bx bx-dollar-circle'></i>
                                     </div>
-                                    <h2 class="fs-5 text-uppercase mb-0">Free returns</h2>
-                                    <p class="text-capitalize">We return money within 30 days</p>
+                                    <h2 class="fs-5 text-uppercase mb-0">Health Investment</h2>
+                                    <p class="text-capitalize">"Invest in clear hearing with our affordable and effective ear aids.</p>
                                 </div>
                             </div>
                             <div class="col">
@@ -696,8 +741,6 @@
             </div>
         </div>
         <!--end quick view product-->
-
-
 
          <div class="modal fade" id="QuickViewProduct2">
             <div class="modal-dialog modal-dialog-centered modal-xl modal-fullscreen-xl-down">

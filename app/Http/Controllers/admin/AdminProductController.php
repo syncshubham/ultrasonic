@@ -13,7 +13,8 @@ class AdminProductController extends Controller
     public function view_all_products()
     {
         $products = Products::orderBy("created_at", "desc")->get();
-        return view("admin.products.view-all", compact("products"));
+        $productCount = $products->count();
+        return view("admin.products.view-all", compact("products", "productCount"));
     }
 
     public function create_product_view()
@@ -58,8 +59,8 @@ class AdminProductController extends Controller
                 'image_4' => 'nullable|mimes:jpeg,png,jpg|max:150',
                 'image_5' => 'nullable|mimes:jpeg,png,jpg|max:150',
                 'price' => 'required|numeric',
-                'disc_rate' => 'required|numeric',
-                'disc_price' => 'required|numeric',
+                // 'disc_rate' => 'numeric',
+                // 'disc_price' => 'numeric',
                 'final_price' => 'required|numeric',
             ],
             [
@@ -135,8 +136,8 @@ class AdminProductController extends Controller
                 'image_4' => 'nullable|mimes:jpeg,png,jpg|max:150',
                 'image_5' => 'nullable|mimes:jpeg,png,jpg|max:150',
                 'price' => 'required|numeric',
-                'disc_rate' => 'required|numeric',
-                'disc_price' => 'required|numeric',
+                // 'disc_rate' => 'numeric',
+                // 'disc_price' => 'numeric',
                 'final_price' => 'required|numeric',
             ],
             [

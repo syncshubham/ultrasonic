@@ -677,65 +677,89 @@
 </div>
 <script>
     function CustomAlert() {
-        this.alert = function(message, title) {
-            document.body.innerHTML = document.body.innerHTML + '<div id="dialogoverlay"></div><div id="dialogbox" class="slit-in-vertical"><div><div id="dialogboxhead"></div><div id="dialogboxbody"></div><div id="dialogboxfoot"></div></div></div>';
+    this.alert = function(message, title) {
+        // Create elements for the alert
+        let dialogOverlay = document.createElement('div');
+        dialogOverlay.id = 'dialogoverlay';
+        document.body.appendChild(dialogOverlay);
 
-            let dialogoverlay = document.getElementById('dialogoverlay');
-            let dialogbox = document.getElementById('dialogbox');
+        let dialogBox = document.createElement('div');
+        dialogBox.id = 'dialogbox';
+        dialogBox.className = 'slit-in-vertical';
+        document.body.appendChild(dialogBox);
 
-            let winH = window.innerHeight;
-            dialogoverlay.style.height = winH + "px";
+        let innerDiv = document.createElement('div');
+        dialogBox.appendChild(innerDiv);
 
-            dialogbox.style.top = "100px";
+        let dialogBoxHead = document.createElement('div');
+        dialogBoxHead.id = 'dialogboxhead';
+        innerDiv.appendChild(dialogBoxHead);
 
-            dialogoverlay.style.display = "block";
-            dialogbox.style.display = "block";
+        let dialogBoxBody = document.createElement('div');
+        dialogBoxBody.id = 'dialogboxbody';
+        innerDiv.appendChild(dialogBoxBody);
 
-            document.getElementById('dialogboxhead').style.display = 'block';
+        let dialogBoxFoot = document.createElement('div');
+        dialogBoxFoot.id = 'dialogboxfoot';
+        innerDiv.appendChild(dialogBoxFoot);
 
-            if (typeof title === 'undefined') {
-                document.getElementById('dialogboxhead').style.display = 'none';
-            } else {
-                document.getElementById('dialogboxhead').innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ' + title;
-            }
-            document.getElementById('dialogboxbody').innerHTML = message;
-            document.getElementById('dialogboxfoot').innerHTML = '<button class="pure-material-button-contained active" onclick="customAlert.ok()">OK</button>';
+        let winH = window.innerHeight;
+        dialogOverlay.style.height = winH + "px";
+        
+        dialogBox.style.top = "100px";
+
+        dialogOverlay.style.display = "block";
+        dialogBox.style.display = "block";
+
+        dialogBoxHead.style.display = 'block';
+
+        if (typeof title === 'undefined') {
+            dialogBoxHead.style.display = 'none';
+        } else {
+            dialogBoxHead.innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ' + title;
         }
 
-        this.ok = function() {
-            document.getElementById('dialogbox').style.display = "none";
-            document.getElementById('dialogoverlay').style.display = "none";
-        }
+        dialogBoxBody.innerHTML = message;
+        dialogBoxFoot.innerHTML = '<button class="pure-material-button-contained active" onclick="customAlert.ok()">OK</button>';
     }
 
-    let customAlert = new CustomAlert();
+    this.ok = function() {
+        // Remove the dynamically created elements
+        let dialogOverlay = document.getElementById('dialogoverlay');
+        let dialogBox = document.getElementById('dialogbox');
+        document.body.removeChild(dialogOverlay);
+        document.body.removeChild(dialogBox);
+    }
+}
+
+let customAlert = new CustomAlert();
 
 
-    function fileValidation(element) {
-        var fileInput = element;
-        var filePath = fileInput.value;
 
-        // Allowing file type
-        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+    function fileValidation(fileInput) {
+    var filePath = fileInput.value;
 
-        if (!allowedExtensions.exec(filePath)) {
-            customAlert.alert('Invalid file type' + '<br>' + 'Allowed Types (PDF, PNG, JPEG)', 'Alert !!!');
+    // Allowing file type
+    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+
+    if (!allowedExtensions.exec(filePath)) {
+        customAlert.alert('Invalid file type' + '<br>' + 'Allowed Types (JPG, PNG, JPEG)', 'Alert !!!');
+        fileInput.value = '';
+        return false;
+    } else {
+        // Check file size
+        var fileSize = fileInput.files[0].size; // in bytes
+        var maxSize = 1024 * 158; // 1 MB
+
+        if (fileSize > maxSize) {
+            customAlert.alert('File size exceeds' + '<br>' + 'Max allowed size (150 KB)', 'Alert !!!');
             fileInput.value = '';
             return false;
-        } else {
-            // Check file size
-            var fileSize = fileInput.files[0].size; // in bytes
-            var maxSize = 1024 * 158; // 1 MB
-
-            if (fileSize > maxSize) {
-                customAlert.alert('File size exceeds' + '<br>' + 'Max allowed size (150 KB)', 'Alert !!!');
-                fileInput.value = '';
-                return false;
-            }
         }
-
-        return true; // Add this line to indicate validation success
     }
+
+    return true; // Add this line to indicate validation success
+}
 </script>
 <!-- New Product Add End -->
 <script>

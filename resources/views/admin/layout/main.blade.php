@@ -184,7 +184,13 @@
                                     <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
                                         href="javascript:void(0)">
                                         <i data-feather="log-out"></i>
-                                        <span>Log out</span>
+                                        <form method="POST" action="{{ route('logout') }}" x-data>
+                                            @csrf
+            
+                                            <x-dropdown-link onclick="event.preventDefault(); this.closest('form').submit();" href="{{ route('logout') }}">
+                                                {{ __('Log Out') }}
+                                            </x-dropdown-link>
+                                        </form>
                                     </a>
                                 </li>
                             </ul>
@@ -242,11 +248,11 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="products.html">Prodcts</a>
+                                            <a href="{{ route('admin.products.view') }}">Products</a>
                                         </li>
 
                                         <li>
-                                            <a href="add-new-product.html">Add New Products</a>
+                                            <a href="{{ route('create.productview') }}">Add New Products</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -284,18 +290,10 @@
                                 </li>
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                    <a class="sidebar-link sidebar-title" href="{{ route('admin.users.view') }}">
                                         <i class="ri-user-3-line"></i>
-                                        <span>Users</span>
+                                        <span>Manage Users</span>
                                     </a>
-                                    <ul class="sidebar-submenu">
-                                        <li>
-                                            <a href="all-users.html">All users</a>
-                                        </li>
-                                        <li>
-                                            <a href="add-new-user.html">Add new user</a>
-                                        </li>
-                                    </ul>
                                 </li>
 
                                 <li class="sidebar-list">
