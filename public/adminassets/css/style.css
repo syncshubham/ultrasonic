@@ -6,11 +6,11 @@
     Author URI: https://themeforest.net/user/pixelstrap
 ----------------------------------------------------------------------------------- !*/
 :root {
-    --theme-color: #0da487
+    --theme-color: #324e54
 }
 
 :root {
-    --theme-color: #0da487
+    --theme-color: #324e54
 }
 
 .font-roboto {
@@ -1192,13 +1192,13 @@
 }
 
 .btn-primary {
-    background-color: #0da487 !important;
+    background-color: #324e54 !important;
     border-color: #0da487 !important
 }
 
 .btn-primary.disabled,
 .btn-primary:disabled {
-    background-color: #0da487 !important;
+    background-color: #324e54 !important;
     border-color: #0da487 !important
 }
 
@@ -4659,8 +4659,8 @@ strong~p {
 }
 
 .btn-solid {
-    border: 1px solid #0da487 !important;
-    background-color: #0da487 !important;
+    border: 1px solid #324e54 !important;
+    background-color: #324e54 !important;
     color: #fff
 }
 
@@ -14810,7 +14810,7 @@ table tr th {
 }
 
 .all-package tbody tr td:nth-child(3) {
-    color: #0da487
+    color: #324e54;
 }
 
 .all-package tbody tr td:nth-child(6) {
@@ -16639,7 +16639,7 @@ table tbody tr td a .ri-delete-bin-line {
 }
 
 .simplebar-mask {
-    top: 57px
+    top: 120px;
 }
 
 .simplebar-track {
@@ -40529,7 +40529,7 @@ body[class*="dark-"] .main-white {
 }
 
 :root {
-    --theme-color: #0da487
+    --theme-color: #324e54
 }
 
 .jsgrid-filter-row select,
@@ -42252,7 +42252,7 @@ body[class*="dark-"] .main-white {
     }
 
     .simplebar-mask {
-        top: 57px
+        top: 105px
     }
 
     .datepicker-dashboard {
@@ -44437,7 +44437,8 @@ body[class*="dark-"] .main-white {
 
     .page-wrapper.compact-wrapper .page-header .header-wrapper .toggle-sidebar svg,
     .page-wrapper.compact-sidebar .page-header .header-wrapper .toggle-sidebar svg {
-        width: 18px
+        width: 46px;
+        height:32px;
     }
 
     .page-wrapper.compact-sidebar .sidebar-wrapper .back-btn {
@@ -47976,7 +47977,7 @@ body[class*="dark-"] .main-white {
 
 .page-wrapper .page-header .header-wrapper .nav-right .onhover-show-div:not(.profile-dropdown) li:first-child {
     padding: 20px;
-    background-color: #0da487;
+    background-color: #324e54;
     color: #fff;
     font-weight: 600 !important
 }
@@ -48734,7 +48735,7 @@ body[class*="dark-"] .main-white {
     text-align: left;
     -webkit-box-shadow: 0 0 21px 0 rgba(89, 102, 122, 0.1);
     box-shadow: 0 0 21px 0 rgba(89, 102, 122, 0.1);
-    background: linear-gradient(-45deg, #0da487, #009289, #ffa53b);
+    background: linear-gradient(-45deg, #17292D, #324e54, #17292D);
     background-size: 400% 400%;
     -webkit-animation: gradient 15s ease infinite;
     animation: gradient 15s ease infinite;
@@ -48896,7 +48897,7 @@ body[class*="dark-"] .main-white {
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper.close_icon:hover .simplebar-offset {
-    top: 18px
+    top: 0px
 }
 
 .page-wrapper.compact-wrapper .page-body-wrapper div.sidebar-wrapper.close_icon .simplebar-offset {

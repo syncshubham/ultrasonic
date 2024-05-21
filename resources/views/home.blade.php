@@ -27,6 +27,13 @@
         height: 16rem;
     }
 
+    .quantity-picker .btn {
+        width: 20px;
+        color: white;
+        border: 1px solid #ccc;
+        padding: 0 5px;
+    }
+
     @media(max-width:565px)
     {
         .product_image_homepage
@@ -171,15 +178,13 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <a href="product-details.html">
+                                        <a href="{{ url('product/view', ['id' => $product->id]) }}">
                                             <img src="{{ asset($product->image_1) }}" class="card-img-top product_image_homepage" alt="...">
                                         </a>
                                         <div class="card-body">
                                             <div class="product-info">
-                                                <a href="javascript:;">
                                                     <p class="product-catergory font-13 mb-1">Hearing Aid</p>
-                                                </a>
-                                                <a href="javascript:;">
+                                                <a href="{{ url('product/view', ['id' => $product->id]) }}">
                                                     <h6 class="product-name mb-2">{{$product->product_name}}</h6>
                                                 </a>
                                                 <div class="d-flex align-items-center">
@@ -277,37 +282,34 @@
                                                             @endif
                                                             <div class="mt-3">
                                                                 <h6>Description :</h6>
-                                                                <p class="mb-0">Focus on your ears and clear the sound you want to hear!</p>
+                                                                <p class="mb-0">{{$product->short_desc}}</p>
                                                                 
                                                             </div>
                                                             <dl class="row mt-3">
-                                                                <dt class="col-sm-3">Product id</dt>
-                                                                <dd class="col-sm-9">#BHU5879</dd>
                                                                 <dt class="col-sm-3">Delivery</dt>
-                                                                <dd class="col-sm-9">Russia, USA, and Europe</dd>
+                                                                <dd class="col-sm-9">All over the world</dd>
                                                             </dl>
                                                             <div class="row row-cols-auto align-items-center mt-3">
-                                                                <div class="col">
-                                                                    <label class="form-label">Quantity</label>
-                                                                    <select class="form-select form-select-sm">
-                                                                        <option>1</option>
-                                                                        <option>2</option>
-                                                                        <option>3</option>
-                                                                        <option>4</option>
-                                                                        <option>5</option>
-                                                                    </select>
+                                                                <div class="col quantity-picker">
+                                                                    <label class="form-label" for="quantity">Quantity</label>
+                                                                    <div class="input-group">
+                                                                        <button style="font-size:26px;" class="btn btn-decrement" type="button">-</button>
+                                                                        <input style="width:80px;text-align:center;border-top:1px solid white;border-bottom:1px solid white;" type="number" class="form-control quantity-input" min="1" value="1">
+                                                                        <button class="btn btn-increment" type="button">+</button>
+                                                                    </div>
                                                                 </div>
                                                                 <div class="col">
                                                                     <label class="form-label">Size</label>
-                                                                    <select class="form-select form-select-sm">
-                                                                        <option>S</option>
-                                                                        <option>M</option>
-                                                                        <option>L</option>
-                                                                        <option>XS</option>
-                                                                        <option>XL</option>
+                                                                        @php
+                                                                        $sizes = explode(',', $product->sizes);
+                                                                        @endphp
+                                                                    <select style="text-transform: uppercase;" class="form-select form-select-sm">
+                                                                        @foreach ($sizes as $size)
+                                                                        <option style="text-transform: uppercase;">{{ $size }}</option>
+                                                                        @endforeach
                                                                     </select>
                                                                 </div>
-                                                                <div class="col">
+                                                                {{-- <div class="col">
                                                                     <label class="form-label">Colors</label>
                                                                     <div class="color-indigators d-flex align-items-center gap-2">
                                                                         <div class="color-indigator-item bg-primary"></div>
@@ -315,9 +317,22 @@
                                                                         <div class="color-indigator-item bg-success"></div>
                                                                         <div class="color-indigator-item bg-warning"></div>
                                                                     </div>
-                                                                </div>
+                                                                </div> --}}
                                                             </div>
                                                             <!--end row-->
+                                                            <div class="d-flex gap-2 mt-3">
+                                                                @if ($product->refundable == 1)
+                                                                    Refundable
+                                                                @else
+                                                                    Non - refundable
+                                                                @endif
+
+                                                                @if ($product->exchangeable == 1)
+                                                                , Exchangeable
+                                                                @else
+                                                                , Non - Exchangeable
+                                                                @endif
+                                                            </div>
                                                             <div class="d-flex gap-2 mt-3">
                                                                 <a href="javascript:;" class="btn btn-white btn-ecomm"> <i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
                                                             </div>
@@ -345,7 +360,7 @@
                                 <div class="col d-flex">
                                     <div class="card rounded-0 w-100">
                                         <img src="{{ asset('assets/images/promo/mainpromo/two.png') }}" class="card-img-top" alt="...">
-                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-10%</span>
+                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">Get now</span>
                                         </div>
                                         <div class="card-body">
                                             <h5 class="card-title">Able Aid</h5>
@@ -355,11 +370,11 @@
                                 </div>
                                 <div class="col d-flex">
                                     <div class="card rounded-0 w-100">
-                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-8%</span>
+                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">Get now</span>
                                         </div>
                                         <div class="card-body text-center mt-5">
-                                            <h5 class="card-title">Hearing Aid sale</h5>
-                                            <p class="card-text">Buy our hearing aid products and get 8% off at all products</p> <a href="javascript:;" class="btn btn-light btn-ecomm">SHOP NOW</a>
+                                            <h5 class="card-title">Hearing Aid</h5>
+                                            <p class="card-text">Buy our hearing aid products at reasonable cost</p> <a href="javascript:;" class="btn btn-light btn-ecomm">SHOP NOW</a>
                                         </div>
                                         <img src="{{ asset('assets/images/promo/mainpromo/three.png') }}" class="card-img-top" alt="...">
                                     </div>
@@ -369,21 +384,21 @@
                                         <img src="{{ asset('assets/images/promo/mainpromo/first.jpg') }}" class="card-img h-100" alt="...">
                                         <div class="card-img-overlay text-center top-20">
                                             <div class="border border-white border-3 py-3 bg-dark-3">
-                                                <h5 class="card-title">Winter Sale</h5>
-                                                <p class="card-text text-uppercase fs-1 text-white lh-1 mt-3 mb-2">Up to 12% off</p>
-                                                <p class="card-text fs-5">On Able plus</p> <a href="javascript:;" class="btn btn-white btn-ecomm">SHOP NOW</a>
+                                                <h5 class="card-title">Superior ear aid</h5>
+                                                <p class="card-text text-uppercase fs-1 text-white lh-1 mt-3 mb-2">newly launched</p>
+                                                <p class="card-text fs-5">Able plus</p> <a href="javascript:;" class="btn btn-white btn-ecomm">SHOP NOW</a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col d-flex">
                                     <div class="card rounded-0 w-100">
-                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span class="">-18%</span>
+                                        <div class="position-absolute top-0 end-0 m-3 product-discount"><span class=""></span>
                                         </div>
                                         <div class="card-body text-center">
                                             <img src="{{ asset('assets/images/promo/mainpromo/four.png') }}" class="card-img-top" alt="...">
-                                            <h5 class="card-title fs-1 text-uppercase">Super Sale</h5>
-                                            <p class="card-text text-uppercase fs-4 text-white lh-1 mb-2">Up to 18% off</p>
+                                            <h5 class="card-title fs-1 text-uppercase">Health</h5>
+                                            <p class="card-text text-uppercase fs-4 text-white lh-1 mb-2">Assurity</p>
                                             <p class="card-text">On Able EQ</p> <a href="javascript:;" class="btn btn-light btn-ecomm">HURRY UP!</a>
                                         </div>
                                     </div>
@@ -1020,5 +1035,28 @@
                 </div>
             </div>
         </div>
-        
+        <script>
+            // Select all quantity input elements
+const quantityInputs = document.querySelectorAll('.quantity-input');
+const decrementButtons = document.querySelectorAll('.btn-decrement');
+const incrementButtons = document.querySelectorAll('.btn-increment');
+
+// Loop through each quantity input element
+quantityInputs.forEach((quantityInput, index) => {
+    const decrementButton = decrementButtons[index];
+    const incrementButton = incrementButtons[index];
+
+    decrementButton.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value);
+        const newValue = Math.max(1, currentValue - 1); // Ensure minimum of 1
+        quantityInput.value = newValue;
+    });
+
+    incrementButton.addEventListener('click', () => {
+        const currentValue = parseInt(quantityInput.value);
+        quantityInput.value = currentValue + 1;
+    });
+});
+
+                                                                              </script>
 @endsection

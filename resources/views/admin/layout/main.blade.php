@@ -4,8 +4,8 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="{{ asset('adminassets/images/favicon.png')}}" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ asset('adminassets/images/favicon.png')}}" type="image/x-icon">
+    <link rel="icon" href="{{ asset('adminassets/images/logo/1.png')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ asset('adminassets/images/logo/1.png')}}" type="image/x-icon">
 
     <!-- Google font-->
     <link
@@ -67,20 +67,20 @@
             <div class="header-wrapper m-0">
                 <div class="header-logo-wrapper p-0">
                     <div class="logo-wrapper">
-                        <a href="index.html">
-                            <img class="img-fluid main-logo" src="{{ asset('adminassets/images/logo/1.png')}}" alt="logo">
-                            <img class="img-fluid white-logo" src="{{ asset('adminassets/images/logo/1-white.png')}}" alt="logo">
+                        <a href="{{ route('admin.products.view') }}">
+                            <img class="img-fluid main-logo" src="{{ asset('adminassets/images/logo/1.png')}}" alt="ultrasonic-logo">
+                            <img class="img-fluid white-logo" src="{{ asset('adminassets/images/logo/1-white.png')}}" alt="ultrasonic-logo">
                         </a>
                     </div>
                     <div class="toggle-sidebar">
                         <i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
-                        <a href="index.html">
+                        <a href="{{ route('admin.products.view') }}">
                             <img src="{{ asset('adminassets/images/logo/1.png')}}" class="img-fluid" alt="">
                         </a>
                     </div>
                 </div>
 
-                <form class="form-inline search-full" action="javascript:void(0)" method="get">
+                {{-- <form class="form-inline search-full" action="javascript:void(0)" method="get">
                     <div class="form-group w-100">
                         <div class="Typeahead Typeahead--twitterUsers">
                             <div class="u-posRelative">
@@ -94,14 +94,14 @@
                             <div class="Typeahead-menu"></div>
                         </div>
                     </div>
-                </form>
+                </form> --}}
                 <div class="nav-right col-6 pull-right right-header p-0">
                     <ul class="nav-menus">
-                        <li>
+                        {{-- <li>
                             <span class="header-search">
                                 <i class="ri-search-line"></i>
                             </span>
-                        </li>
+                        </li> --}}
                         <li class="onhover-dropdown">
                             <div class="notification-box">
                                 <i class="ri-notification-line"></i>
@@ -142,57 +142,59 @@
                             </ul>
                         </li>
 
-                        <li>
+                        {{-- <li>
                             <div class="mode">
                                 <i class="ri-moon-line"></i>
                             </div>
-                        </li>
+                        </li> --}}
                         <li class="profile-nav onhover-dropdown pe-0 me-0">
                             <div class="media profile-media">
                                 <img class="user-profile rounded-circle" src="{{ asset('adminassets/images/users/4.jpg')}}" alt="">
                                 <div class="user-name-hide media-body">
                                     <span>Emay Walter</span>
-                                    <p class="mb-0 font-roboto">Admin<i class="middle ri-arrow-down-s-line"></i></p>
+                                    <p class="mb-0 font-roboto">Super Admin<i class="middle ri-arrow-down-s-line"></i></p>
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
                                 <li>
-                                    <a href="all-users.html">
+                                    <a href="{{ route('admin.users.view') }}">
                                         <i data-feather="users"></i>
                                         <span>Users</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="order-list.html">
+                                    <a hreff="">
                                         <i data-feather="archive"></i>
                                         <span>Orders</span>
                                     </a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="support-ticket.html">
                                         <i data-feather="phone"></i>
                                         <span>Spports Tickets</span>
                                     </a>
-                                </li>
+                                </li> --}}
                                 <li>
-                                    <a href="profile-setting.html">
+                                    <a hreff="">
                                         <i data-feather="settings"></i>
                                         <span>Settings</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a data-bs-toggle="modal" data-bs-target="#staticBackdrop"
-                                        href="javascript:void(0)">
+                                <li style="display: flex;">
+                                    <a>
                                         <i data-feather="log-out"></i>
+                                        <span>
                                         <form method="POST" action="{{ route('logout') }}" x-data>
                                             @csrf
             
-                                            <x-dropdown-link onclick="event.preventDefault(); this.closest('form').submit();" href="{{ route('logout') }}">
+                                            <a onclick="event.preventDefault(); this.closest('form').submit();" href="{{ route('logout') }}">
                                                 {{ __('Log Out') }}
-                                            </x-dropdown-link>
+                                            </a>
                                         </form>
+                                    </span>
                                     </a>
                                 </li>
+                                
                             </ul>
                         </li>
                     </ul>
@@ -208,18 +210,19 @@
                 <div id="sidebarEffect"></div>
                 <div>
                     <div class="logo-wrapper logo-wrapper-center">
-                        <a href="index.html" data-bs-original-title="" title="">
-                            <img class="img-fluid for-white" src="{{ asset('adminassets/images/logo/full-white.png')}}" alt="logo">
+                        <a href="{{ route('admin.products.view') }}" data-bs-original-title="" title="">
+                            <img style="height: 5rem;width:8rem;" class="img-fluid for-white" src="{{ asset('adminassets/images/logo/full-white.png')}}" alt="logo">
                         </a>
-                        <div class="back-btn">
+                        <div style="padding:35px ;margin-left:15px;" class="back-btn">
                             <i class="fa fa-angle-left"></i>
                         </div>
-                        <div class="toggle-sidebar">
+                        <div style="width: 88px;
+                        height: 91px;" class="toggle-sidebar">
                             <i class="ri-apps-line status_toggle middle sidebar-toggle"></i>
                         </div>
                     </div>
                     <div class="logo-icon-wrapper">
-                        <a href="index.html">
+                        <a href="{{ route('admin.products.view') }}">
                             <img class="img-fluid main-logo main-white" src="{{ asset('adminassets/images/logo/logo.png')}}" alt="logo">
                             <img class="img-fluid main-logo main-dark" src="{{ asset('adminassets/images/logo/logo-white.png')}}"
                                 alt="logo">
@@ -234,21 +237,21 @@
                             <ul class="sidebar-links" id="simple-bar">
                                 <li class="back-btn"></li>
 
-                                <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="index.html">
+                                {{-- <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.products.view') }}">
                                         <i class="ri-home-line"></i>
                                         <span>Dashboard</span>
                                     </a>
-                                </li>
+                                </li> --}}
 
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-store-3-line"></i>
-                                        <span>Product</span>
+                                        <span>Manage Product</span>
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="{{ route('admin.products.view') }}">Products</a>
+                                            <a href="{{ route('admin.products.view') }}">View/edit Products</a>
                                         </li>
 
                                         <li>
@@ -257,7 +260,7 @@
                                     </ul>
                                 </li>
 
-                                <li class="sidebar-list">
+                                {{-- <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-list-check-2"></i>
                                         <span>Category</span>
@@ -287,16 +290,16 @@
                                             <a href="add-new-attributes.html">Add Attributes</a>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> --}}
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title" href="{{ route('admin.users.view') }}">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.users.view') }}">
                                         <i class="ri-user-3-line"></i>
                                         <span>Manage Users</span>
                                     </a>
                                 </li>
 
-                                <li class="sidebar-list">
+                                {{-- <li class="sidebar-list">
                                     <a class="sidebar-link sidebar-title" href="javascript:void(0)">
                                         <i class="ri-user-3-line"></i>
                                         <span>Roles</span>
@@ -380,14 +383,14 @@
                                         <i class="ri-star-line"></i>
                                         <span>Product Review</span>
                                     </a>
-                                </li>
+                                </li> --}}
 
-                                <li class="sidebar-list">
+                                {{-- <li class="sidebar-list">
                                     <a class="sidebar-link sidebar-title link-nav" href="support-ticket.html">
                                         <i class="ri-phone-line"></i>
                                         <span>Support Ticket</span>
                                     </a>
-                                </li>
+                                </li> --}}
 
                                 <li class="sidebar-list">
                                     <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
@@ -396,24 +399,24 @@
                                     </a>
                                     <ul class="sidebar-submenu">
                                         <li>
-                                            <a href="profile-setting.html">Profile Setting</a>
+                                            <a hreff="profile-setting.html">Profile Setting</a>
                                         </li>
                                     </ul>
                                 </li>
 
-                                <li class="sidebar-list">
+                                {{-- <li class="sidebar-list">
                                     <a class="sidebar-link sidebar-title link-nav" href="reports.html">
                                         <i class="ri-file-chart-line"></i>
                                         <span>Reports</span>
                                     </a>
-                                </li>
+                                </li> --}}
 
-                                <li class="sidebar-list">
+                                {{-- <li class="sidebar-list">
                                     <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
                                         <i class="ri-list-check"></i>
                                         <span>List Page</span>
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
 
@@ -435,7 +438,9 @@
                     <footer class="footer">
                         <div class="row">
                             <div class="col-md-12 footer-copyright text-center">
-                                <p class="mb-0">Copyright 2022 © Fastkart theme by pixelstrap</p>
+                              
+                            <p class="mb-0">Copyright © 2024. All right reserved, Designed and developed by <a style="color:#002db3;" href="https://webcrowdsolutions.com" target="_blank">Webcrowd Solution Private Limited.</a>
+                        </p>
                             </div>
                         </div>
                     </footer>

@@ -26,10 +26,9 @@ class IsAdmin
         $decryptedRole = Crypt::decrypt($retrievedEncryptedRole);
 
         if (Auth::user() &&  $adminRole == $decryptedRole) {
-
             return $next($request);
         }
-        
+
         return redirect('/');
     }
 }

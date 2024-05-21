@@ -17,13 +17,30 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}" media="all" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icons.css') }}" media="all" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+<style>
+    @media(min-width:515px)
+    {
+        .mobile-item{
+            display: none;
+        }
+    }
 
+    @media(max-width:515px)
+    {
+        .desktop-item{
+            display: none;
+        }
+    }
+
+</style>
 <body class="bg-theme bg-theme2">
 
     <b class="screen-overlay"></b>
     <!--wrapper-->
     <div class="wrapper">
+        
         <div class="discount-alert bg-dark-1 d-none d-lg-block">
             <div class="alert alert-dismissible fade show shadow-none rounded-0 mb-0 border-bottom">
                 <div class="d-lg-flex align-items-center gap-2 justify-content-center">
@@ -81,12 +98,27 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav social-link ms-lg-2 ms-auto">
+                            <li style="color: white;font-weight:bold;margin-right:20px;border-bottom:1px solid white;" class="nav-item mobile-item">@if ($userName)
+                                Hello, {{$userName}}
+                                @else
+                               <a href="{{route('login')}}">Sign in Now</a>
+                            @endif
+                            </li>
                             <li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-facebook'></i></a>
                             </li>
                             <li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-twitter'></i></a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="javascript:;"><i class='bx bxl-linkedin'></i></a>
+                            @if ($userName)                                
+                            <li class="nav-item mobile-item"><form method="POST" action="{{ route('logout') }}" x-data>
+                                @csrf
+                                <a onclick="event.preventDefault(); this.closest('form').submit();" href="{{ route('logout') }}">
+                                    <i style="color:#ff4d4d;font-size:30px;" class="fa-solid fa-right-from-bracket">
+                                    </i>
+                                </a>
+                            </form>
                             </li>
+                            @endif
+
                         </ul>
                     </nav>
                 </div>
@@ -119,8 +151,14 @@
                         <div class="col col-md-auto order-3 d-none d-xl-flex align-items-center">
                             <div class="fs-1 text-white"><a href="{{route('login')}}" class="nav-link cart-link"><i class='bx bx-user'></i></a></div>
                             <div class="ms-2">
-                                <p class="mb-0 font-13"><a href="{{route('login')}}">Hello, sign in</a></p>
-                                <h5 class="mb-0"><a href="{{route('login')}}">to Accounts</a></h5>
+                                @if ($userName)
+                                <p class="mb-0 font-13"><a href="{{route('login')}}">Hello, {{$userName}}</a></p>
+                                <h5 class="mb-0"><a href="{{route('login')}}">Welcome again</a></h5>
+                                @else
+                                <p class="mb-0 font-13"><a href="{{route('login')}}">Hello, Sign in to</a></p>
+                                <h5 class="mb-0"><a href="{{route('login')}}">Accounts</a></h5>
+                                @endif
+
                             </div>
                         </div>
                         <div class="col col-md-auto order-2 order-md-4">
@@ -128,6 +166,7 @@
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav ms-auto">
                                         <li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i class='bx bx-heart'></i></a></li>
+                                        
                                         <li class="nav-item dropdown dropdown-large">
                                             <a href="#" class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link" data-bs-toggle="dropdown">
                                                 <span class="alert-count">13</span>
@@ -209,6 +248,17 @@
                                                 </div>
                                             </div>
                                         </li>
+                                        @if($userName)
+                                        <li style="margin-left:10px;margin-top:10px;" class="nav-item desktop-item">
+                                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                                @csrf
+                                                <a onclick="event.preventDefault(); this.closest('form').submit();" href="{{ route('logout') }}">
+                                                    <i style="color:#ff4d4d;font-size:40px;" class="fa-solid fa-right-from-bracket">
+                                                    </i>
+                                                </a>
+                                            </form>
+                                    </li>
+                                    @endif
                                     </ul>
                                 </nav>
                             </div>
@@ -338,7 +388,7 @@
                     <hr>
                     <div class="row row-cols-1 row-cols-md-2 align-items-center">
                         <div class="col">
-                            <p class="mb-0">Copyright © 2023. All right reserved. Partner with <a href="https://exportersway.com" target="_blank">Exportersway</a><br>
+                            <p class="mb-0">Copyright © 2024. All right reserved. Partner with <a href="https://exportersway.com" target="_blank">Exportersway</a><br>
                             Manage and Designed by <a href="https://webcrowdsolutions.com" target="_blank">Webcrowd Solution Private Limited.</a>
                         </p>
                         </div>
