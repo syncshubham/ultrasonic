@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\homePageController;
+use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\AdminGeneralUsersController;
-use App\Http\Controllers\admin\AdminProductController;
-use App\Http\Controllers\homePageController;
-use Illuminate\Support\Facades\Route;
 
 // ----- 1.) Begin - Main website routes
     // ---- 1.1) Begin - static page routes
@@ -18,6 +19,16 @@ use Illuminate\Support\Facades\Route;
 // ----- 1.) End - Main website routes
 
 
+Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('/api/cart', [CartController::class, 'getCartData']);
+
+
+//testing cookie
+Route::get('/test-cookie', function () {
+    $cart = Cookie::get('cart');
+    $cartData = json_decode($cart, true);
+    return response()->json($cartData);
+});
 
 // ----- 2.) Begin - Authenticated routes
 // this is the middleware wrapped around all routes which requires logged in user

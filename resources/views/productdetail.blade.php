@@ -2,6 +2,7 @@
 @section('content')
 <head>
 <title>buy {{$meta_name}} online</title>
+<meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
 <style>
     .product_image_homepage{
@@ -160,7 +161,7 @@
                                                 <label class="form-label" for="quantity">Quantity</label>
                                                 <div class="input-group">
                                                     <button style="font-size:26px;" class="btn btn-decrement" type="button">-</button>
-                                                    <input style="width:80px;text-align:center;border-top:1px solid white;border-bottom:1px solid white;" type="number" class="form-control quantity-input" min="1" value="1">
+                                                    <input id="quantity_{{ $product->id }}" style="width:80px;text-align:center;border-top:1px solid white;border-bottom:1px solid white;" type="number" class="form-control quantity-input" min="1" value="1">
                                                     <button class="btn btn-increment" type="button">+</button>
                                                 </div>
                                             </div>
@@ -201,7 +202,10 @@
                                     </div>
                                     <!--end row-->
                                     <div class="d-flex gap-2 mt-3">
-                                        <a href="javascript:;" class="btn btn-white btn-ecomm">	<i class="bx bxs-cart-add"></i>Add to Cart</a> <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
+                                        <a data-product-id="{{$product->id}}" href="javascript:;" class="btn btn-white btn-ecomm confetti-button add-to-cart-button" id="">	<i class="bx bxs-cart-add"></i>Add to Cart
+                                            <div class="spinner" style="display: none;"></div>
+                                            <div class="success-overlay" style="display: none;"><i class="success-tick"></i></div></a>
+                                        <a href="javascript:;" class="btn btn-light btn-ecomm"><i class="bx bx-heart"></i>Add to Wishlist</a>
                                     </div>
                                     <hr>
                                     <div class="product-sharing">

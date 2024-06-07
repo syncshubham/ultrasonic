@@ -1,5 +1,6 @@
 @extends('admin.layout.main')
 @section('admincontent')
+
 <head>
     <title>Edit product - {{$product->id}}</title>
 </head>
@@ -64,22 +65,23 @@
         z-index: 10;
     }
 
-    .viewimagebutton{
+    .viewimagebutton {
         display: flex;
         align-items: center;
         justify-content: center;
         height: 2rem;
-        background-color:#cc6666;
-        border: 2px solid  #391313;
+        background-color: #cc6666;
+        border: 2px solid #391313;
         border-radius: 5px;
         cursor: pointer;
         color: white;
     }
 
-    .viewimagebutton:hover{
-        background-color:#c65353;
+    .viewimagebutton:hover {
+        background-color: #c65353;
         color: whitesmoke;
     }
+
     #dialogbox {
         display: none;
         position: fixed;
@@ -310,7 +312,8 @@
     <div class="row">
         <div class="col-12">
             <div class="row">
-                <form action="{{ route('edit.product') }}" method="post" class="col-sm-8 m-auto" enctype="multipart/form-data">
+                <form action="{{ route('edit.product') }}" method="post" class="col-sm-8 m-auto"
+                    enctype="multipart/form-data">
                     @csrf
                     {{-- {{ method_field('patch') }} --}}
                     {{-- @method('PUT') --}}
@@ -325,22 +328,28 @@
                             <br>
                             <div class="theme-form theme-form-2 mega-form">
                                 <div class="mb-4 row align-items-center">
-                                    <label class="form-label-title col-sm-3 mb-0"><span style="color:red;font-size:20px;display:inline-block;">*</span>Product
+                                    <label class="form-label-title col-sm-3 mb-0"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Product
                                         Name </label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" name="product_name" value="{{old('product_name', $product->product_name)}}" type="text" placeholder="Product Name">
+                                        <input class="form-control" name="product_name"
+                                            value="{{old('product_name', $product->product_name)}}" type="text"
+                                            placeholder="Product Name">
                                         @if ($errors->has('product_name'))
                                         <div class="alert alert-danger">{{ $errors->first('product_name') }}</div>
                                         @endif
                                     </div>
                                 </div>
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Unit</label>
+                                    <label class="col-sm-3 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Unit</label>
                                     <div class="col-sm-9">
                                         <select name="unit" class="js-example-basic-single w-100">
                                             <option disabled selected>Unit Menu</option>
-                                            <option {{ old('unit', $product->unit) == 'kg' ? 'selected' : '' }} value="kg">Kilogram</option>
-                                            <option {{ old('unit', $product->unit) == 'pcs' ? 'selected' : '' }} value="pcs">Pieces</option>
+                                            <option {{ old('unit', $product->unit) == 'kg' ? 'selected' : '' }}
+                                                value="kg">Kilogram</option>
+                                            <option {{ old('unit', $product->unit) == 'pcs' ? 'selected' : '' }}
+                                                value="pcs">Pieces</option>
                                         </select>
                                         @if ($errors->has('unit'))
                                         <div class="alert alert-danger">{{ $errors->first('unit') }}</div>
@@ -351,7 +360,9 @@
                                     <label class="col-sm-3 col-form-label form-label-title">Exchangeable</label>
                                     <div class="col-sm-9">
                                         <label class="switch">
-                                            <input type="checkbox" name="exchangeable" value="1" {{ old('exchangeable', $product->exchangeable) == '1' ? 'checked' : '' }}><span class="switch-state"></span>
+                                            <input type="checkbox" name="exchangeable" value="1" {{ old('exchangeable',
+                                                $product->exchangeable) == '1' ? 'checked' : '' }}><span
+                                                class="switch-state"></span>
                                         </label>
                                     </div>
                                 </div>
@@ -359,29 +370,42 @@
                                     <label class="col-sm-3 col-form-label form-label-title">Refundable</label>
                                     <div class="col-sm-9">
                                         <label class="switch">
-                                            <input type="checkbox" name="refundable" value="1" {{ old('refundable', $product->refundable) == '1' ? 'checked' : '' }}><span class="switch-state"></span>
+                                            <input type="checkbox" name="refundable" value="1" {{ old('refundable',
+                                                $product->refundable) == '1' ? 'checked' : '' }}><span
+                                                class="switch-state"></span>
                                         </label>
                                     </div>
                                 </div>
                                 <br>
                                 <div class="row align-items-center">
-                                    <label class="col-sm-3 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Size</label>
+                                    <label class="col-sm-3 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Size</label>
                                     <div class="col-sm-9 checkbox-center">
                                         <?php
                                         $string = $product->sizes;
                                         $myarray =  explode(',', $string);
                                         ?>
-                                        <div class="checkboxitemsalignment">XS<input type="checkbox" name="sizes[]" value="xs" class="" id="" {{ in_array('xs', old('sizes', $myarray)) ? 'checked' : '' }}><span class="checkmark"></span></div>
-                                        <div class="checkboxitemsalignment">S<input type="checkbox" name="sizes[]" value="s" class="" id="" {{ in_array('s', old('sizes', $myarray)) ? 'checked' : '' }}></div>
-                                        <div class="checkboxitemsalignment">M<input type="checkbox" name="sizes[]" value="m" class="" id="" {{ in_array('m', old('sizes', $myarray)) ? 'checked' : '' }}></div>
+                                        <div class="checkboxitemsalignment">XS<input type="checkbox" name="sizes[]"
+                                                value="xs" class="" id="" {{ in_array('xs', old('sizes', $myarray))
+                                                ? 'checked' : '' }}><span class="checkmark"></span></div>
+                                        <div class="checkboxitemsalignment">S<input type="checkbox" name="sizes[]"
+                                                value="s" class="" id="" {{ in_array('s', old('sizes', $myarray))
+                                                ? 'checked' : '' }}></div>
+                                        <div class="checkboxitemsalignment">M<input type="checkbox" name="sizes[]"
+                                                value="m" class="" id="" {{ in_array('m', old('sizes', $myarray))
+                                                ? 'checked' : '' }}></div>
                                     </div>
                                     <div class="row col-sm-9">
                                         <div class="col-12 col-md-5">
 
                                         </div>
                                         <div class="col-12 col-md-7 checkbox-center paddingcheckbox">
-                                            <div class="checkboxitemsalignment">L<input type="checkbox" name="sizes[]" value="l" class="" id="" {{ in_array('l', old('sizes', $myarray)) ? 'checked' : '' }}></div>
-                                            <div class="checkboxitemsalignment">XL<input type="checkbox" name="sizes[]" value="xl" class="" id="" {{ in_array('xl', old('sizes', $myarray)) ? 'checked' : '' }}></div>
+                                            <div class="checkboxitemsalignment">L<input type="checkbox" name="sizes[]"
+                                                    value="l" class="" id="" {{ in_array('l', old('sizes', $myarray))
+                                                    ? 'checked' : '' }}></div>
+                                            <div class="checkboxitemsalignment">XL<input type="checkbox" name="sizes[]"
+                                                    value="xl" class="" id="" {{ in_array('xl', old('sizes', $myarray))
+                                                    ? 'checked' : '' }}></div>
                                         </div>
                                     </div>
                                     <div style="margin-top: 10px;" class="row">
@@ -407,10 +431,13 @@
                                     <div class="col-12">
                                         <div class="row">
                                             <label class="form-label-title col-sm-3 mb-0">
-                                                <span style="color:red;font-size:20px;display:inline-block;">*</span>Desc. for Quick view
+                                                <span
+                                                    style="color:red;font-size:20px;display:inline-block;">*</span>Desc.
+                                                for Quick view
                                             </label>
                                             <div class="col-sm-9">
-                                                <textarea class="form-control" name="short_desc" id="" rows="3">{{old('short_desc', $product->short_desc)}}</textarea>
+                                                <textarea class="form-control" name="short_desc" id=""
+                                                    rows="3">{{old('short_desc', $product->short_desc)}}</textarea>
                                                 @if ($errors->has('short_desc'))
                                                 <div class="alert alert-danger">{{ $errors->first('short_desc') }}</div>
                                                 @endif
@@ -428,7 +455,8 @@
                                                 Desc. for more info. panel
                                             </label>
                                             <div class="col-sm-9">
-                                                <textarea class="form-control" name="more_details" id="" rows="8">{{old('more_details', $product->more_details)}}</textarea>
+                                                <textarea class="form-control" name="more_details" id=""
+                                                    rows="8">{{old('more_details', $product->more_details)}}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -442,7 +470,8 @@
                                             <label class="form-label-title col-sm-3 mb-0">Bulletin 1.
                                             </label>
                                             <div class="col-sm-9">
-                                                <input class="form-control" name="bulletin_1" value="{{old('bulletin_1', $product->bulletin_1)}}" type="text">
+                                                <input class="form-control" name="bulletin_1"
+                                                    value="{{old('bulletin_1', $product->bulletin_1)}}" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -455,7 +484,8 @@
                                             <label class="form-label-title col-sm-3 mb-0">Bulletin 2.
                                             </label>
                                             <div class="col-sm-9">
-                                                <input class="form-control" name="bulletin_2" value="{{old('bulletin_2', $product->bulletin_2)}}" type="text">
+                                                <input class="form-control" name="bulletin_2"
+                                                    value="{{old('bulletin_2', $product->bulletin_2)}}" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -468,7 +498,8 @@
                                             <label class="form-label-title col-sm-3 mb-0">Bulletin 3.
                                             </label>
                                             <div class="col-sm-9">
-                                                <input class="form-control" name="bulletin_3" value="{{old('bulletin_3', $product->bulletin_3)}}" type="text">
+                                                <input class="form-control" name="bulletin_3"
+                                                    value="{{old('bulletin_3', $product->bulletin_3)}}" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -481,7 +512,8 @@
                                             <label class="form-label-title col-sm-3 mb-0">Bulletin 4.
                                             </label>
                                             <div class="col-sm-9">
-                                                <input class="form-control" name="bulletin_4" value="{{old('bulletin_4', $product->bulletin_4)}}" type="text">
+                                                <input class="form-control" name="bulletin_4"
+                                                    value="{{old('bulletin_4', $product->bulletin_4)}}" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -494,7 +526,8 @@
                                             <label class="form-label-title col-sm-3 mb-0">Bulletin 5.
                                             </label>
                                             <div class="col-sm-9">
-                                                <input class="form-control" name="bulletin_5" value="{{old('bulletin_5', $product->bulletin_5)}}" type="text">
+                                                <input class="form-control" name="bulletin_5"
+                                                    value="{{old('bulletin_5', $product->bulletin_5)}}" type="text">
                                             </div>
                                         </div>
                                     </div>
@@ -511,22 +544,29 @@
                             </div>
 
                             <div class="theme-form theme-form-2 mega-form">
-                                @if ($product->image_1)                                    
+                                @if ($product->image_1)
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 1</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        1</label>
                                     <div class="col-sm-7 col-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_1" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_1" type="file" id="file">
                                         @if ($errors->has('image_1'))
                                         <div class="alert alert-danger">{{ $errors->first('image_1') }}</div>
                                         @endif
                                     </div>
-                                    <a href="{{ asset($product->image_1)}}" target="_blank" class="col-sm-2 col-3 viewimagebutton">Current</a>
+                                    <a href="{{ asset($product->image_1)}}" target="_blank"
+                                        class="col-sm-2 col-3 viewimagebutton">Current</a>
                                 </div>
                                 @else
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 1</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        1</label>
                                     <div class="col-sm-9 col-12">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_1" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_1" type="file" id="file">
                                         @if ($errors->has('image_1'))
                                         <div class="alert alert-danger">{{ $errors->first('image_1') }}</div>
                                         @endif
@@ -535,22 +575,29 @@
                                 @endif
                             </div>
                             <div class="theme-form theme-form-2 mega-form">
-                                @if ($product->image_2)                                    
+                                @if ($product->image_2)
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 2</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        2</label>
                                     <div class="col-sm-7 col-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_2" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_2" type="file" id="file">
                                         @if ($errors->has('image_2'))
                                         <div class="alert alert-danger">{{ $errors->first('image_2') }}</div>
                                         @endif
                                     </div>
-                                    <a href="{{ asset($product->image_2)}}" target="_blank" class="col-sm-2 col-3 viewimagebutton">Current</a>
+                                    <a href="{{ asset($product->image_2)}}" target="_blank"
+                                        class="col-sm-2 col-3 viewimagebutton">Current</a>
                                 </div>
                                 @else
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 2</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        2</label>
                                     <div class="col-sm-9 col-12">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_2" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_2" type="file" id="file">
                                         @if ($errors->has('image_2'))
                                         <div class="alert alert-danger">{{ $errors->first('image_2') }}</div>
                                         @endif
@@ -559,22 +606,29 @@
                                 @endif
                             </div>
                             <div class="theme-form theme-form-2 mega-form">
-                                @if ($product->image_3)                                    
+                                @if ($product->image_3)
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 3</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        3</label>
                                     <div class="col-sm-7 col-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_3" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_3" type="file" id="file">
                                         @if ($errors->has('image_3'))
                                         <div class="alert alert-danger">{{ $errors->first('image_3') }}</div>
                                         @endif
                                     </div>
-                                    <a href="{{ asset($product->image_3)}}" target="_blank" class="col-sm-2 col-3 viewimagebutton">Current</a>
+                                    <a href="{{ asset($product->image_3)}}" target="_blank"
+                                        class="col-sm-2 col-3 viewimagebutton">Current</a>
                                 </div>
                                 @else
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 3</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        3</label>
                                     <div class="col-sm-9 col-12">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_3" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_3" type="file" id="file">
                                         @if ($errors->has('image_3'))
                                         <div class="alert alert-danger">{{ $errors->first('image_3') }}</div>
                                         @endif
@@ -583,22 +637,29 @@
                                 @endif
                             </div>
                             <div class="theme-form theme-form-2 mega-form">
-                                @if ($product->image_4)                                    
+                                @if ($product->image_4)
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 4</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        4</label>
                                     <div class="col-sm-7 col-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_4" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_4" type="file" id="file">
                                         @if ($errors->has('image_4'))
                                         <div class="alert alert-danger">{{ $errors->first('image_4') }}</div>
                                         @endif
                                     </div>
-                                    <a href="{{ asset($product->image_4)}}" target="_blank" class="col-sm-2 col-3 viewimagebutton">Current</a>
+                                    <a href="{{ asset($product->image_4)}}" target="_blank"
+                                        class="col-sm-2 col-3 viewimagebutton">Current</a>
                                 </div>
                                 @else
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 4</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        4</label>
                                     <div class="col-sm-9 col-12">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_4" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_4" type="file" id="file">
                                         @if ($errors->has('image_4'))
                                         <div class="alert alert-danger">{{ $errors->first('image_4') }}</div>
                                         @endif
@@ -607,22 +668,29 @@
                                 @endif
                             </div>
                             <div class="theme-form theme-form-2 mega-form">
-                                @if ($product->image_5)                                    
+                                @if ($product->image_5)
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 5</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        5</label>
                                     <div class="col-sm-7 col-9">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_5" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_5" type="file" id="file">
                                         @if ($errors->has('image_5'))
                                         <div class="alert alert-danger">{{ $errors->first('image_5') }}</div>
                                         @endif
                                     </div>
-                                    <a href="{{ asset($product->image_5)}}" target="_blank" class="col-sm-2 col-3 viewimagebutton">Current</a>
+                                    <a href="{{ asset($product->image_5)}}" target="_blank"
+                                        class="col-sm-2 col-3 viewimagebutton">Current</a>
                                 </div>
                                 @else
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>Image 5</label>
+                                    <label class="col-sm-3 col-12 col-form-label form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>Image
+                                        5</label>
                                     <div class="col-sm-9 col-12">
-                                        <input onchange="return fileValidation(this)" class="form-control form-choose" name="image_5" type="file" id="file">
+                                        <input onchange="return fileValidation(this)" class="form-control form-choose"
+                                            name="image_5" type="file" id="file">
                                         @if ($errors->has('image_5'))
                                         <div class="alert alert-danger">{{ $errors->first('image_5') }}</div>
                                         @endif
@@ -641,9 +709,11 @@
 
                             <div class="theme-form theme-form-2 mega-form">
                                 <div class="mb-4 row align-items-center">
-                                    <label class="col-sm-3 form-label-title"><span style="color:red;font-size:20px;display:inline-block;">*</span>price</label>
+                                    <label class="col-sm-3 form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;">*</span>price</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="originalPrice" name="price" value="{{old('price',$product->price)}}" type="number" placeholder="0">
+                                        <input class="form-control" id="originalPrice" name="price"
+                                            value="{{old('price',$product->price)}}" type="number" placeholder="0">
                                         @if ($errors->has('price'))
                                         <div class="alert alert-danger">{{ $errors->first('price') }}</div>
                                         @endif
@@ -653,19 +723,25 @@
                                 <div class="mb-4 row align-items-center">
                                     <label class="col-sm-3 form-label-title">Discount Rate (%)</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="discountPercentage" name="disc_rate" value="{{old('disc_rate',$product->disc_rate)}}" type="number" placeholder="0">
+                                        <input class="form-control" id="discountPercentage" name="disc_rate"
+                                            value="{{old('disc_rate',$product->disc_rate)}}" type="number"
+                                            placeholder="0">
                                     </div>
                                 </div>
                                 <div class="mb-4 row align-items-center">
                                     <label class="col-sm-3 form-label-title">Discount Amount</label>
                                     <div class="col-sm-9">
-                                        <input class="form-control" id="discountAmount" name="disc_price" value="{{old('disc_price', $product->disc_price)}}" type="number" placeholder="0" readonly>
+                                        <input class="form-control" id="discountAmount" name="disc_price"
+                                            value="{{old('disc_price', $product->disc_price)}}" type="number"
+                                            placeholder="0" readonly>
                                     </div>
                                 </div>
                                 <div class="mb-4 row align-items-center">
                                     <label class="col-sm-3 form-label-title">Final Amount</label>
                                     <div class="col-sm-9">
-                                        <input style="font-weight:bold;color:darkblue;" class="form-control" name="final_price" value="{{old('final_price', $product->final_price)}}" type="number" id="finalPrice" placeholder="0" readonly>
+                                        <input style="font-weight:bold;color:darkblue;" class="form-control"
+                                            name="final_price" value="{{old('final_price', $product->final_price)}}"
+                                            type="number" id="finalPrice" placeholder="0" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -679,89 +755,89 @@
 </div>
 <script>
     function CustomAlert() {
-    this.alert = function(message, title) {
-        // Create elements for the alert
-        let dialogOverlay = document.createElement('div');
-        dialogOverlay.id = 'dialogoverlay';
-        document.body.appendChild(dialogOverlay);
+        this.alert = function (message, title) {
+            // Create elements for the alert
+            let dialogOverlay = document.createElement('div');
+            dialogOverlay.id = 'dialogoverlay';
+            document.body.appendChild(dialogOverlay);
 
-        let dialogBox = document.createElement('div');
-        dialogBox.id = 'dialogbox';
-        dialogBox.className = 'slit-in-vertical';
-        document.body.appendChild(dialogBox);
+            let dialogBox = document.createElement('div');
+            dialogBox.id = 'dialogbox';
+            dialogBox.className = 'slit-in-vertical';
+            document.body.appendChild(dialogBox);
 
-        let innerDiv = document.createElement('div');
-        dialogBox.appendChild(innerDiv);
+            let innerDiv = document.createElement('div');
+            dialogBox.appendChild(innerDiv);
 
-        let dialogBoxHead = document.createElement('div');
-        dialogBoxHead.id = 'dialogboxhead';
-        innerDiv.appendChild(dialogBoxHead);
+            let dialogBoxHead = document.createElement('div');
+            dialogBoxHead.id = 'dialogboxhead';
+            innerDiv.appendChild(dialogBoxHead);
 
-        let dialogBoxBody = document.createElement('div');
-        dialogBoxBody.id = 'dialogboxbody';
-        innerDiv.appendChild(dialogBoxBody);
+            let dialogBoxBody = document.createElement('div');
+            dialogBoxBody.id = 'dialogboxbody';
+            innerDiv.appendChild(dialogBoxBody);
 
-        let dialogBoxFoot = document.createElement('div');
-        dialogBoxFoot.id = 'dialogboxfoot';
-        innerDiv.appendChild(dialogBoxFoot);
+            let dialogBoxFoot = document.createElement('div');
+            dialogBoxFoot.id = 'dialogboxfoot';
+            innerDiv.appendChild(dialogBoxFoot);
 
-        let winH = window.innerHeight;
-        dialogOverlay.style.height = winH + "px";
-        
-        dialogBox.style.top = "100px";
+            let winH = window.innerHeight;
+            dialogOverlay.style.height = winH + "px";
 
-        dialogOverlay.style.display = "block";
-        dialogBox.style.display = "block";
+            dialogBox.style.top = "100px";
 
-        dialogBoxHead.style.display = 'block';
+            dialogOverlay.style.display = "block";
+            dialogBox.style.display = "block";
 
-        if (typeof title === 'undefined') {
-            dialogBoxHead.style.display = 'none';
-        } else {
-            dialogBoxHead.innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ' + title;
+            dialogBoxHead.style.display = 'block';
+
+            if (typeof title === 'undefined') {
+                dialogBoxHead.style.display = 'none';
+            } else {
+                dialogBoxHead.innerHTML = '<i class="fa fa-exclamation-circle" aria-hidden="true"></i> ' + title;
+            }
+
+            dialogBoxBody.innerHTML = message;
+            dialogBoxFoot.innerHTML = '<button class="pure-material-button-contained active" onclick="customAlert.ok()">OK</button>';
         }
 
-        dialogBoxBody.innerHTML = message;
-        dialogBoxFoot.innerHTML = '<button class="pure-material-button-contained active" onclick="customAlert.ok()">OK</button>';
+        this.ok = function () {
+            // Remove the dynamically created elements
+            let dialogOverlay = document.getElementById('dialogoverlay');
+            let dialogBox = document.getElementById('dialogbox');
+            document.body.removeChild(dialogOverlay);
+            document.body.removeChild(dialogBox);
+        }
     }
 
-    this.ok = function() {
-        // Remove the dynamically created elements
-        let dialogOverlay = document.getElementById('dialogoverlay');
-        let dialogBox = document.getElementById('dialogbox');
-        document.body.removeChild(dialogOverlay);
-        document.body.removeChild(dialogBox);
-    }
-}
-
-let customAlert = new CustomAlert();
+    let customAlert = new CustomAlert();
 
 
 
     function fileValidation(fileInput) {
-    var filePath = fileInput.value;
+        var filePath = fileInput.value;
 
-    // Allowing file type
-    var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
+        // Allowing file type
+        var allowedExtensions = /(\.jpg|\.jpeg|\.png)$/i;
 
-    if (!allowedExtensions.exec(filePath)) {
-        customAlert.alert('Invalid file type' + '<br>' + 'Allowed Types (JPG, PNG, JPEG)', 'Alert !!!');
-        fileInput.value = '';
-        return false;
-    } else {
-        // Check file size
-        var fileSize = fileInput.files[0].size; // in bytes
-        var maxSize = 1024 * 158; // 1 MB
-
-        if (fileSize > maxSize) {
-            customAlert.alert('File size exceeds' + '<br>' + 'Max allowed size (150 KB)', 'Alert !!!');
+        if (!allowedExtensions.exec(filePath)) {
+            customAlert.alert('Invalid file type' + '<br>' + 'Allowed Types (JPG, PNG, JPEG)', 'Alert !!!');
             fileInput.value = '';
             return false;
-        }
-    }
+        } else {
+            // Check file size
+            var fileSize = fileInput.files[0].size; // in bytes
+            var maxSize = 1024 * 158; // 1 MB
 
-    return true; // Add this line to indicate validation success
-}
+            if (fileSize > maxSize) {
+                customAlert.alert('File size exceeds' + '<br>' + 'Max allowed size (150 KB)', 'Alert !!!');
+                fileInput.value = '';
+                return false;
+            }
+        }
+
+        return true; // Add this line to indicate validation success
+    }
 </script>
 <!-- New Product Add End -->
 <script>
@@ -822,7 +898,7 @@ let customAlert = new CustomAlert();
         }
     });
 
-    setTimeout(function() {
+    setTimeout(function () {
         notify.update('message', '<i class="fas fa-bell"></i></i><strong></strong>Possible Errors found.');
     }, 1800);
 </script>
