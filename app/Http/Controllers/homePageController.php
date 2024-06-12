@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use Auth;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use App\Models\admin\Products;
 
@@ -11,11 +12,10 @@ class homePageController extends Controller
     {
         $products = Products::where('status', 1)->orderBy("created_at", "desc")->get();
         $productCount = $products->count();
-        $userName = Auth::check() ? Auth::user()->name : null; // Fetch the logged-in user's name if available
 
-        return view("home", compact("products", "productCount", "userName"));
-
+        return view("home", compact("products", "productCount"));
     }
+    
 
     public function view_product_detail($id)
     {
@@ -27,7 +27,7 @@ class homePageController extends Controller
             }else{
                 $meta_name = $product->product_name;
                 $userName = Auth::check() ? Auth::user()->name : null; // Fetch the logged-in user's name if available
-                return view("productdetail", compact("product", "meta_name", "userName"));
+                return view("productdetail", compact("product", "meta_name"));
             }
         }else{
             return "Unauthorised Access";

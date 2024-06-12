@@ -102,6 +102,47 @@
                 <!--end row-->
             </div>
         </section>
+        <style>
+
+.shortviewWishlist > .HeartAnimation {
+    position: relative;
+background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png');
+background-repeat: no-repeat;
+background-size: 2900%;
+background-position: left;
+height: 90px;
+width: 100px;
+margin: 0 auto;
+cursor: pointer;
+}
+
+/* Parts are from twitter.com */
+.modalWishlist > .HeartAnimation {
+position: relative;
+background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/66955/web_heart_animation.png');
+background-repeat: no-repeat;
+background-size: 2900%;
+background-position: left;
+height: 90px;
+width: 150px;
+left: -37px;
+bottom: 37px;
+margin: 0 auto;
+cursor: pointer;
+}
+.animate {
+animation: heart-burst 1.5s steps(28) forwards;
+}
+@keyframes heart-burst {
+0% {
+background-position: left;
+}
+100% {
+background-position: right;
+}
+}
+
+        </style>
         <br><br><br><br>
         <section class="py-4">
             <div class="container">
@@ -128,7 +169,7 @@
                                     @endif
                                     @endif
                                     <a href="javascript:;">
-                                        <div class="product-wishlist"> <i class='bx bx-heart'></i>
+                                        <div class="product-wishlist"> <span class="shortviewWishlist" style="position:absolute;"><div data-product-id="{{$product->id}}" class="HeartAnimation tempHeartAnimation"></div></span>
                                         </div>
                                     </a>
                                 </div>
@@ -220,7 +261,7 @@
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <div class="product-info-section p-3">
-                                                <h3 class="mt-3 mt-lg-0 mb-0">Able Aid</h3>
+                                                <h3 class="mt-3 mt-lg-0 mb-0">{{$product->product_name}} <span class="modalWishlist" style="position:absolute;"><div data-product-id="{{$product->id}}" class="HeartAnimation tempHeartAnimation"></div></span></h3>
                                                 <div class="product-rating d-flex align-items-center mt-2">
                                                     <div class="rates cursor-pointer font-13"> <i
                                                             class="bx bxs-star text-warning"></i>
@@ -314,12 +355,12 @@
                                                                 class="spinner" style="display: none;"></div>
                                                             <div class="success-overlay" style="display: none;"><i
                                                                     class="success-tick"></i></div>
-                                                        </a> <a href="javascript:;" class="btn btn-light btn-ecomm"><i
-                                                                class="bx bx-heart"></i>Add to Wishlist</a>
+                                                        </a>
                                                     </div>
                                             </div>
                                         </div>
                                     </div>
+
                                     <!--end row-->
                                 </div>
                             </div>
@@ -671,5 +712,4 @@
 </div>
 </div>
 <!--end page wrapper -->
-
 @endsection

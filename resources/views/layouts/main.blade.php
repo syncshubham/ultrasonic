@@ -40,6 +40,61 @@
             display: none;
         }
     }
+
+
+
+
+    .loadercartdeletion {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .loadercartdeletion .dot {
+        width: 8px;
+        height: 8px;
+        background-color: #e0e0e0;
+        /* Change color as needed */
+        border-radius: 50%;
+        margin: 0 2px;
+        animation: pulse 1.2s infinite linear;
+    }
+
+    .loadercartdeletion .dot:nth-child(1) {
+        animation-delay: 0s;
+    }
+
+    .loadercartdeletion .dot:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    .loadercartdeletion .dot:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    @keyframes pulse {
+
+        0%,
+        80%,
+        100% {
+            transform: scale(0.6);
+        }
+
+        40% {
+            transform: scale(1);
+        }
+    }
+
+    .dropdown-item {
+        position: relative;
+        /* Ensure sufficient height and other styling */
+    }
 </style>
 
 <body class="bg-theme bg-theme2">
@@ -198,13 +253,14 @@
                                             <a href="#" id="cart-link"
                                                 class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link"
                                                 data-bs-toggle="dropdown">
-                                                <span class="alert-count">13</span>
+                                                <span id="productCount" class="alert-count">@if($cart>0)
+                                                    {{$cart}} @else {{'?'}} @endif</span>
                                                 <i class='bx bx-shopping-bag'></i>
                                             </a>
                                             <div class="dropdown-menu dropdown-menu-end" id="cartDropdown">
                                                 <div id="cartLoader"
                                                     style="display: none; text-align: center; padding: 20px;">
-                                                    <div class="spinner-border text-primary" role="status">
+                                                    <div class="spinner-border" role="status">
                                                         <span class="visually-hidden">Loading...</span>
                                                     </div>
                                                 </div>
@@ -240,76 +296,177 @@
 
             <script>
 
-document.querySelectorAll('.dropdown-menu').forEach(function(menu) {
-    menu.addEventListener('click', function(event) {
-        console.log("propagation stopped");
-        event.stopPropagation();
-    });
-});
+                document.querySelectorAll('.dropdown-menu').forEach(function (menu) {
+                    menu.addEventListener('click', function (event) {
+                        console.log("propagation stopped");
+                        event.stopPropagation();
+                    });
+                });
 
 
-document.querySelector('#cart-link').addEventListener('show.bs.dropdown', async function(event) {
-    console.log("cart button clicked");
-    const cartDropdown = document.getElementById('cartDropdown');
-    const cartLoader = document.getElementById('cartLoader');
-    const cartContent = document.getElementById('cartContent');
+                document.querySelector('#cart-link').addEventListener('show.bs.dropdown', async function (event) {
+                    console.log("cart button clicked");
+                    const cartDropdown = document.getElementById('cartDropdown');
+                    const cartLoader = document.getElementById('cartLoader');
+                    const cartContent = document.getElementById('cartContent');
 
-    // Show loader
-    cartLoader.style.display = 'block';
-    cartContent.style.display = 'none';
+                    // Show loader
+                    cartLoader.style.display = 'block';
+                    cartContent.style.display = 'none';
 
-    try {
-        // Await the fetching of cart data
-        const cartData = await fetchCartData();
-        populateCartDropdown(cartData);
-        
-        // Hide loader and show content
-        cartLoader.style.display = 'none';
-        cartContent.style.display = 'block';
-    } catch (error) {
-        console.error('Failed to load cart data:', error);
-        // cartLoader.innerHTML = 'Failed to load data';
-    }
-});
+                    try {
+                        // Await the fetching of cart data
+                        const cartData = await fetchCartData();
+                        console.log(cartData);
+                        populateCartDropdown(cartData);
 
-async function fetchCartData() {    
-    try {
-        // Directly fetch cart data, backend will handle the source based on user authentication
-        const response = await fetch('/api/cart');
-        const data = await response.json();
-        console.log(data, "found")
-        return data;
-    } catch (error) {
-        console.error('Failed to fetch cart data:', error);
-        throw error;  // Rethrow to allow the caller to handle it
-    }
-}
+                        // Hide loader and show content
+                        cartLoader.style.display = 'none';
+                        cartContent.style.display = 'block';
+                    } catch (error) {
+                        console.error('Failed to load cart data:', error);
+                        // cartLoader.innerHTML = 'Failed to load data';
+                    }
+                });
 
-function populateCartDropdown(cartData) {
-    const cartContent = document.getElementById('cartContent');
-    cartContent.innerHTML = ''; // Clear existing content
+                async function fetchCartData() {
+                    try {
+                        // Directly fetch cart data, backend will handle the source based on user authentication
+                        const response = await fetch('/api/cart');
+                        const data = await response.json();
+                        // console.log(data);
 
-    cartData.forEach(item => {
-        const productHTML = `
-            <a class="dropdown-item" href="javascript:;">
-                <div class="d-flex align-items-center">
-                    <div class="flex-grow-1">
-                        <h6 class="cart-product-title">${item.title}</h6>
-                        <p class="cart-product-price">${item.quantity} X $${item.price}</p>
-                    </div>
-                    <div class="position-relative">
-                        <div class="cart-product-cancel position-absolute"><i class='bx bx-x'></i></div>
-                        <div class="cart-product">
-                            <img src="${item.imageUrl}" class="" alt="product image">
-                        </div>
-                    </div>
-                </div>
-            </a>`;
-        cartContent.insertAdjacentHTML('beforeend', productHTML);
-    });
-}
+                        if (data.hasOwnProperty('original')) {
+                            console.log(data.original.cartItems);
+                            return [data.original];
+                        } else {
+                            console.log(data);
+                            return data;
+                        }
 
+                    } catch (error) {
+                        console.error('Failed to fetch cart data:', error);
+                        throw error;  // Rethrow to allow the caller to handle it
+                    }
+                }
+
+                function populateCartDropdown(cartData) {
+                    const cartContent = document.getElementById('cartContent');
+                    cartContent.innerHTML = ''; // Clear existing content
+                    let productHTML = `<a href="https://exportersway.com">
+													<div class="cart-header">
+														<p id="cartTotalCount" class="cart-header-title mb-0">${cartData[0].totalItems} ITEMS</p>
+														<p class="cart-header-clear ms-auto mb-0">VIEW CART</p>
+													</div>
+												</a>`
+                    cartData[0].cartItems.forEach(item => {
+                        productHTML += `
+                                        <a class="dropdown-item" id="dropdown-item-temp" href="javascript:;">
+                                            <div class="d-flex align-items-center" data-cart-item-id="${item.id || item.product_id + '|' + item.size}">
+                                                <div class="flex-grow-1">
+                                                    <h6 class="cart-product-title">${item.product_name}</h6>
+                                                    <p class="cart-product-price">${item.quantity} X ¥${item.final_price}</p>
+                                                </div>
+                                                <div class="position-relative tempimagescart">
+                                                    <div class="cart-product-cancel position-absolute" data-delete-cart-item-id="${item.id || item.product_id + '|' + item.size}"><i class='bx bx-x'></i></div>
+                                                    <div class="cart-product">
+                                                        <img src="{{asset('${item.image_1}')}}" class="" alt="product image">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>`;
+                    });
+
+
+                    productHTML += `<a href="javascript:;">
+													<div class="text-center cart-footer d-flex align-items-center">
+														<h5 class="mb-0">TOTAL</h5>
+														<h5 id="cartTotalAmount" class="mb-0 ms-auto">¥${cartData[0].totalAmount}</h5>
+													</div>
+												</a>`
+
+                    cartContent.insertAdjacentHTML('beforeend', productHTML);
+
+                }
+
+                function createPulsatingDotsLoader() {
+                    const loader = document.createElement('div');
+                    loader.className = 'loadercartdeletion';
+
+                    // Create dots
+                    for (let i = 0; i < 3; i++) {
+                        const dot = document.createElement('div');
+                        dot.className = 'dot';
+                        loader.appendChild(dot);
+                    }
+
+                    return loader;
+                }
+                // Assuming the dropdown that contains the cart items is always present in the DOM
+                document.querySelector('.dropdown-menu-end').addEventListener('click', async function (event) {
+                    // Check if the clicked element has the class 'cart-product-cancel'
+                    console.log("delete click try ")
+                    if (event.target.closest('.cart-product-cancel')) {
+                        const button = event.target.closest('.cart-product-cancel');
+                        const cartItemId = button.dataset.deleteCartItemId;
+                        const cartItemElement = button.closest('.dropdown-item');
+                        console.log(cartItemId);
+
+                        const loader = createPulsatingDotsLoader();
+                        cartItemElement.appendChild(loader);
+
+                        loader.className = 'loadercartdeletion';
+                        console.log("loader should be played")
+
+                        try {
+                            const response = await fetch('/delete-cart-item', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                                },
+                                body: JSON.stringify({ cart_item_id: cartItemId })
+                            })
+                            const data = await response.json()
+                            if (data.message) {
+                                // Animate and remove the cart item
+                                animateAndRemoveCartItem(cartItemElement);
+                                await updateCartTotals();
+                            } else if (data.errormessage) {
+                                alert(data.errormessage);
+                            }
+                            cartItemElement.removeChild(loader);
+                        }
+                        catch (error) {
+                            console.error('Error removing cart item:', error);
+                            alert('Failed to remove item. Please try again.');
+                            cartItemElement.classList.remove('loading');
+                        };
+                    }
+                });
+
+                function animateAndRemoveCartItem(cartItemElement) {
+                    cartItemElement.style.transition = 'all 0.5s ease-out';
+                    cartItemElement.style.transform = 'translateX(-270px)';
+                    cartItemElement.style.opacity = '0';
+                    setTimeout(() => {
+                        cartItemElement.remove();
+                    }, 500);
+                }
+
+                async function updateCartTotals() {
+                    try {
+                        const totalsResponse = await fetch('/api/cart-totals');
+                        const totalsData = await totalsResponse.json();
+                        document.getElementById('cartTotalCount').textContent = `${totalsData.totalItems} ITEMS`;
+                        document.getElementById('cartTotalAmount').textContent = `¥${totalsData.totalAmount}`;
+                        document.getElementById('productCount').innerText = totalsData.totalItems;
+                    } catch (error) {
+                        console.error('Error fetching updated cart totals:', error);
+                    }
+                }
             </script>
+
             <div class="primary-menu border-top">
                 <div class="container">
                     <nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg">

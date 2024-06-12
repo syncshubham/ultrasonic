@@ -21,6 +21,9 @@ use App\Http\Controllers\admin\AdminGeneralUsersController;
 
 Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
 Route::get('/api/cart', [CartController::class, 'getCartData']);
+Route::get('/api/cart/count', [CartController::class, 'getCartItemsCount']);
+Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem'])->name('delete-cart-item');
+Route::get('/api/cart-totals', [CartController::class, 'getCartTotals']);
 
 
 //testing cookie

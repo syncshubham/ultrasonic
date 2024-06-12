@@ -180,7 +180,7 @@ document.querySelectorAll('.add-to-cart-button').forEach(button => {
                     body: JSON.stringify({
                         product_id: productId,
                         quantity: quantity,
-                        size:size
+                        size: size
                     })
                 })
                 .then(response => response.json())
@@ -206,21 +206,20 @@ document.querySelectorAll('.add-to-cart-button').forEach(button => {
                                 setTimeout(() => {
                                     buttonElement.classList.remove('animate');
                                     this.classList.remove('disabled-new'); // Re-enable the button after some operation
-									smoothScrollToTopAndOpenCart(1000);
+                                    // Smooth scroll to the top and open cart
+                                    smoothScrollToTopAndOpenCart(1000,updateCartCount)
                                 }, 500); // Match the duration of confetti animation
                             }, 300); // Fade out delay
-                            
-                        }, 1500); // Tick display time
-                    }
-                    else if (data.errors) {
+
+                        }, 1000); // Tick display time
+                    } else if (data.errors) {
                         let errorMessage = "Please correct the following errors:\n";
                         for (let key in data.errors) {
                             errorMessage += `${key}: ${data.errors[key].join(", ")}\n`;
                         }
                         alert(errorMessage);
                         console.log(data.errors)
-                    }
-                    else if (data.errormessage) {
+                    } else if (data.errormessage) {
                         alert(data.errormessage);
                         console.log(data);
                         // Stop loading effect
@@ -237,27 +236,45 @@ document.querySelectorAll('.add-to-cart-button').forEach(button => {
                     this.querySelector('.spinner').style.display = 'none';
                     this.classList.remove('disabled-new'); // Re-enable the button after some operation
                 });
-        }, 500);
+        }, 1);
     });
 });
 
-function smoothScrollToTopAndOpenCart(duration) {
+function smoothScrollToTopAndOpenCart(duration, callback) {
     let start = null;
     const top = 0;
-    const startScrollPosition = document.documentElement.scrollTop || document.body.scrollTop;
-    const distance = top - startScrollPosition;
-    const step = (timestamp) => {
+    const startScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+    window.requestAnimationFrame(function step(timestamp) {
         if (!start) start = timestamp;
         const progress = timestamp - start;
         const currentStep = Math.min(progress / duration, 1);
-        window.scrollTo(0, startScrollPosition + distance * currentStep);
+        window.scrollTo(0, startScrollPosition + (top - startScrollPosition) * currentStep);
+
         if (progress < duration) {
             window.requestAnimationFrame(step);
         } else {
-            openCartModal();
+            if (callback){
+                openCartModal() 
+                callback()
+            };
         }
-    };
-    window.requestAnimationFrame(step);
+    });
+}
+
+function updateCartCount() {
+    console.log("update cart executed")
+    fetch('/api/cart/count') // Assuming you have set up this API endpoint
+        .then(response => response.json())
+        .then(data => {
+            if (data) {
+                console.log(data);
+                document.getElementById('productCount').innerText = data;
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching cart count:', error);
+        });
 }
 
 function openCartModal() {
@@ -267,4 +284,8 @@ function openCartModal() {
     }
 }
 
-
+$(function() {
+    $(".HeartAnimation").click(function() {
+    $(this).toggleClass("animate");
+    });
+    });

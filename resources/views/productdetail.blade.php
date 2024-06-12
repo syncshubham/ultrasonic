@@ -171,7 +171,7 @@
                                                 @php
                                                 $sizes = explode(',', $product->sizes);
                                                 @endphp
-                                            <select style="text-transform: uppercase;" class="form-select form-select-sm">
+                                            <select id="size_{{ $product->id }}" style="text-transform: uppercase;" class="form-select form-select-sm">
                                                 @foreach ($sizes as $size)
                                                 <option style="text-transform: uppercase;">{{ $size }}</option>
                                                 @endforeach
