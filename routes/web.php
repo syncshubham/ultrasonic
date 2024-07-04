@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homePageController;
 use App\Http\Controllers\User\CartController;
+use App\Http\Controllers\user\wishlistController;
 use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\admin\AdminDashboardController;
 use App\Http\Controllers\admin\AdminGeneralUsersController;
@@ -24,7 +25,7 @@ Route::get('/api/cart', [CartController::class, 'getCartData']);
 Route::get('/api/cart/count', [CartController::class, 'getCartItemsCount']);
 Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem'])->name('delete-cart-item');
 Route::get('/api/cart-totals', [CartController::class, 'getCartTotals']);
-
+Route::post('/wishlist-toggle', [wishlistController::class, 'toggle'])->name('wishlist-toggle');
 
 //testing cookie
 Route::get('/test-cookie', function () {
@@ -79,6 +80,9 @@ Route::middleware([
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
+
+
+
     });
     // ---- 2.2) End - User panel routes
 

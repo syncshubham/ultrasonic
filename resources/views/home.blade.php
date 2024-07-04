@@ -131,7 +131,7 @@ margin: 0 auto;
 cursor: pointer;
 }
 .animate {
-animation: heart-burst 1.5s steps(28) forwards;
+animation: heart-burst 1s steps(28) forwards;
 }
 @keyframes heart-burst {
 0% {
@@ -169,7 +169,7 @@ background-position: right;
                                     @endif
                                     @endif
                                     <a href="javascript:;">
-                                        <div class="product-wishlist"> <span class="shortviewWishlist" style="position:absolute;"><div data-product-id="{{$product->id}}" class="HeartAnimation tempHeartAnimation"></div></span>
+                                        <div class="product-wishlist"> <span class="shortviewWishlist" style="position:absolute;"><div data-product-id="{{$product->id}}" class="HeartAnimation tempHeartAnimation {{ $product->is_wished ? 'animate' : '' }}"></div></span>
                                         </div>
                                     </a>
                                 </div>
@@ -261,7 +261,8 @@ background-position: right;
                                         </div>
                                         <div class="col-12 col-lg-6">
                                             <div class="product-info-section p-3">
-                                                <h3 class="mt-3 mt-lg-0 mb-0">{{$product->product_name}} <span class="modalWishlist" style="position:absolute;"><div data-product-id="{{$product->id}}" class="HeartAnimation tempHeartAnimation"></div></span></h3>
+                                                <h3 class="mt-3 mt-lg-0 mb-0">{{$product->product_name}} <span class="modalWishlist" style="position:absolute;"><div data-product-id="{{$product->id}}" class="HeartAnimation tempHeartAnimation {{ $product->is_wished ? 'animate' : '' }} 
+                                                    "></div></span></h3>
                                                 <div class="product-rating d-flex align-items-center mt-2">
                                                     <div class="rates cursor-pointer font-13"> <i
                                                             class="bx bxs-star text-warning"></i>

@@ -9,12 +9,23 @@ use App\Models\admin\Products;
 class homePageController extends Controller
 {
     public function index()
-    {
-        $products = Products::where('status', 1)->orderBy("created_at", "desc")->get();
-        $productCount = $products->count();
+{
+    $products = Products::where('status', 1)->orderBy("created_at", "desc")->get();
+    $productCount = $products->count();
 
-        return view("home", compact("products", "productCount"));
+    $wishlistProductIds = [];
+    if (Auth::check()) {
+        $wishlistProductIds = Auth::user()->wishlist()->pluck('product_id')->toArray();
     }
+
+    // Add is_wished flag to each product based on user's wishlist
+    $products = $products->map(function ($product) use ($wishlistProductIds) {
+        $product->is_wished = in_array($product->id, $wishlistProductIds);
+        return $product;
+    });
+
+    return view('home', compact('products', 'productCount', 'wishlistProductIds'));
+}
     
 
     public function view_product_detail($id)

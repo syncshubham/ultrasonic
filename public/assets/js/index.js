@@ -284,8 +284,36 @@ function openCartModal() {
     }
 }
 
+
 $(function() {
-    $(".HeartAnimation").click(function() {
-    $(this).toggleClass("animate");
+    $(".tempHeartAnimation").click(async function() {
+        let productId = this.dataset.productId;
+        let size = document.getElementById('size_' + productId).value;
+
+        try {
+            const response = await fetch('/wishlist-toggle', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                },
+                body: JSON.stringify({
+                    productId: productId,
+                    size: size
+                })
+            });
+
+            const data = await response.json();
+
+            if (data.status === 'redirect') {
+                console.log(data.url)
+                window.location.href = data.url; // Redirects to login if not authenticated
+            } else {
+                $(this).toggleClass("animate", data.wished); // Toggle based on current state returned from server
+            }
+        } catch (error) {
+            console.error('Error:', error);
+        }
     });
-    });
+});
+
