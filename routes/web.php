@@ -26,6 +26,9 @@ Route::get('/api/cart/count', [CartController::class, 'getCartItemsCount']);
 Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem'])->name('delete-cart-item');
 Route::get('/api/cart-totals', [CartController::class, 'getCartTotals']);
 Route::post('/wishlist-toggle', [wishlistController::class, 'toggle'])->name('wishlist-toggle');
+Route::get('/product/cart', [CartController::class, 'productCart']);
+Route::post('/delete-cart-products', [CartController::class, 'deleteCartProducts'])->name('delete-cart-products');
+
 
 //testing cookie
 Route::get('/test-cookie', function () {

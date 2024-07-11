@@ -568,8 +568,8 @@ body.offcanvas-active {
 
 /* Product Effect */
 
-.product-grid .card.product-card {
-	background-color: rgb(0 0 0 / 0%);
+.card.product-card {
+	background-color: rgb(0 0 0 / 30%);
 	box-shadow: none;
 	border-radius: 0%;
 	-webkit-transition: all .2s;
@@ -579,8 +579,6 @@ body.offcanvas-active {
 
 .product-grid .product-card .product-action,
 .product-grid .product-card .product-compare {
-	opacity: 0;
-	visibility: hidden;
 	-webkit-transition: all .2s;
 	-o-transition: all .2s;
 	transition: all .2s
@@ -597,8 +595,8 @@ body.offcanvas-active {
 		margin-bottom: 0;
 	}
 
-	.product-grid .card.product-card:hover {
-		background-color: rgb(0 0 0 / 20%);
+	.card.product-card:hover {
+		background-color: rgb(0 0 0 / 50%);
 		-webkit-box-shadow: 0 0.3rem 0.8rem rgb(0 0 0 / 12%);
 		box-shadow: 0 0.3rem 0.8rem rgb(0 0 0 / 12%);
 	}
@@ -1535,6 +1533,7 @@ ul.categories-list li {
 }
 
 .btn-ecomm {
+	width: 100%;
 	padding: .675rem .85rem;
 	font-size: 12px;
 	font-weight: 500;

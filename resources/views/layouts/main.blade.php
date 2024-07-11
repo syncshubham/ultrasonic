@@ -332,7 +332,15 @@
                 async function fetchCartData() {
                     try {
                         // Directly fetch cart data, backend will handle the source based on user authentication
-                        const response = await fetch('/api/cart');
+                        const response = await fetch('/api/cart', {
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        });
+
+                        if (!response.ok) {
+                            throw new Error(`HTTP error! Status: ${response.status}`);
+                        }
                         const data = await response.json();
                         // console.log(data);
 
@@ -623,13 +631,12 @@
                 </div>
             </section>
         </footer>
-        <!--end footer section-->
-        <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i
+            
+        <a href="javaScript:;" class="back-to-top"><i
                 class='bx bxs-up-arrow-alt'></i></a>
-        <!--End Back To Top Button-->
+
     </div>
-    <!--end wrapper-->
-    <!--start switcher-->
+
     <div class="switcher-wrapper">
         <div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
         </div>

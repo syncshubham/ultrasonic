@@ -49,6 +49,103 @@ class CartController extends Controller
         }
     }
 
+    public function deleteCartProducts(Request $request)
+{
+
+    $cartItemId = $request->cartItemId;
+    $userId = Auth::id();
+    if (Auth::check()) {
+        $cartItem = Cart::where('id', $cartItemId)->where('user_id', $userId)->first();
+    } else {
+        $userLocalCart = json_decode(request()->cookie('cart'), true) ?? [];
+        $cartItem = array_key_exists($cartItemId, $userLocalCart) ? $cartItemId : null;
+    }
+
+    if (!$cartItem) {
+        return;
+    }
+
+    if (Auth::check()) {
+        $cartItem->delete();
+    } else {
+        $userLocalCart = json_decode(request()->cookie('cart'), true) ?? [];
+        unset($userLocalCart[$cartItemId]); // Delete the item
+        Cookie::queue('cart', json_encode($userLocalCart), 60 * 24 * 7);
+    }
+
+    return response()->json(['success' => true, 'message' => 'Cart item deleted.']);
+}
+
+
+public function deleteCartItem(Request $request)
+{
+    $cartItemId = $request->input('cart_item_id');
+    if (Auth::check()) {
+        // Assuming $cartItemId is the ID from the database
+        Cart::where('id', $cartItemId)->delete();
+    } else {
+        // Handle deletion from cookies
+        $cart = json_decode(request()->cookie('cart'), true) ?? [];
+        unset($cart[$cartItemId]); // Delete the item
+        Cookie::queue('cart', json_encode($cart), 60 * 24 * 7);
+    }
+    return response()->json(['message' => 'Cart item removed successfully']);
+}
+
+
+    public function productCart()
+    {
+        $cartItems = collect();
+        $totalNumberOfProducts = 0;
+        $totalAmount = 0;
+    
+        if (Auth::check()) {
+            // User is logged in, fetch from database
+            $userId = Auth::id();
+            $cartItems = Cart::with('product')
+                ->where('user_id', $userId)
+                ->get()
+                ->map(function($cartItem) {
+                    return (object)[
+                        'product' => $cartItem->product,
+                        'quantity' => $cartItem->quantity,
+                        'size' => $cartItem->size, // Assuming size is a field in the cart table
+                        'cart_id' => $cartItem->id
+                    ];
+                });
+    
+            $totalNumberOfProducts = $cartItems->sum('quantity');
+            $totalAmount = $cartItems->sum(function($cartItem) {
+                return $cartItem->quantity * $cartItem->product->final_price;
+            });
+        } else {
+            // User is not logged in, fetch from cookies
+            $cookieCart = Cookie::get('cart');
+            if ($cookieCart) {
+                $cartData = json_decode($cookieCart, true);
+                foreach ($cartData as $key => $quantity) {
+                    [$productId, $size] = explode('|', $key);
+    
+                    // Fetch product details from the database
+                    $product = Products::find($productId);
+                    if ($product) {
+                        $totalNumberOfProducts += $quantity;
+                        $totalAmount += $quantity * $product->final_price;
+    
+                        // Add to the cart items collection in a standardized format
+                        $cartItems->push((object)[
+                            'product' => $product,
+                            'quantity' => $quantity,
+                            'size' => $size,
+                            'cart_id' => $key
+                        ]);
+                    }
+                }
+            }
+        }
+    
+        return view('cart', compact('totalNumberOfProducts', 'totalAmount', 'cartItems'));
+    }
     private function getProductSizes($productId)
     {
         $product = Products::find($productId);
@@ -68,7 +165,9 @@ class CartController extends Controller
             $cartData = $this->enrichCartDataWithProductNames($cartData);
             // echo $cartData;
         }
-        return response()->json($cartData);
+
+            return response()->json($cartData);
+        
     }
 
     public function fetchCartFromDatabase($userId)
@@ -181,20 +280,6 @@ class CartController extends Controller
         return response()->json($cartCount);
     }
 
-    public function deleteCartItem(Request $request)
-    {
-        $cartItemId = $request->input('cart_item_id');
-        if (Auth::check()) {
-            // Assuming $cartItemId is the ID from the database
-            Cart::where('id', $cartItemId)->delete();
-        } else {
-            // Handle deletion from cookies
-            $cart = json_decode(request()->cookie('cart'), true) ?? [];
-            unset($cart[$cartItemId]); // Delete the item
-            Cookie::queue('cart', json_encode($cart), 60 * 24 * 7);
-        }
-        return response()->json(['message' => 'Cart item removed successfully']);
-    }
 
     public function getCartTotals()
     {
