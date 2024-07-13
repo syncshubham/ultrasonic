@@ -50,31 +50,33 @@ class CartController extends Controller
     }
 
     public function deleteCartProducts(Request $request)
-{
-
-    $cartItemId = $request->cartItemId;
-    $userId = Auth::id();
-    if (Auth::check()) {
-        $cartItem = Cart::where('id', $cartItemId)->where('user_id', $userId)->first();
-    } else {
-        $userLocalCart = json_decode(request()->cookie('cart'), true) ?? [];
-        $cartItem = array_key_exists($cartItemId, $userLocalCart) ? $cartItemId : null;
+    {
+        $cartItemId = $request->cartItemId;
+        $userId = Auth::id();
+        $cartItem = null;
+    
+        if (Auth::check()) {
+            $cartItem = Cart::where('id', $cartItemId)->where('user_id', $userId)->first();
+        } else {
+            $userLocalCart = json_decode(request()->cookie('cart'), true) ?? [];
+            if (array_key_exists($cartItemId, $userLocalCart)) {
+                $cartItem = $cartItemId;
+            }
+        }
+    
+        if ($cartItem) {
+            if (Auth::check()) {
+                $cartItem->delete();
+            } else {
+                unset($userLocalCart[$cartItemId]); // Delete the item
+                Cookie::queue('cart', json_encode($userLocalCart), 60 * 24 * 7);
+            }
+            return response()->json(['success' => true, 'message' => 'Cart item deleted.']);
+        }
+    
+        return response()->json(['success' => false, 'message' => 'Cart item not found.']);
     }
-
-    if (!$cartItem) {
-        return;
-    }
-
-    if (Auth::check()) {
-        $cartItem->delete();
-    } else {
-        $userLocalCart = json_decode(request()->cookie('cart'), true) ?? [];
-        unset($userLocalCart[$cartItemId]); // Delete the item
-        Cookie::queue('cart', json_encode($userLocalCart), 60 * 24 * 7);
-    }
-
-    return response()->json(['success' => true, 'message' => 'Cart item deleted.']);
-}
+    
 
 
 public function deleteCartItem(Request $request)

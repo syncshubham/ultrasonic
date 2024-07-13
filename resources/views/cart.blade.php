@@ -46,9 +46,9 @@
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i> Home</a>
+                                <li class="breadcrumb-item"><a href="/"><i class="bx bx-home-alt"></i> Home</a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="javascript:;">Shop</a>
+                                <li class="breadcrumb-item"><a href="/#featuredProducts">Shop</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Shop Cart</li>
                             </ol>
@@ -67,6 +67,7 @@
                             <div class="shop-cart-list mb-3 p-3">
     @if($cartItems->isEmpty())
     <p>No items in the cart.</p>
+    <br>
 @else
     @foreach($cartItems as $cartItem)
                                 <div data-cart-item-id="{{$cartItem->cart_id ? $cartItem->cart_id : $cartItem->product->id}}" class="row align-items-center g-3 product-card-adjst">
@@ -80,18 +81,18 @@
                                             <br>
                                             <div class="cart-detail text-center text-lg-start">
                                                 <h6 class="mb-2">{{$cartItem->product->product_name}}</h6>
-                                                <p class="mb-0">Size: <span>{{$cartItem->size}}</span>
+                                                <p class="mb-0">Size: <span>{{$cartItem->size}}</span>, Quantity: <span>{{$cartItem->quantity}}</span>
                                                 </p>
-                                                <p class="mb-2">Desc: <span>{{$cartItem->product->short_desc}}</span>
+                                                <p class="mb-2">Description: <span>{{$cartItem->product->short_desc}}</span>
                                                 </p>
                                                 <h5 class="mb-0">¥ {{$cartItem->product->final_price}}</h5>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-3">
-                                        <div class="cart-action text-center">
+                                        <!-- <div class="cart-action text-center">
                                             <input type="number" class="form-control rounded-0" value="2" min="1">
-                                        </div>
+                                        </div> -->
                                         <br>
                                         <div class="text-center">
                                             <div class=""> <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm delete-cart-item"><i class='bx bx-x-circle'></i> Remove</a>
@@ -102,25 +103,27 @@
                                     @endforeach
     @endif
 
-                                <div class="d-lg-flex align-items-center gap-2"><a href="javascript:;" class="btn btn-light btn-ecomm"><i class='bx bx-shopping-bag'></i> Continue Shoping</a>
-                                    <a href="javascript:;" class="btn btn-light btn-ecomm ms-auto"><i class='bx bx-x-circle'></i> Clear Cart</a>
+                                <div class="d-lg-flex align-items-center gap-2"><a href="/#featuredProducts" class="btn btn-light btn-ecomm"><i class='bx bx-shopping-bag'></i> Continue Shoping</a>
+                                    <!-- <a href="javascript:;" class="btn btn-light btn-ecomm ms-auto"><i class='bx bx-x-circle'></i> Clear Cart</a> -->
                                 </div>
                             </div>
                         </div>
-                        <div class="col-12 col-xl-4">
+                        @if(!$cartItems->isEmpty())
+                        <div id="mainCheckoutPanelCartPage" class="col-12 col-xl-4">
                             <div class="checkout-form p-3 bg-dark-1">
                                 <div class="card rounded-0 border bg-transparent mb-0 shadow-none">
+                            <div id="checkoutLayoutLoader" class="loader-delete-product" style="display: none;"></div>
                                     <div class="card-body">
-                                        <p class="mb-2">Total Items: <span class="float-end">{{$totalNumberOfProducts}}</span>
+                                        <p class="mb-2">Total Items: <span id="cartPageTotalProducts" class="float-end">{{$totalNumberOfProducts}}</span>
                                         </p>
-                                        <p class="mb-2">Subtotal: <span class="float-end">¥ {{$totalAmount}}</span>
+                                        <p class="mb-2">Subtotal: <span id="cartSubTotalAmount" class="float-end">¥ {{$totalAmount}}</span>
                                         </p>
                                         <p class="mb-2">Delivery Charges: <span class="float-end">-</span>
                                         </p>
                                         <p class="mb-0">Discount: <span class="float-end">-</span>
                                         </p>
                                         <div class="my-3 border-top"></div>
-                                        <h5 class="mb-0">Order Total: <span class="float-end">¥ {{$totalAmount}}.00</span></h5>
+                                        <h5 class="mb-0">Order Total: <span id="cartTotalAmount" class="float-end">¥ {{$totalAmount}}.00</span></h5>
                                         <div class="my-4"></div>
                                         <div class="d-grid"> <a href="javascript:;" class="btn btn-white btn-ecomm">Proceed to Checkout</a>
                                         </div>
@@ -128,6 +131,7 @@
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
                     <!--end row-->
                 </div>
@@ -138,6 +142,7 @@
 </div>
 
     <script>
+        
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.delete-cart-item');
             
@@ -151,7 +156,9 @@
             const card = e.currentTarget.closest('.product-card-adjst');
             const cartItemId = card.getAttribute('data-cart-item-id');
             const loader = card.querySelector('.loader-delete-product');
+            const checkoutLoader= document.getElementById('checkoutLayoutLoader');
             loader.style.display = 'block'; // Show loader
+            checkoutLoader.style.display = 'block'; // Show loader
         
             try {
                 const response = await fetch('/delete-cart-products', {
@@ -179,7 +186,9 @@
                     card.style.transition = 'all 0.7s ease';
                     card.style.transform = 'scaleY(0)';
                     card.style.opacity = '30%';
-        
+                    
+                    await updateCartAfterDeletion();
+                    
                     setTimeout(() => {
                         card.remove();
                     }, 700); // Match the CSS transition duration
@@ -191,11 +200,36 @@
                 alert('An error occurred while trying to remove the item.');
             } finally {
                 loader.style.display = 'none'; // Hide loader after operation
+                checkoutLoader.style.display = 'none'; // Show loader
+
             }
         }
         
-        
-        
-        
-            </script>
+        async function updateCartAfterDeletion() {
+            try {
+                const totalsResponse = await fetch('/api/cart-totals');
+                const totalsData = await totalsResponse.json();
+                const layoutPanel = document.getElementById("mainCheckoutPanelCartPage");
+
+                if(totalsData.totalItems >= 1)
+                {
+                document.getElementById('cartPageTotalProducts').innerText = totalsData.totalItems;
+                document.getElementById('cartSubTotalAmount').textContent = `¥${totalsData.totalAmount}`;
+                document.getElementById('cartTotalAmount').textContent = `¥${totalsData.totalAmount}`;
+                console.log("panel available")
+                console.log(totalsData);
+                }else{
+                    console.log("panel removed")
+                    layoutPanel.remove();
+                    const shopCartList = document.querySelector('.shop-cart-list');
+                    const newParagraph = document.createElement('p');
+                    newParagraph.textContent = 'No items in the cart';
+                    shopCartList.insertBefore(newParagraph, shopCartList.firstChild);
+                }
+            } catch (error) {
+                console.error('Error fetching updated cart totals:', error);
+            }
+        }
+
+    </script>
 @endsection

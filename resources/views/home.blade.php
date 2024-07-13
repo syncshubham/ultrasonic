@@ -144,7 +144,7 @@ background-position: right;
 
         </style>
         <br><br><br><br>
-        <section class="py-4">
+        <section id="featuredProducts" class="py-4">
             <div class="container">
                 <div class="d-flex align-items-center">
                     <h5 class="text-uppercase mb-0">FEATURED PRODUCTS</h5>
@@ -372,7 +372,6 @@ background-position: right;
                 </div>
                 <!--end row-->
             </div>
-    </div>
     </section>
     <br><br>
     <section class="py-4">
