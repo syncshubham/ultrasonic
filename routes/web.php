@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\User\checkoutController;
+use App\Http\Controllers\user\userMainProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homePageController;
 use App\Http\Controllers\User\CartController;
@@ -26,7 +28,7 @@ Route::get('/api/cart/count', [CartController::class, 'getCartItemsCount']);
 Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem'])->name('delete-cart-item');
 Route::get('/api/cart-totals', [CartController::class, 'getCartTotals']);
 Route::post('/wishlist-toggle', [wishlistController::class, 'toggle'])->name('wishlist-toggle');
-Route::get('/product/cart', [CartController::class, 'productCart']);
+Route::get('/product/cart', [CartController::class, 'productCart'])->name("product.cart");
 Route::post('/delete-cart-products', [CartController::class, 'deleteCartProducts'])->name('delete-cart-products');
 
 
@@ -83,6 +85,22 @@ Route::middleware([
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
+
+        Route::post('/main/checkout', [checkoutController::class, 'main_checkout'])->name('main.checkout');
+        Route::get('/user-dashboard', [userMainProfileController::class, 'user_dashboard'])->name('user.dashboard');
+        Route::get('/user-orders', [userMainProfileController::class, 'user_orders'])->name('user.orders');
+        Route::get('/user-addresses', [userMainProfileController::class, 'user_addresses'])->name('user.addresses');
+        Route::get('/user-paymentmethods', [userMainProfileController::class, 'user_paymentMethods'])->name('user.paymentmethods');
+        Route::get('/user-profile', [userMainProfileController::class, 'user_profile'])->name('user.profile');
+
+        Route::get('/add-address', [userMainProfileController::class, 'add_address'])->name('add.address');
+        Route::post('/create-address', [userMainProfileController::class, 'create_address'])->name('create.address');
+
+        Route::get('/address/{id}/edit',  [userMainProfileController::class, 'address_edit'])->name('address.edit');
+        Route::post('/address/{id}/update', [userMainProfileController::class, 'address_update'])->name('address.update');
+        Route::post('/address/{id}/delete', [userMainProfileController::class, 'address_delete'])->name('address.delete');
+
+
 
 
 

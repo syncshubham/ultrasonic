@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Wishlist;
+use App\Models\UserAddress;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
 use Illuminate\Notifications\Notifiable;
@@ -69,4 +70,9 @@ class User extends Authenticatable
         return $this->hasMany(Wishlist::class);
     }
     
+    public function addresses()
+    {
+        return $this->hasMany(UserAddress::class);  // Using class name resolution
+    }
+
 }

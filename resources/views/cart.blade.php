@@ -113,9 +113,14 @@
                             <div class="checkout-form p-3 bg-dark-1">
                                 <div class="card rounded-0 border bg-transparent mb-0 shadow-none">
                             <div id="checkoutLayoutLoader" class="loader-delete-product" style="display: none;"></div>
-                                    <div class="card-body">
+                                    <form method="post" action="{{ route('main.checkout') }}" class="card-body">
+                                        @csrf
                                         <p class="mb-2">Total Items: <span id="cartPageTotalProducts" class="float-end">{{$totalNumberOfProducts}}</span>
                                         </p>
+                                        <input type="hidden" value="{{$totalNumberOfProducts}}" name="totalnumberproducts">
+                                        <input type="hidden" value="{{$totalAmount}}" name="totalamount">
+                                        <input type="hidden" value="20%" name="discount">
+
                                         <p class="mb-2">Subtotal: <span id="cartSubTotalAmount" class="float-end">¥ {{$totalAmount}}</span>
                                         </p>
                                         <p class="mb-2">Delivery Charges: <span class="float-end">-</span>
@@ -125,9 +130,9 @@
                                         <div class="my-3 border-top"></div>
                                         <h5 class="mb-0">Order Total: <span id="cartTotalAmount" class="float-end">¥ {{$totalAmount}}.00</span></h5>
                                         <div class="my-4"></div>
-                                        <div class="d-grid"> <a href="javascript:;" class="btn btn-white btn-ecomm">Proceed to Checkout</a>
-                                        </div>
-                                    </div>
+                                        <button style="width:100%;" type="submit" class="d-grid"> <a class="btn btn-white btn-ecomm">Proceed to Checkout</a>
+                                        </button>
+                                    </form>
                                 </div>
                             </div>
                         </div>

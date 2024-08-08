@@ -364,7 +364,7 @@
                     let productHTML = `<a href="https://exportersway.com">
 													<div class="cart-header">
 														<p id="cartTotalCount" class="cart-header-title mb-0">${cartData[0].totalItems} ITEMS</p>
-														<p class="cart-header-clear ms-auto mb-0">VIEW CART</p>
+														<a href="{{ route('product.cart') }}" class="cart-header-clear ms-auto mb-0">VIEW CART</a>
 													</div>
 												</a>`
                     cartData[0].cartItems.forEach(item => {
