@@ -69,6 +69,32 @@
     <p>No items in the cart.</p>
     <br>
 @else
+<div class="card bg-transparent rounded-0 shadow-none">
+    <div class="card-body">
+        <div class="steps steps-light">
+            <a class="step-item active">
+                <div class="step-progress"><span class="step-count">1</span>
+                </div>
+                <div class="step-label"><i class='bx bx-cart'></i>Cart</div>
+            </a>
+            <a class="step-item">
+                <div class="step-progress"><span class="step-count">2</span>
+                </div>
+                <div class="step-label"><i class='bx bx-cube'></i>Shipping</div>
+            </a>
+            <a class="step-item">
+                <div class="step-progress"><span class="step-count">3</span>
+                </div>
+                <div class="step-label"><i class='bx bx-credit-card'></i>Payment</div>
+            </a>
+            <a class="step-item">
+                <div class="step-progress"><span class="step-count">4</span>
+                </div>
+                <div class="step-label"><i class='bx bx-check-circle'></i>Review</div>
+            </a>
+        </div>
+    </div>
+</div>
     @foreach($cartItems as $cartItem)
                                 <div data-cart-item-id="{{$cartItem->cart_id ? $cartItem->cart_id : $cartItem->product->id}}" class="row align-items-center g-3 product-card-adjst">
                                     <div class="col-12 col-lg-9">
@@ -123,9 +149,9 @@
 
                                         <p class="mb-2">Subtotal: <span id="cartSubTotalAmount" class="float-end">¥ {{$totalAmount}}</span>
                                         </p>
-                                        <p class="mb-2">Delivery Charges: <span class="float-end">-</span>
+                                        <p class="mb-2">Shipping: <span class="float-end">-</span>
                                         </p>
-                                        <p class="mb-0">Discount: <span class="float-end">-</span>
+                                        <p class="mb-0">Taxes: <span class="float-end">-</span>
                                         </p>
                                         <div class="my-3 border-top"></div>
                                         <h5 class="mb-0">Order Total: <span id="cartTotalAmount" class="float-end">¥ {{$totalAmount}}.00</span></h5>

@@ -59,38 +59,6 @@
         font-size: 16px;"><span style="font-size:22px;">+ &nbsp;</span><a href="{{route('add.address')}}">Add More Address</a></button>
         <br>
         <br>
-        <style>
-            .address_lists{
-                background-color: #252d7c30;
-                border-left: 5px solid #3e4853;
-                padding: 10px;
-                display: flex;
-                gap: 20px;
-                justify-content: center;
-                align-items: center;
-            }
-
-            .main_addresses{
-                width: 80%;
-            }
-
-            .address_action{
-                display: flex;
-                background-color: #252d7c30;
-                border-left: 5px solid #3e4853;
-                height: 6rem;
-                font-size: 20px;
-                width: 20%;
-                justify-content: center;
-                align-items: center;
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            .address_action > i, .address_action > form{
-                cursor: pointer;
-            }
-        </style>
                                         <h6 class="mb-4">You can select any of the addresses while placing the order, as per availability</h6>
                                         <div class="row">
                                             <div class="col-12 col-lg-12">

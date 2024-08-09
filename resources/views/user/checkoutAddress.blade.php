@@ -10,7 +10,8 @@
                     <div class="ms-auto">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb mb-0 p-0">
-                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i> Home</a>
+                                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i>
+                                        Home</a>
                                 </li>
                                 <li class="breadcrumb-item"><a href="javascript:;">Shop</a>
                                 </li>
@@ -32,23 +33,23 @@
                                 <div class="card bg-transparent rounded-0 shadow-none">
                                     <div class="card-body">
                                         <div class="steps steps-light">
-                                            <a class="step-item active" href="shop-cart.html">
+                                            <a class="step-item active">
                                                 <div class="step-progress"><span class="step-count">1</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-cart'></i>Cart</div>
                                             </a>
-                                            <a class="step-item" href="checkout-shipping.html">
-                                                <div class="step-progress"><span class="step-count">3</span>
+                                            <a class="step-item active">
+                                                <div class="step-progress"><span class="step-count">2</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-cube'></i>Shipping</div>
                                             </a>
-                                            <a class="step-item" href="checkout-payment.html">
-                                                <div class="step-progress"><span class="step-count">4</span>
+                                            <a class="step-item">
+                                                <div class="step-progress"><span class="step-count">3</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-credit-card'></i>Payment</div>
                                             </a>
-                                            <a class="step-item" href="checkout-review.html">
-                                                <div class="step-progress"><span class="step-count">5</span>
+                                            <a class="step-item">
+                                                <div class="step-progress"><span class="step-count">4</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-check-circle'></i>Review</div>
                                             </a>
@@ -76,18 +77,41 @@
                                     <div class="card-body">
                                         <div class="border p-3">
                                             <h2 class="h5 mb-0">Shipping Address</h2>
-                                            <div class="my-3 border-bottom"></div>
-                                            <div class="form-body">
-                                                <form class="row g-3">
-                                                    
-                                                    <!-- <div class="col-md-12">
-                                                        <h6 class="mb-0 h5">Billing Address</h6>
-                                                        <div class="my-3 border-bottom"></div>
-                                                        <div class="form-check">
-                                                            <input class="form-check-input" type="checkbox" id="gridCheck" checked="">
-                                                            <label class="form-check-label" for="gridCheck">Same as shipping address</label>
+                                            <br>
+                                            @if($addresses_count <= 0) <p>No Addresses found kindly add by clicking
+                                                below button</p>
+                                                @else
+                                                <p>Select any one address from the below addresses</p>
+                                                @endif
+                                                <div class="my-3 border-bottom"></div>
+                                                <div class="form-body">
+                                                    <form method="POST" action="{{ route('select.address') }}"  class="row g-3">
+                                                        @csrf
+                                                        @foreach ($addresses as $address)
+                                                        <label style="cursor: pointer;"
+                                                            for="address_selection{{$address->id}}"
+                                                            class="address_lists">
+                                                            <div class="address_checkout_action">
+                                                                <input style="width:20px;height:20px;"
+                                                                    id="address_selection{{$address->id}}" type="radio"
+                                                                    name="address_id" value="{{$address->id}}" required>
+                                                            </div>
+                                                            <div class="main_addresses_checkout">
+                                                                <div>Address Line 1: {{$address->address_first_line}}
+                                                                </div>
+                                                                <div>Address Line 2: {{ $address->address_second_line ?:
+                                                                    '' }}</div>
+                                                                <div>ZIP Code: {{$address->pin_code}}</div>
+                                                                <div>City: {{$address->city}}</div>
+                                                                <div>Country: {{$address->country}}</div>
+                                                            </div>
+                                                        </label>
+                                                        @endforeach
+                                                        @if ($errors->has('address_id'))
+                                                        <div class="alert alert-danger">
+                                                            {{ $errors->first('address_id') }}
                                                         </div>
-                                                    </div> -->
+                                                    @endif
                                                     <div class="col-md-6">
                                                         <div class="d-grid">	<a href="javascript:;" class="btn btn-light btn-ecomm"><i class='bx bx-chevron-left'></i>Back to Cart</a>
                                                         </div>
@@ -96,8 +120,9 @@
                                                         <div class="d-grid">	<a href="javascript:;" class="btn btn-white btn-ecomm">Proceed to Checkout<i class='bx bx-chevron-right'></i></a>
                                                         </div>
                                                     </div>
-                                                </form>
-                                            </div>
+                                                    </form>
+
+                                                </div>
                                         </div>
                                     </div>
                                 </div>
@@ -111,72 +136,46 @@
                                             <div class="card-body">
                                                 <p class="fs-5 text-white">Apply Discount Code</p>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control rounded-0" placeholder="Enter discount code">
-                                                    <button class="btn btn-light btn-ecomm" type="button">Apply Discount</button>
+                                                    <input type="text" class="form-control rounded-0"
+                                                        placeholder="Enter discount code">
+                                                    <button class="btn btn-light btn-ecomm" type="button">Apply
+                                                        Discount</button>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="card rounded-0 border bg-transparent shadow-none">
                                             <div class="card-body">
                                                 <p class="fs-5 text-white">Order summary</p>
+                                                @forEach($cartItems as $cartItem)
                                                 <div class="my-3 border-top"></div>
-                                                <div class="d-flex align-items-center">
-                                                    <a class="d-block flex-shrink-0" href="javascript:;">
-                                                        <img src="assets/images/products/01.png" width="75" alt="Product">
-                                                    </a>
-                                                    <div class="ps-2">
-                                                        <h6 class="mb-1"><a href="javascript:;">White Polo T-Shirt</a></h6>
-                                                        <div class="widget-product-meta"><span class="me-2">$19.<small>00</small></span><span class="">x 1</span>
-                                                        </div>
+                                                <div class="d-lg-flex align-items-center gap-2">
+                                                    <div class="cart-img text-center text-lg-start">
+                                                        <img style="height:6rem;width: 6rem;" src="{{ asset($cartItem['image_1']) }}" width="130" alt="">
+                                                    </div>
+                                                    <br>
+                                                    <div class="cart-detail text-center text-lg-start">
+                                                        <h6 class="mb-2">{{$cartItem['product_name']}}</h6>
+                                                        <p class="mb-0">Size: <span>{{$cartItem['size']}}</span>, Quantity: <span>{{$cartItem['quantity']}}</span>
+                                                        </p>
+                                                        <h5 class="mb-0">¥ {{$cartItem['final_price']}}</h5>
                                                     </div>
                                                 </div>
-                                                <div class="my-3 border-top"></div>
-                                                <div class="d-flex align-items-center">
-                                                    <a class="d-block flex-shrink-0" href="javascript:;">
-                                                        <img src="assets/images/products/17.png" width="75" alt="Product">
-                                                    </a>
-                                                    <div class="ps-2">
-                                                        <h6 class="mb-1"><a href="javascript:;">Fancy Red Sneakers</a></h6>
-                                                        <div class="widget-product-meta"><span class="me-2">$16.<small>00</small></span><span class="">x 2</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="my-3 border-top"></div>
-                                                <div class="d-flex align-items-center">
-                                                    <a class="d-block flex-shrink-0" href="javascript:;">
-                                                        <img src="assets/images/products/04.png" width="75" alt="Product">
-                                                    </a>
-                                                    <div class="ps-2">
-                                                        <h6 class="mb-1"><a href="javascript:;">Yellow Shine Blazer</a></h6>
-                                                        <div class="widget-product-meta"><span class="me-2">$22.<small>00</small></span><span class="">x 1</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="my-3 border-top"></div>
-                                                <div class="d-flex align-items-center">
-                                                    <a class="d-block flex-shrink-0" href="javascript:;">
-                                                        <img src="assets/images/products/09.png" width="75" alt="Product">
-                                                    </a>
-                                                    <div class="ps-2">
-                                                        <h6 class="mb-1"><a href="javascript:;">Men Black Hat Cap</a></h6>
-                                                        <div class="widget-product-meta"><span class="me-2">$14.<small>00</small></span><span class="">x 1</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="card rounded-0 border bg-transparent mb-0 shadow-none">
                                             <div class="card-body">
-                                                <p class="mb-2">Subtotal: <span class="float-end">$198.00</span>
+                                                <p class="mb-0">Total Items: <span class="float-end"> {{$totalItems}}</span>
                                                 </p>
-                                                <p class="mb-2">Shipping: <span class="float-end">--</span>
+                                                <p class="mb-2">Subtotal: <span class="float-end">¥ {{$totalAmount}}</span>
                                                 </p>
-                                                <p class="mb-2">Taxes: <span class="float-end">$14.00</span>
+                                                <p class="mb-2">Shipping: <span class="float-end">-</span>
                                                 </p>
-                                                <p class="mb-0">Discount: <span class="float-end">--</span>
+                                                <p class="mb-2">Taxes: <span class="float-end">-</span>
                                                 </p>
+                                               
                                                 <div class="my-3 border-top"></div>
-                                                <h5 class="mb-0">Order Total: <span class="float-end">212.00</span></h5>
+                                                <h5 class="mb-0">Order Total: <span class="float-end">¥ {{$totalAmount}}.00</span></h5>
                                             </div>
                                         </div>
                                     </div>

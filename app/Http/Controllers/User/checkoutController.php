@@ -28,7 +28,7 @@ class checkoutController extends Controller
         session(['checkout_token' => $__checkout_token]);
     
         $addresses = UserAddress::where('user_id', $userId)->get();
-    
+        $addresses_count = $addresses->count();
         // Initialize totals
         $totalItems = 0;
         $totalAmount = 0;
@@ -56,9 +56,34 @@ class checkoutController extends Controller
         return view('user.checkoutAddress', [
             'cartItems' => $cartItemsTransformed,
             'addresses' => $addresses,
+            'addresses_count' => $addresses_count,
             'totalItems' => $totalItems,
             'totalAmount' => $totalAmount,
         ]);
+    }
+
+    public function selectAddress(Request $request)
+    {
+        // Check if the session variable 'checkout_token' is set
+        if (!session()->has('checkout_token')) {
+            return back()->withErrors(['error' => 'Session expired or invalid for proceed to address. Please try again.']);
+        }
+
+        $request->validate([
+            'address_id' => 'required|exists:user_addresses,id'
+        ]);
+
+        $address = UserAddress::where('id', $request->address_id)
+                          ->where('user_id', Auth::id())
+                          ->first();
+
+        if (!$address) {
+            return back()->withErrors(['address_id' => 'The selected address is not valid.']);
+        }
+
+        session()->put('address_id', $address->id);
+
+        return redirect()->route('next.step.route');
     }
     
 }
