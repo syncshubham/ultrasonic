@@ -53,19 +53,6 @@
         <div class="col-lg-8">
             <div class="card shadow-none mb-0">
                 <div class="card-body">
-<style>
-.address_lists{
-background-color: #252d7c30;
-border-left: 5px solid #3e4853;
-padding: 10px;
-display: flex;
-gap: 20px;
-align-items: center;
-}
-
-
-
-</style>
                     <h6 class="mb-4">You can select any of the payment methods while placing the order.</h6>
                     <div class="row">
                         <div class="col-12 col-lg-12">

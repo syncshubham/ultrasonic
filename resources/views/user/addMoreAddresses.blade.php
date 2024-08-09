@@ -1,5 +1,6 @@
 @extends('layouts.main')
 @section('content')
+
 <div class="page-wrapper">
     <div class="page-content">
         <!--start breadcrumb-->

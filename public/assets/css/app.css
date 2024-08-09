@@ -880,7 +880,6 @@ ul.categories-list li {
 	padding: 10px;
 	display: flex;
 	gap: 20px;
-	justify-content: center;
 	align-items: center;
 }
 

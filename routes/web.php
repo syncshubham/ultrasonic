@@ -86,7 +86,7 @@ Route::middleware([
             return view('dashboard');
         })->name('dashboard');
 
-        Route::post('/main/checkout', [checkoutController::class, 'main_checkout'])->name('main.checkout');
+        Route::post('/main/checkout', [checkoutController::class, 'mainCheckoutAndAdressSelection'])->name('main.checkout');
         Route::get('/user-dashboard', [userMainProfileController::class, 'user_dashboard'])->name('user.dashboard');
         Route::get('/user-orders', [userMainProfileController::class, 'user_orders'])->name('user.orders');
         Route::get('/user-addresses', [userMainProfileController::class, 'user_addresses'])->name('user.addresses');
@@ -100,9 +100,9 @@ Route::middleware([
         Route::post('/address/{id}/update', [userMainProfileController::class, 'address_update'])->name('address.update');
         Route::post('/address/{id}/delete', [userMainProfileController::class, 'address_delete'])->name('address.delete');
 
-        Route::post('/select-address', [checkoutController::class, 'selectAddress'])->name('select.address');
+        Route::post('/select-address', [checkoutController::class, 'addressSavingAndPaymentSelection'])->name('select.address');
 
-
+        Route::post('/select-payment', [checkoutController::class, 'paymentSavingAndFinalReview'])->name('select.payment');
 
 
     });
