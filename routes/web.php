@@ -100,6 +100,7 @@ Route::middleware([
         Route::post('/address/{id}/update', [userMainProfileController::class, 'address_update'])->name('address.update');
         Route::post('/address/{id}/delete', [userMainProfileController::class, 'address_delete'])->name('address.delete');
 
+        
 
 
 
