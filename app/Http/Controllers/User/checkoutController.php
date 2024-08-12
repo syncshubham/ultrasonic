@@ -172,14 +172,55 @@ class checkoutController extends Controller
                 'quantity' => $quantity,
                 'image_1' => $item->product->image_1,
                 'final_price' => $finalPrice,
+                'short_desc' => $item->product->short_desc,
             ];
         });
 
         session(['paymentAndReviewToken' => $__checkout_token]);
         session()->put('payment_id', $payment_id);
 
-        echo "success";
-        echo session('address_id');
-        echo session('payment_id');
+        $addressId = session('address_id');
+        $paymentId = session('payment_id');
+
+        $address = UserAddress::where('id', $addressId)
+                          ->where('user_id', Auth::id())
+                          ->first();
+
+        return view('user.checkoutReview', [
+            'cartItems' => $cartItemsTransformed,
+            'totalItems' => $totalItems,
+            'totalAmount' => $totalAmount,
+            'paymentId' => $paymentId,
+            'address' => $address,
+        ]);
+
+    }
+
+    public function orderConfirmation(Request $request)
+    {
+        $userId = Auth::id();
+        $cartItems = Cart::with('product')
+            ->where('user_id', $userId)
+            ->get();
+        
+        $cartItems_count = $cartItems->count();
+        $__checkout_token = $request->input('_token');
+    
+        if (!$__checkout_token || $cartItems_count <= 0) {
+            return redirect()->route('product.cart')->with('error', 'Your cart is empty.');
+        }
+
+        // Check if the session variable 'checkout_token' is set
+        if (!session()->has('checkout_token') || !session()->has('checkoutTokenPayment')) {
+            return back()->withErrors(['error' => 'Session expired or invalid for review and order placing ! Please try again.']);
+        }
+
+        $addressId = session('address_id');
+        $paymentId = session('payment_id');
+
+        return view('user.checkoutReview', [
+            'cartItems' => "cartItemsTransformed",
+        ]);
+   
     }
 }

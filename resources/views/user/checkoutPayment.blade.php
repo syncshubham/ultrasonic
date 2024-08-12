@@ -108,7 +108,7 @@
                                                     </div>
                                                 @endif
                                                     <div class="col-md-6">
-                                                        <div class="d-grid"> <a href="javascript:;"
+                                                        <div class="d-grid"> <a href="{{route('product.cart')}}"
                                                                 class="btn btn-light btn-ecomm"><i
                                                                     class='bx bx-chevron-left'></i>Back to Cart</a>
                                                         </div>

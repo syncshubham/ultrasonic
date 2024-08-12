@@ -13,6 +13,21 @@ use App\Http\Controllers\admin\AdminGeneralUsersController;
 // ----- 1.) Begin - Main website routes
     // ---- 1.1) Begin - static page routes
     Route::get('/', [homePageController::class, 'index']);
+    
+    Route::get('about',  function () {
+        return view('about');
+    });
+    Route::get('termsandconditions',  function () {
+        return view('termsandconditions');
+    });
+    Route::get('privacypolicies',  function () {
+        return view('privacypolicies');
+    });
+    Route::get('refundandcancellationpolicies',  function () {
+        return view('refundandcancellationpolicies');
+    });
+    
+    
     // ---- 1.1) End - static page routes
 
     // ---- 1.2) Begin - dynamic pages route
@@ -103,6 +118,8 @@ Route::middleware([
         Route::post('/select-address', [checkoutController::class, 'addressSavingAndPaymentSelection'])->name('select.address');
 
         Route::post('/select-payment', [checkoutController::class, 'paymentSavingAndFinalReview'])->name('select.payment');
+
+        Route::post('/order-confirmation', [checkoutController::class, 'orderConfirmation'])->name('place.order');
 
 
     });

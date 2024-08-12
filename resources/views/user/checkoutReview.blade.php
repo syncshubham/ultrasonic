@@ -43,12 +43,12 @@
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-cube'></i>Shipping</div>
                                             </a>
-                                            <a class="step-item">
+                                            <a class="step-item active">
                                                 <div class="step-progress"><span class="step-count">3</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-credit-card'></i>Payment</div>
                                             </a>
-                                            <a class="step-item">
+                                            <a class="step-item active">
                                                 <div class="step-progress"><span class="step-count">4</span>
                                                 </div>
                                                 <div class="step-label"><i class='bx bx-check-circle'></i>Review</div>
@@ -59,52 +59,55 @@
                                 <div class="card rounded-0">
                                     <div class="card-body">
                                         <div class="border p-3">
-                                            <h2 class="h5 mb-0">Shipping Address</h2>
+                                            <h2 class="h5 mb-0">Reviews and Place Order</h2>
                                             <br>
-                                            @if($addresses_count <= 0) <p>No Addresses found kindly add by clicking
-                                                below button</p>
-                                                @else
-                                                <p>Select any one address from the below addresses</p>
-                                                @endif
                                                 <div class="my-3 border-bottom"></div>
                                                 <div class="form-body">
-                                                    <form method="POST" action="{{ route('select.address') }}"  class="row g-3">
+                                                    <form method="POST" action="{{ route('place.order') }}"  class="row g-3">
                                                         @csrf
-                                                        @foreach ($addresses as $address)
-                                                        <label style="cursor: pointer;"
-                                                            for="address_selection{{$address->id}}"
-                                                            class="address_lists">
-                                                            <div class="address_checkout_action">
-                                                                <input style="width:20px;height:20px;"
-                                                                    id="address_selection{{$address->id}}" type="radio"
-                                                                    name="address_id" value="{{$address->id}}" required>
-                                                            </div>
-                                                            <div class="main_addresses_checkout">
-                                                                <div>Address Line 1: {{$address->address_first_line}}
+                                                        @foreach($cartItems as $cartItem)
+                                                        <div style="margin-bottom:0px !important;margin-left: 0px;" class="row align-items-center g-3 product-card-adjst">
+                                                            <div class="col-12 col-lg-9">
+                                                            <div class="loader-delete-product" style="display: none;"></div>
+                        
+                                                                <div class="d-lg-flex align-items-center gap-2">
+                                                                    <div class="cart-img text-center text-lg-start">
+                                                                        <img style="height:8rem;" src="{{ asset($cartItem['image_1']) }}" width="130" alt="">
+                                                                    </div>
+                                                                    <br>
+                                                                    <div class="cart-detail text-center text-lg-start">
+                                                                        <h6 class="mb-2">{{$cartItem['product_name']}}</h6>
+                                                                        <p class="mb-0">Size: <span>{{$cartItem['size']}}</span>, Quantity: <span>{{$cartItem['quantity']}}</span>
+                                                                        </p>
+                                                                        <p class="mb-2">Description: <span>{{$cartItem['short_desc']}}</span>
+                                                                        </p>
+                                                                        <h5 class="mb-0">¥ {{$cartItem['final_price']}}</h5>
+                                                                    </div>
                                                                 </div>
-                                                                <div>Address Line 2: {{ $address->address_second_line ?:
-                                                                    '' }}</div>
-                                                                <div>ZIP Code: {{$address->pin_code}}</div>
-                                                                <div>City: {{$address->city}}</div>
-                                                                <div>Country: {{$address->country}}</div>
                                                             </div>
-                                                        </label>
-                                                        @endforeach
-                                                        @if ($errors->has('address_id'))
-                                                        <div class="alert alert-danger">
-                                                            {{ $errors->first('address_id') }}
                                                         </div>
-                                                    @endif
+                                                            @endforeach
+                                                            <div class="address_lists">
+                                                        <div class="main_addresses_checkout">
+                                                            <p style="font-size:2rem;">-- PAYMENT MODE --</p>
+                                                           <span style="font-size:1.4rem;">COD (Cash on Delivery)</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="address_lists">
+                                                        <div class="main_addresses_checkout">
+                                                            <p style="font-size:2rem;">-- SHIPPING ADDRESS --</p>
+                                                           <span style="font-size:1.4rem;">{{$address->address_first_line}}, {{$address->address_second_line}}, {{$address->city}}, {{$address->pin_code}}, {{$address->country}}</span>
+                                                        </div>
+                                                    </div>
                                                     <div class="col-md-6">
                                                         <div class="d-grid">	<a href="{{route('product.cart')}}" class="btn btn-light btn-ecomm"><i class='bx bx-chevron-left'></i>Back to Cart</a>
                                                         </div>
                                                     </div>
                                                     <div class="col-md-6">
-                                                        <button style="border:none;width:100%;" class="d-grid">	<a class="btn btn-white btn-ecomm">Proceed to Payments<i class='bx bx-chevron-right'></i></a>
+                                                        <button style="border:none;width:100%;" class="d-grid">	<a class="btn btn-white btn-ecomm">Place Order<i class='bx bx-chevron-right'></i></a>
                                                         </button>
                                                     </div>
                                                     </form>
-
                                                 </div>
                                         </div>
                                     </div>
@@ -124,26 +127,6 @@
                                                     <button class="btn btn-light btn-ecomm" type="button">Apply
                                                         Discount</button>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="card rounded-0 border bg-transparent shadow-none">
-                                            <div class="card-body">
-                                                <p class="fs-5 text-white">Order summary</p>
-                                                @forEach($cartItems as $cartItem)
-                                                <div class="my-3 border-top"></div>
-                                                <div class="d-lg-flex align-items-center gap-2">
-                                                    <div class="cart-img text-center text-lg-start">
-                                                        <img style="height:6rem;width: 6rem;" src="{{ asset($cartItem['image_1']) }}" width="130" alt="">
-                                                    </div>
-                                                    <br>
-                                                    <div class="cart-detail text-center text-lg-start">
-                                                        <h6 class="mb-2">{{$cartItem['product_name']}}</h6>
-                                                        <p class="mb-0">Size: <span>{{$cartItem['size']}}</span>, Quantity: <span>{{$cartItem['quantity']}}</span>
-                                                        </p>
-                                                        <h5 class="mb-0">¥ {{$cartItem['final_price']}}</h5>
-                                                    </div>
-                                                </div>
-                                                @endforeach
                                             </div>
                                         </div>
                                         <div class="card rounded-0 border bg-transparent mb-0 shadow-none">

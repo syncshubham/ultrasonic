@@ -5,37 +5,7 @@
     <title>Online Able Plus, Hearing Aid - Ultrasonic Ltd</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 </head>
-<style>
-    /* Loader container and animation */
-.loader-delete-product {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, rgb(255 255 255 / 0%) 0%, rgb(255 255 255 / 48%) 50%, rgb(255 255 255 / 0%) 100%);
-    background-size: 200% 100%;
-    animation: shine 1.5s infinite;
-    pointer-events: none; /* Allow clicks to pass through */
-}
 
-@keyframes shine {
-    0% {
-        background-position: 200% 0;
-    }
-    100% {
-        background-position: -200% 0;
-    }
-}
-
-/* Style for the card */
-.product-card-adjst {
-    margin-bottom: 40px;
-    background-color: rgba(0, 0, 0, 0.237);
-    padding: 10px;
-    position: relative; /* Ensure the loader is positioned relative to the card */
-}
-</style>
 <div class="page-wrapper">
     <div class="page-content">
         <!--start breadcrumb-->
@@ -116,9 +86,6 @@
                                         </div>
                                     </div>
                                     <div class="col-12 col-lg-3">
-                                        <!-- <div class="cart-action text-center">
-                                            <input type="number" class="form-control rounded-0" value="2" min="1">
-                                        </div> -->
                                         <br>
                                         <div class="text-center">
                                             <div class=""> <a href="javascript:;" class="btn btn-light rounded-0 btn-ecomm delete-cart-item"><i class='bx bx-x-circle'></i> Remove</a>
