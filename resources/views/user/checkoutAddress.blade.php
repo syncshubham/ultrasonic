@@ -63,6 +63,10 @@
                                             <br>
                                             @if($addresses_count <= 0) <p>No Addresses found kindly add by clicking
                                                 below button</p>
+                                                <br>                                                <button style="background-color: #2e4a5575;
+                                                height: 38px;
+                                                color: white;
+                                                font-size: 16px;"><span style="font-size:22px;">+ &nbsp;</span><a href="{{route('add.address')}}">Add More Address</a></button>
                                                 @else
                                                 <p>Select any one address from the below addresses</p>
                                                 @endif

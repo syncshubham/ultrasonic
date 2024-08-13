@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\user;
 
+use App\Models\UserOrder;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,17 +17,21 @@ class userMainProfileController extends Controller
 
     public function user_orders()
     {
-        return view('user.userOrders');
+        $userId = Auth::id();
+        $orders = UserOrder::where('user_id', $userId)->get();
+        return view('user.userOrders', compact('orders'));
     }
-    
+
     public function user_addresses()
     {
         $user_id = auth()->id();
         $addresses = UserAddress::where('user_id', $user_id)->get();
         $address_count = $addresses->count();
 
-        return view('user.userAddresses', ['addresses' => $addresses,
-        'address_count' => $address_count]);
+        return view('user.userAddresses', [
+            'addresses' => $addresses,
+            'address_count' => $address_count
+        ]);
     }
 
     public function create_address(Request $request)
@@ -68,23 +73,23 @@ class userMainProfileController extends Controller
             'country' => 'required|string|max:255',
             'address_second_line' => 'nullable|string|max:255'
         ]);
-    
+
         $address = UserAddress::find($id);
         if (!$address || $address->user_id != Auth::id()) {
             return redirect()->back()->withErrors(['error' => 'Invalid address or permission denied']);
         }
-    
+
         $address->address_first_line = $request->address_first_line;
         $address->address_second_line = $request->address_second_line;
         $address->city = $request->city;
         $address->pin_code = $request->pin_code;
         $address->country = $request->country;
-    
+
         $address->save();
-    
+
         return redirect()->route('user.addresses')->with('success', 'Address updated successfully');
     }
-    
+
 
     public function address_delete($id)
     {
@@ -103,9 +108,9 @@ class userMainProfileController extends Controller
     {
         return view('user.paymentMethods');
     }
-
     public function user_dashboard()
     {
-        return view('user.dashboard');
+        $user = Auth::user();
+        return view('user.dashboard', ['userName' => $user->name]);
     }
 }

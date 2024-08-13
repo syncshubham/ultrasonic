@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\user;
 
 use App\Models\Cart;
+use App\Models\UserOrder;
 use App\Models\UserAddress;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -16,32 +18,32 @@ class checkoutController extends Controller
         $cartItems = Cart::with('product')
             ->where('user_id', $userId)
             ->get();
-        
+
         $cartItems_count = $cartItems->count();
         $__checkout_token = $request->input('_token');
-    
+
         if (!$__checkout_token || $cartItems_count <= 0) {
             return redirect()->route('product.cart')->with('error', 'Your cart is empty.');
         }
-    
+
         // Store the token in the session
         session(['checkout_token' => $__checkout_token]);
-    
+
         $addresses = UserAddress::where('user_id', $userId)->get();
         $addresses_count = $addresses->count();
         // Initialize totals
         $totalItems = 0;
         $totalAmount = 0;
-    
+
         // Transform and calculate totals
         $cartItemsTransformed = $cartItems->map(function ($item) use (&$totalItems, &$totalAmount) {
             $quantity = $item->quantity;
             $finalPrice = $item->product->final_price;
-    
+
             // Update totals
             $totalItems += $quantity;
             $totalAmount += $quantity * $finalPrice;
-    
+
             return [
                 'id' => $item->id,
                 'product_id' => $item->product_id,
@@ -52,7 +54,7 @@ class checkoutController extends Controller
                 'final_price' => $finalPrice,
             ];
         });
-    
+
         return view('user.checkoutAddress', [
             'cartItems' => $cartItemsTransformed,
             'addresses' => $addresses,
@@ -68,10 +70,10 @@ class checkoutController extends Controller
         $cartItems = Cart::with('product')
             ->where('user_id', $userId)
             ->get();
-        
+
         $cartItems_count = $cartItems->count();
         $__checkout_token = $request->input('_token');
-    
+
         if (!$__checkout_token || $cartItems_count <= 0) {
             return redirect()->route('product.cart')->with('error', 'Your cart is empty.');
         }
@@ -86,8 +88,8 @@ class checkoutController extends Controller
         ]);
 
         $address = UserAddress::where('id', $request->address_id)
-                          ->where('user_id', Auth::id())
-                          ->first();
+            ->where('user_id', Auth::id())
+            ->first();
 
         if (!$address) {
             return back()->withErrors(['address_id' => 'The selected address is not valid.']);
@@ -95,16 +97,16 @@ class checkoutController extends Controller
 
         $totalItems = 0;
         $totalAmount = 0;
-    
+
         // Transform and calculate totals
         $cartItemsTransformed = $cartItems->map(function ($item) use (&$totalItems, &$totalAmount) {
             $quantity = $item->quantity;
             $finalPrice = $item->product->final_price;
-    
+
             // Update totals
             $totalItems += $quantity;
             $totalAmount += $quantity * $finalPrice;
-    
+
             return [
                 'id' => $item->id,
                 'product_id' => $item->product_id,
@@ -133,10 +135,10 @@ class checkoutController extends Controller
         $cartItems = Cart::with('product')
             ->where('user_id', $userId)
             ->get();
-        
+
         $cartItems_count = $cartItems->count();
         $__checkout_token = $request->input('_token');
-    
+
         if (!$__checkout_token || $cartItems_count <= 0) {
             return redirect()->route('product.cart')->with('error', 'Your cart is empty.');
         }
@@ -151,19 +153,19 @@ class checkoutController extends Controller
         $request->validate([
             'payment_id' => 'required|in:1',
         ]);
-        
-            $totalItems = 0;
-            $totalAmount = 0;
-    
-            // Transform and calculate totals
-            $cartItemsTransformed = $cartItems->map(function ($item) use (&$totalItems, &$totalAmount) {
+
+        $totalItems = 0;
+        $totalAmount = 0;
+
+        // Transform and calculate totals
+        $cartItemsTransformed = $cartItems->map(function ($item) use (&$totalItems, &$totalAmount) {
             $quantity = $item->quantity;
             $finalPrice = $item->product->final_price;
-    
+
             // Update totals
             $totalItems += $quantity;
             $totalAmount += $quantity * $finalPrice;
-    
+
             return [
                 'id' => $item->id,
                 'product_id' => $item->product_id,
@@ -183,8 +185,8 @@ class checkoutController extends Controller
         $paymentId = session('payment_id');
 
         $address = UserAddress::where('id', $addressId)
-                          ->where('user_id', Auth::id())
-                          ->first();
+            ->where('user_id', Auth::id())
+            ->first();
 
         return view('user.checkoutReview', [
             'cartItems' => $cartItemsTransformed,
@@ -202,25 +204,64 @@ class checkoutController extends Controller
         $cartItems = Cart::with('product')
             ->where('user_id', $userId)
             ->get();
-        
+
         $cartItems_count = $cartItems->count();
         $__checkout_token = $request->input('_token');
-    
+
         if (!$__checkout_token || $cartItems_count <= 0) {
             return redirect()->route('product.cart')->with('error', 'Your cart is empty.');
         }
 
-        // Check if the session variable 'checkout_token' is set
-        if (!session()->has('checkout_token') || !session()->has('checkoutTokenPayment')) {
-            return back()->withErrors(['error' => 'Session expired or invalid for review and order placing ! Please try again.']);
+        // Check if the session variables for checkout are set
+        if (!session()->has('checkout_token') || !session()->has('checkoutTokenPayment') || !session()->has('paymentAndReviewToken')) {
+            return back()->withErrors(['error' => 'Session expired or invalid for review and order placing! Please try again.']);
         }
 
+        $totalItems = 0;
+        $totalAmount = 0;
+
+        // Transform and calculate totals
+        $cartItemsTransformed = $cartItems->map(function ($item) use (&$totalItems, &$totalAmount) {
+            $quantity = $item->quantity;
+            $finalPrice = $item->product->final_price;
+
+            // Update totals
+            $totalItems += $quantity;
+            $totalAmount += $quantity * $finalPrice;
+
+            return [
+                'product_id' => $item->product_id,
+                'size' => $item->size,
+                'quantity' => $quantity,
+                'final_price' => $finalPrice,
+            ];
+        });
+
+        // Convert the transformed cart items to JSON format for storage
+        $productDetailsJson = $cartItemsTransformed->toJson();
+
+        // Retrieve address_id and payment_id from session
         $addressId = session('address_id');
         $paymentId = session('payment_id');
+        $orderId = 'ORD' . strtoupper(Str::random(15));
+        // Create a new order
+        $order = new UserOrder();
+        $order->user_id = $userId;
+        $order->product_details = $productDetailsJson;
+        $order->address_id = $addressId;
+        $order->payment_id = $paymentId;
+        $order->total_items = $totalItems;
+        $order->total_amount = $totalAmount;
+        $order->order_id = $orderId;
+        $order->save();
 
-        return view('user.checkoutReview', [
-            'cartItems' => "cartItemsTransformed",
+        // Optionally, clear the cart after placing the order
+        Cart::where('user_id', $userId)->delete();
+        session()->forget(['checkout_token', 'checkoutTokenPayment', 'paymentAndReviewToken', 'address_id','payment_id']);
+
+        return view('user.orderConfirmation', [
+            'orderId' => $orderId
         ]);
-   
     }
+
 }

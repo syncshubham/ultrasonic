@@ -15,13 +15,12 @@ class CreateUserOrdersTable extends Migration
      */
     public function up()
     {
+
         Schema::create('user_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('product_id');
-            $table->string('product_name');
+            $table->json('product_details'); // JSON column to store product details
             $table->decimal('final_price', 10, 2);
-            $table->string('size')->nullable();
             $table->unsignedBigInteger('address_id');
             $table->unsignedBigInteger('payment_id');
             $table->string('order_status')->default('placed_1');
@@ -31,7 +30,6 @@ class CreateUserOrdersTable extends Migration
 
             // Define foreign key constraints (if necessary)
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
             $table->foreign('address_id')->references('id')->on('user_addresses')->onDelete('cascade');
         });
     }

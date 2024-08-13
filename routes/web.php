@@ -13,19 +13,19 @@ use App\Http\Controllers\admin\AdminGeneralUsersController;
 // ----- 1.) Begin - Main website routes
     // ---- 1.1) Begin - static page routes
     Route::get('/', [homePageController::class, 'index']);
-    
+
     Route::get('about',  function () {
         return view('about');
-    });
+    })->name('about');
     Route::get('termsandconditions',  function () {
         return view('termsandconditions');
-    });
+    })->name('termsandconditions');
     Route::get('privacypolicies',  function () {
         return view('privacypolicies');
-    });
+    })->name('privacypolicies');
     Route::get('refundandcancellationpolicies',  function () {
         return view('refundandcancellationpolicies');
-    });
+    })->name('refundandcancellationpolicies');
     
     
     // ---- 1.1) End - static page routes
@@ -100,31 +100,26 @@ Route::middleware([
         Route::get('/dashboard', function () {
             return view('dashboard');
         })->name('dashboard');
-
         Route::post('/main/checkout', [checkoutController::class, 'mainCheckoutAndAdressSelection'])->name('main.checkout');
         Route::get('/user-dashboard', [userMainProfileController::class, 'user_dashboard'])->name('user.dashboard');
         Route::get('/user-orders', [userMainProfileController::class, 'user_orders'])->name('user.orders');
         Route::get('/user-addresses', [userMainProfileController::class, 'user_addresses'])->name('user.addresses');
         Route::get('/user-paymentmethods', [userMainProfileController::class, 'user_paymentMethods'])->name('user.paymentmethods');
         Route::get('/user-profile', [userMainProfileController::class, 'user_profile'])->name('user.profile');
-
         Route::get('/add-address', [userMainProfileController::class, 'add_address'])->name('add.address');
         Route::post('/create-address', [userMainProfileController::class, 'create_address'])->name('create.address');
-
         Route::get('/address/{id}/edit',  [userMainProfileController::class, 'address_edit'])->name('address.edit');
         Route::post('/address/{id}/update', [userMainProfileController::class, 'address_update'])->name('address.update');
         Route::post('/address/{id}/delete', [userMainProfileController::class, 'address_delete'])->name('address.delete');
-
         Route::post('/select-address', [checkoutController::class, 'addressSavingAndPaymentSelection'])->name('select.address');
-
         Route::post('/select-payment', [checkoutController::class, 'paymentSavingAndFinalReview'])->name('select.payment');
-
         Route::post('/order-confirmation', [checkoutController::class, 'orderConfirmation'])->name('place.order');
-
+        // Route::get('/user/profile', function () {
+        //     return "success";
+        // });
 
     });
     // ---- 2.2) End - User panel routes
-
 
 });
 

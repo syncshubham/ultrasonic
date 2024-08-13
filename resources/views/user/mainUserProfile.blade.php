@@ -53,39 +53,120 @@
                             <div class="col-lg-8">
                                 <div class="card shadow-none mb-0">
                                     <div class="card-body">
-                                        <form class="row g-3">
-                                            <div class="col-md-6">
-                                                <label class="form-label">First Name</label>
-                                                <input type="text" class="form-control" value="Madison">
+                                        <div class="container">
+                                            <div class="row justify-content-center">
+                                                <div class="col-md-8">
+                                                    <!-- Profile Information -->
+                                                    <div class="card mb-4">
+                                                        <div class="card-header">{{ __('Profile Information') }}</div>
+                                                        <div class="card-body">
+                                                            <form method="POST" action="{{ route('user-profile-information.update') }}">
+                                                                @csrf
+                                                                @method('PUT')
+                                        
+                                                                <div class="form-group">
+                                                                    <label for="name">{{ __('Name') }}</label>
+                                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', auth()->user()->name) }}" required autofocus>
+                                                                    @error('name')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                        
+                                                                <div class="form-group">
+                                                                    <label for="email">{{ __('Email') }}</label>
+                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', auth()->user()->email) }}" required>
+                                                                    @error('email')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                        
+                                                                <div class="form-group">
+                                                                    <button type="submit" class="btn btn-primary">{{ __('Update Profile') }}</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                        
+                                                    <!-- Update Password -->
+                                                    <div class="card mb-4">
+                                                        <div class="card-header">{{ __('Update Password') }}</div>
+                                                        <div class="card-body">
+                                                            <form method="POST" action="{{ route('user-password.update') }}">
+                                                                @csrf
+                                                                @method('PUT')
+                                        
+                                                                <div class="form-group">
+                                                                    <label for="current_password">{{ __('Current Password') }}</label>
+                                                                    <input id="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" required>
+                                                                    @error('current_password')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                        
+                                                                <div class="form-group">
+                                                                    <label for="password">{{ __('New Password') }}</label>
+                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
+                                                                    @error('password')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </div>
+                                        
+                                                                <div class="form-group">
+                                                                    <label for="password_confirmation">{{ __('Confirm Password') }}</label>
+                                                                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
+                                                                </div>
+                                        
+                                                                <div class="form-group">
+                                                                    <button type="submit" class="btn btn-primary">{{ __('Update Password') }}</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                        
+                                                    <!-- Two Factor Authentication -->
+                                                    <div class="card mb-4">
+                                                        <div class="card-header">{{ __('Two Factor Authentication') }}</div>
+                                                        <div class="card-body">
+                                                            @if (auth()->user()->two_factor_secret)
+                                                                <form method="POST" action="{{ route('two-factor.disable') }}">
+                                                                    @csrf
+                                                                    @method('DELETE')
+                                                                    <p>{{ __('Two-factor authentication is currently enabled.') }}</p>
+                                                                    <div class="form-group">
+                                                                        <button type="submit" class="btn btn-danger">{{ __('Disable Two-Factor Authentication') }}</button>
+                                                                    </div>
+                                                                </form>
+                                                            @else
+                                                                <form method="POST" action="{{ route('two-factor.enable') }}">
+                                                                    @csrf
+                                                                    <p>{{ __('Two-factor authentication is currently disabled.') }}</p>
+                                                                    <div class="form-group">
+                                                                        <button type="submit" class="btn btn-primary">{{ __('Enable Two-Factor Authentication') }}</button>
+                                                                    </div>
+                                                                </form>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                        
+                                                    <!-- Log Out from Other Browser Sessions -->
+                                                   
+                                        
+                                                    <!-- Account Deletion -->
+                                                    <div class="card mb-4">
+                                                        <div class="card-header">{{ __('Delete Account') }}</div>
+                                                      
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <div class="col-md-6">
-                                                <label class="form-label">Last Name</label>
-                                                <input type="text" class="form-control" value="Ruiz">
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Display Name</label>
-                                                <input type="text" class="form-control" value="Madison Ruiz">
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Email address</label>
-                                                <input type="text" class="form-control" value="madison.ruiz@gmail.com">
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Current Password</label>
-                                                <input type="text" class="form-control" value=".................">
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">New Password</label>
-                                                <input type="text" class="form-control" value=".................">
-                                            </div>
-                                            <div class="col-12">
-                                                <label class="form-label">Confirm New Password</label>
-                                                <input type="text" class="form-control" value=".................">
-                                            </div>
-                                            <div class="col-12">
-                                                <button type="button" class="btn btn-light btn-ecomm">Save Changes</button>
-                                            </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

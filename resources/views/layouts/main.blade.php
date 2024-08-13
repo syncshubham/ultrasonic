@@ -120,51 +120,11 @@
                         <div class="shiping-title text-uppercase font-13 text-white d-none d-sm-flex">Welcome to hearing
                             aid online store!</div>
                         <ul class="navbar-nav ms-auto d-none d-lg-flex">
-                            <li class="nav-item"> <a class="nav-link" href="order-tracking.html">Track Order</a>
+                            <li class="nav-item"> <a class="nav-link" href="">Track Order</a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="about-us.html">About</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" href="blog.html">Blog</a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" href="contact-us.html">Contact</a>
+                            <li class="nav-item"> <a class="nav-link" href="blog">Blogs</a>
                             </li>
                             <li class="nav-item"> <a class="nav-link" href="javascript:;">Help & FAQs</a>
-                            </li>
-                        </ul>
-                        <ul class="navbar-nav">
-                            <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle" href="#"
-                                    data-bs-toggle="dropdown">USD</a>
-                                <ul class="dropdown-menu dropdown-menu-lg-end">
-                                    <li><a class="dropdown-item" href="#">USD</a>
-                                    </li>
-                                    <li><a class="dropdown-item" href="#">EUR</a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="nav-item dropdown">
-                                <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
-                                    data-bs-toggle="dropdown">
-                                    <div class="lang d-flex gap-1">
-                                        <div><i class="flag-icon flag-icon-um"></i>
-                                        </div>
-                                        <div><span>ENG</span>
-                                        </div>
-                                    </div>
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-lg-end">
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"> <i
-                                            class="flag-icon flag-icon-de me-2"></i><span>German</span>
-                                    </a> <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-fr me-2"></i><span>French</span></a>
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-um me-2"></i><span>English</span></a>
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-in me-2"></i><span>Hindi</span></a>
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-cn me-2"></i><span>Chinese</span></a>
-                                    <a class="dropdown-item d-flex allign-items-center" href="javascript:;"><i
-                                            class="flag-icon flag-icon-ae me-2"></i><span>Arabic</span></a>
-                                </div>
                             </li>
                         </ul>
                         <ul class="navbar-nav social-link ms-lg-2 ms-auto">
@@ -206,7 +166,7 @@
                                 <div class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i
                                         class='fa-solid fa-bars'></i></div>
                                 <div style="margin-left:40px;" class="logo d-lg-flex">
-                                    <a href="index.html">
+                                    <a href="{{ url('/') }}">
                                         <img style="width:4rem;" src="{{ asset('assets/images/logo-icon.png') }}"
                                             class="logo-icon" alt="">
                                     </a>
@@ -216,13 +176,6 @@
                         <div class="col-12 col-md order-4 order-md-2">
                             <div class="input-group flex-nowrap px-xl-4">
                                 <input type="text" class="form-control w-100" placeholder="Search for Products">
-                                <select class="form-select flex-shrink-0" aria-label="Default select example"
-                                    style="width: 10.5rem;">
-                                    <option selected="">All Categories</option>
-                                    <option value="1">One</option>
-                                    <option value="2">Two</option>
-                                    <option value="3">Three</option>
-                                </select>
                                 <span class="input-group-text cursor-pointer"><i class='bx bx-search'></i></span>
                             </div>
                         </div>
@@ -482,28 +435,33 @@
                                 alt="">
                         </div>
                         <ul class="navbar-nav">
-                            <li class="nav-item active"> <a class="nav-link" href="index.html">Home </a>
+                            <li class="nav-item active"> <a class="nav-link" href="{{ url('/') }}">Home </a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="blog.html">Blog </a>
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('about') }}">About Us </a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="about-us.html">About Us </a>
+                            <li class="nav-item"> <a class="nav-link" href="blog.html">Blogs </a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="contact-us.html">Contact Us </a>
+                            <li class="nav-item"> <a class="nav-link" >Contact Us </a>
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('privacypolicies') }}">Privacy policies</a>
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('termsandconditions') }}">T & C</a>
+                                <li class="nav-item"> <a class="nav-link" href="{{ route('refundandcancellationpolicies') }}">Refund & Cancellation </a>
                             </li>
                             <!-- <li class="nav-item"> <a class="nav-link" href="shop-categories.html">Our Store</a>
                             </li> -->
                             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                                     href="#" data-bs-toggle="dropdown">My Account <i class='bx bx-chevron-down'></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="account-dashboard.html">Dashboard</a>
+                                    <li><a class="dropdown-item" href="account-downloads.html">Track Orders</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="account-downloads.html">Downloads</a>
+                                    <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Dashboard</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="account-orders.html">Orders</a>
+                                    <li><a class="dropdown-item" href="{{ route('user.orders') }}">Orders</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="account-payment-methods.html">Payment Methods</a>
+                                    <li><a class="dropdown-item" href="{{ route('user.addresses') }}">Shipping Addresses</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="account-user-details.html">User Details</a>
+                                    <li><a class="dropdown-item" href="{{ route('user.paymentmethods') }}">Payment Methods</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="{{ route('user.profile') }}">User Details</a>
                                     </li>
                                 </ul>
                             </li>

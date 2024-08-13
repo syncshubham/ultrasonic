@@ -140,10 +140,8 @@
 </div>
 
     <script>
-        
         document.addEventListener('DOMContentLoaded', () => {
             const buttons = document.querySelectorAll('.delete-cart-item');
-            
             buttons.forEach(button => {
                 button.removeEventListener('click', handleDeleteClick); // Remove existing listener
                 button.addEventListener('click', handleDeleteClick, { once: true }); // Add new listener
