@@ -29,7 +29,7 @@
                         <p class="fs-sm mb-2">Make sure you make note of your order number, which is <span class="fw-medium">{{$orderId}}</span>
                         </p>
                         <p class="fs-sm">You will be receiving an email shortly with confirmation of your order.
-                        </p><a class="btn btn-light rounded-0 mt-3 me-3" href="/#featuredProducts">Go back shopping</a><a class="btn btn-white rounded-0 mt-3" href="/#featuredProducts"><i class='bx bx-map'></i>Track order</a>
+                        </p><a class="btn btn-light rounded-0 mt-3 me-3" href="/#featuredProducts">Go back shopping</a><a class="btn btn-white rounded-0 mt-3" href="{{ url('user/orders/update', ['id' => $orderId]) }}"><i class='bx bx-map'></i>Track order</a>
                     </div>
                 </div>
             </div>

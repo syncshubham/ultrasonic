@@ -3,8 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Cart;
-use App\Models\admin\Products;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\admin\Products;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
@@ -194,7 +195,7 @@ public function deleteCartItem(Request $request)
             return [
                 'id' => $item->id,
                 'product_id' => $item->product_id,
-                'product_name' => $item->product->product_name,
+                'product_name' => Str::limit($item->product->product_name, 4, '...'),
                 'size' => $item->size,
                 'quantity' => $quantity,
                 'image_1' => $item->product->image_1,
@@ -246,7 +247,7 @@ public function deleteCartItem(Request $request)
 
             $enrichedCart[] = [
                 'product_id' => $productId,
-                'product_name' => $productName,
+                'product_name' =>  Str::limit($productName, 4, '...'),
                 'size' => $size,
                 'quantity' => $quantity,
                 'image_1' => $productImage,

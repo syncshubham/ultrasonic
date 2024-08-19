@@ -242,6 +242,18 @@ class checkoutController extends Controller
 
         // Retrieve address_id and payment_id from session
         $addressId = session('address_id');
+        $address = UserAddress::find($addressId);
+        if (!$address) {
+            return back()->withErrors(['error' => 'Address not found']);
+        }
+
+        $formattedAddress = $address->address_first_line . ', ' .
+        ($address->address_second_line ? $address->address_second_line . ', ' : '') .
+        $address->city . ', ' .
+        $address->state . ', ' .
+        $address->country . ', ' .
+        $address->pin_code;
+        
         $paymentId = session('payment_id');
         $orderId = 'ORD' . strtoupper(Str::random(15));
         // Create a new order
@@ -249,6 +261,7 @@ class checkoutController extends Controller
         $order->user_id = $userId;
         $order->product_details = $productDetailsJson;
         $order->address_id = $addressId;
+        $order->address = $formattedAddress;
         $order->payment_id = $paymentId;
         $order->total_items = $totalItems;
         $order->total_amount = $totalAmount;

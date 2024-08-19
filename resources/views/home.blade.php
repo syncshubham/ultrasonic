@@ -21,7 +21,7 @@
                                 <h3 class="h3 fw-light">Has just arrived!</h3>
                                 <h1 class="h1">The Latest Collections</h1>
                                 <p class="pb-3">Able aid, Able plus &amp; much more...</p>
-                                <div class=""> <a class="btn btn-light btn-ecomm" href="javascript:;">Shop Now <i
+                                <div class=""> <a class="btn btn-light btn-ecomm" href="/#featuredProducts">Shop Now <i
                                             class='bx bx-chevron-right'></i></a></div>
                             </div>
                         </div>
@@ -38,7 +38,7 @@
                                 <h3 class="h3 fw-light">Complete your look with</h3>
                                 <h1 class="h1">New Accessories</h1>
                                 <p class="pb-3">Able glass, Able EQ &amp; much more...</p>
-                                <div class=""> <a class="btn btn-dark btn-ecomm" href="javascript:;">Shop Now <i
+                                <div class=""> <a class="btn btn-dark btn-ecomm" href="/#featuredProducts">Shop Now <i
                                             class='bx bx-chevron-right'></i></a></div>
                             </div>
                         </div>
@@ -148,8 +148,8 @@ background-position: right;
             <div class="container">
                 <div class="d-flex align-items-center">
                     <h5 class="text-uppercase mb-0">FEATURED PRODUCTS</h5>
-                    <a id="moreproductbutton" href="javascript:;" class="btn btn-light ms-auto rounded-0">More
-                        Products<i class='bx bx-chevron-right'></i></a>
+                    <!-- <a id="moreproductbutton" href="javascript:;" class="btn btn-light ms-auto rounded-0">More
+                        Products<i class='bx bx-chevron-right'></i></a> -->
                 </div>
                 <hr>
                 <div class="product-grid">
@@ -387,8 +387,7 @@ background-position: right;
                             </div>
                             <div class="card-body">
                                 <h5 class="card-title">Able Aid</h5>
-                                <p class="card-text">Check our our newly released Able Aid</p> <a href="javascript:;"
-                                    class="btn btn-light btn-ecomm">SHOP NOW</a>
+                                <p class="card-text">Check our our newly released Able Aid</p> <a href="/#featuredProducts" class="btn btn-light btn-ecomm">SHOP NOW</a>
                             </div>
                         </div>
                     </div>
@@ -400,7 +399,7 @@ background-position: right;
                             <div class="card-body text-center mt-5">
                                 <h5 class="card-title">Hearing Aid</h5>
                                 <p class="card-text">Buy our hearing aid products at reasonable cost</p> <a
-                                    href="javascript:;" class="btn btn-light btn-ecomm">SHOP NOW</a>
+                                href="/#featuredProducts" class="btn btn-light btn-ecomm">SHOP NOW</a>
                             </div>
                             <img src="{{ asset('assets/images/promo/mainpromo/three.png') }}" class="card-img-top"
                                 alt="...">
@@ -415,7 +414,7 @@ background-position: right;
                                     <h5 class="card-title">Superior ear aid</h5>
                                     <p class="card-text text-uppercase fs-1 text-white lh-1 mt-3 mb-2">newly launched
                                     </p>
-                                    <p class="card-text fs-5">Able plus</p> <a href="javascript:;"
+                                    <p class="card-text fs-5">Able plus</p> <a href="/#featuredProducts"
                                         class="btn btn-white btn-ecomm">SHOP NOW</a>
                                 </div>
                             </div>
@@ -430,7 +429,7 @@ background-position: right;
                                     alt="...">
                                 <h5 class="card-title fs-1 text-uppercase">Health</h5>
                                 <p class="card-text text-uppercase fs-4 text-white lh-1 mb-2">Assurity</p>
-                                <p class="card-text">On Able EQ</p> <a href="javascript:;"
+                                <p class="card-text">On Able EQ</p> <a href="/#featuredProducts"
                                     class="btn btn-light btn-ecomm">HURRY UP!</a>
                             </div>
                         </div>
@@ -524,8 +523,8 @@ background-position: right;
         <div class="container">
             <div class="d-flex align-items-center">
                 <h5 class="text-uppercase mb-0">Our blogs</h5>
-                <a href="blog.html" class="btn btn-light ms-auto rounded-0">View All Blogs<i
-                        class='bx bx-chevron-right'></i></a>
+                <!-- <a href="blog.html" class="btn btn-light ms-auto rounded-0">View All Blogs<i
+                        class='bx bx-chevron-right'></i></a> -->
             </div>
             <hr>
             <div class="product-grid">

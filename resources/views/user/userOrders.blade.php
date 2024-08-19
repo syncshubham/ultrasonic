@@ -100,7 +100,8 @@
                                                     <tr>
                                                         <th>Order ID</th>
                                                         <th>Date</th>
-                                                        <th>Status</th>
+                                                        <th>Order Status</th>
+                                                        <th style="">Payment Status</th>
                                                         <th>Total</th>
                                                         <th>Actions</th>
                                                     </tr>
@@ -110,18 +111,46 @@
                                                     <tr>
                                                         <td>{{$order->order_id}}</td>
                                                         <td>{{ $order->created_at->format('F d, Y') }}</td>
-                                                        <td>
-                                                            <div class="badge rounded-pill bg-light w-100">
-                                                                {{$order->order_status}} / {{$order->payment_status}}
+                                                        @if($order->order_status == "Cancelled")
+                                                        <td style="width:150px;">
+                                                            <div style="background-color:rgba(225, 11, 11, 0.368) !important;" class="badge rounded-pill bg-light w-100">
+                                                                {{$order->order_status}}
                                                             </div>
                                                         </td>
+                                                        @else
+                                                        <td style="width:150px;">
+                                                            <div class="badge rounded-pill bg-light w-100">
+                                                                {{$order->order_status}}
+                                                            </div>
+                                                        </td>
+                                                        @endif
+                                                        @if($order->payment_status == "Cancelled")
+                                                        <td style="width:150px;">
+                                                            <div style="background-color:rgba(225, 11, 11, 0.368) !important;" class="badge rounded-pill bg-light w-100">
+                                                                {{$order->payment_status}}
+                                                            </div>
+                                                        </td>
+                                                        @else
+                                                        <td style="width:150px;">
+                                                            <div class="badge rounded-pill bg-light w-100">
+                                                                {{$order->payment_status}}
+                                                            </div>
+                                                        </td>
+                                                        @endif
                                                         <td>¥{{$order->total_amount}} for {{$order->total_items}}
                                                             item(s)</td>
                                                         <td>
+                                                            @if($order->order_status == "Cancelled")
                                                             <div class="d-flex gap-2">
-                                                                <a href="javascript:;"
-                                                                    class="btn btn-light btn-sm rounded-0">Cancel</a>
+                                                                <a href="{{ url('user/orders/update', ['id' => $order->order_id]) }}"
+                                                                    class="btn btn-light btn-sm rounded-0">View</a>
                                                             </div>
+                                                            @else
+                                                            <div class="d-flex gap-2">
+                                                                <a href="{{ url('user/orders/update', ['id' => $order->order_id]) }}"
+                                                                    class="btn btn-light btn-sm rounded-0">View / Cancel</a>
+                                                            </div>
+                                                            @endif
                                                         </td>
                                                     </tr>
                                                     @endforeach

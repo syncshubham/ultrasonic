@@ -5,6 +5,7 @@ namespace App\Http\Controllers\user;
 use App\Models\UserOrder;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
+use App\Models\admin\Products;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -113,4 +114,75 @@ class userMainProfileController extends Controller
         $user = Auth::user();
         return view('user.dashboard', ['userName' => $user->name]);
     }
+
+    public function modify_order($id)
+    {
+        $userId = Auth::id();
+        $order = UserOrder::where('order_id', '=', $id)->where('user_id', Auth::id())->with('user')->firstOrFail();
+        $productDetails = json_decode($order->product_details, true);
+
+        foreach ($productDetails as &$product) {
+            $productInfo = Products::find($product['product_id']);
+            $product['product_name'] = $productInfo->product_name;
+            $product['image_1'] = $productInfo->image_1;
+            $product['short_desc'] = $productInfo->short_desc;
+        }
+
+        $order->product_details = json_encode($productDetails);
+        return view("user.updateOrders", compact("order", "productDetails"));
+    }
+
+    public function cancelOrder(Request $request)
+    {
+        $userId = Auth::id();
+        $order = UserOrder::where('order_id', $request->order_id)->where('user_id', Auth::id())->firstOrFail();
+
+        if ($order->payment_status === 'Paid' || $order->order_status === 'Delivered' || $order->order_status === 'Shipped') {
+            return back()->withErrors(['order_status' => 'Order cannot be cancelled because it is already delivered/paid or in shipping process.']);
+        }
+
+        // Update order status and payment status to "Cancelled"
+        $order->order_status = 'Cancelled';
+        $order->payment_status = 'Cancelled';
+        $order->save();
+
+        return redirect()->route('user.orders')->with('success', 'Order has been cancelled successfully.');
+    }
+
+    public function trackOrder()
+    {
+        return view("user.trackOrders");
+    }
+
+    public function trackOrderNumber(Request $request)
+    {
+        $orderId = $request->input('order_id');
+        $userId = Auth::id();
+
+        // Attempt to find the order or return with an error
+        $order = UserOrder::where('order_id', $orderId)
+            ->where('user_id', $userId)
+            ->with('user')
+            ->first();
+
+        if (!$order) {
+            return back()->withErrors(['order_id' => 'The order ID you are trying to search for is not found or does not belongs to you.']);
+        }
+
+        // Decode the product details and fetch additional product information
+        $productDetails = json_decode($order->product_details, true);
+
+        foreach ($productDetails as &$product) {
+            $productInfo = Products::find($product['product_id']);
+            $product['product_name'] = $productInfo->product_name;
+            $product['image_1'] = $productInfo->image_1;
+            $product['short_desc'] = $productInfo->short_desc;
+        }
+
+        // Encode the updated product details back to JSON
+        $order->product_details = json_encode($productDetails);
+
+        return view("user.updateOrders", compact("order", "productDetails"));
+    }
+
 }

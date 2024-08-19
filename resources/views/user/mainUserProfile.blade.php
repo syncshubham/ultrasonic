@@ -1,5 +1,85 @@
 @extends('layouts.main')
 @section('content')
+<style>
+
+    .md\:grid-cols-3 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .md\:col-span-2 {
+        grid-column: span 3 / span 3 !important;
+    }
+
+    .sm\:col-span-4 {
+        grid-column: span 6 !important;
+    }
+
+    .text-gray-600 {
+    --tw-text-opacity: 1;
+    color: whitesmoke !important;   
+    }
+
+    .text-gray-500 {
+    --tw-text-opacity: 1;
+    color: white !important;
+    }
+
+    .bg-gray-100 {
+    --tw-bg-opacity: 1;
+    background-color: transparent !important;
+}
+
+.bg-white {
+    --tw-bg-opacity: 1;
+    background-color:transparent !important;
+}
+
+.text-gray-700 {
+    --tw-text-opacity: 1;
+    color: whitesmoke !important;
+}
+
+.bg-gray-50 {
+    --tw-bg-opacity: 1;
+    background-color:transparent !important;
+}
+
+[type=text], input:where(:not([type])), [type=email], [type=url], [type=password], [type=number], [type=date], [type=datetime-local], [type=month], [type=search], [type=tel], [type=time], [type=week], [multiple], textarea, select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent !important;
+    border-color: #6b7280;
+    border-width: 1px;
+    border-radius: 4px;
+    padding: .5rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    --tw-shadow: 0 0 #0000;
+    columns: black !important;
+}
+
+.bg-gray-500 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(0 8 25 / 97%) !important;
+}
+
+.opacity-75 {
+    opacity: 93% !important;
+}
+
+.text-gray-900 {
+    --tw-text-opacity: 1;
+    color: floralwhite !important;
+}
+
+    .lg\:px-8 {
+        padding-left: 2rem;
+        padding-right: 2rem;
+        margin-top: -81px !important;
+    }
+
+</style>
 <div class="page-wrapper">
     <div class="page-content">
         <!--start breadcrumb-->
@@ -53,120 +133,47 @@
                             <div class="col-lg-8">
                                 <div class="card shadow-none mb-0">
                                     <div class="card-body">
-                                        <div class="container">
-                                            <div class="row justify-content-center">
-                                                <div class="col-md-8">
-                                                    <!-- Profile Information -->
-                                                    <div class="card mb-4">
-                                                        <div class="card-header">{{ __('Profile Information') }}</div>
-                                                        <div class="card-body">
-                                                            <form method="POST" action="{{ route('user-profile-information.update') }}">
-                                                                @csrf
-                                                                @method('PUT')
+                                        <x-app-layout>
+                                            <div>
+                                                <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+
+                                                    @if (Laravel\Fortify\Features::canUpdateProfileInformation())
+                                                        @livewire('profile.update-profile-information-form')
                                         
-                                                                <div class="form-group">
-                                                                    <label for="name">{{ __('Name') }}</label>
-                                                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', auth()->user()->name) }}" required autofocus>
-                                                                    @error('name')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
+                                                        <x-section-border />
+                                                    @endif
                                         
-                                                                <div class="form-group">
-                                                                    <label for="email">{{ __('Email') }}</label>
-                                                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', auth()->user()->email) }}" required>
-                                                                    @error('email')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                        
-                                                                <div class="form-group">
-                                                                    <button type="submit" class="btn btn-primary">{{ __('Update Profile') }}</button>
-                                                                </div>
-                                                            </form>
+                                                    @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
+                                                        <div class="mt-10 sm:mt-0">
+                                                            @livewire('profile.update-password-form')
                                                         </div>
-                                                    </div>
                                         
-                                                    <!-- Update Password -->
-                                                    <div class="card mb-4">
-                                                        <div class="card-header">{{ __('Update Password') }}</div>
-                                                        <div class="card-body">
-                                                            <form method="POST" action="{{ route('user-password.update') }}">
-                                                                @csrf
-                                                                @method('PUT')
+                                                        <x-section-border />
+                                                    @endif
                                         
-                                                                <div class="form-group">
-                                                                    <label for="current_password">{{ __('Current Password') }}</label>
-                                                                    <input id="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" required>
-                                                                    @error('current_password')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                        
-                                                                <div class="form-group">
-                                                                    <label for="password">{{ __('New Password') }}</label>
-                                                                    <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
-                                                                    @error('password')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
-                                        
-                                                                <div class="form-group">
-                                                                    <label for="password_confirmation">{{ __('Confirm Password') }}</label>
-                                                                    <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
-                                                                </div>
-                                        
-                                                                <div class="form-group">
-                                                                    <button type="submit" class="btn btn-primary">{{ __('Update Password') }}</button>
-                                                                </div>
-                                                            </form>
+                                                    @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
+                                                        <div class="mt-10 sm:mt-0">
+                                                            @livewire('profile.two-factor-authentication-form')
                                                         </div>
+                                        
+                                                        <x-section-border />
+                                                    @endif
+                                        
+                                                    <div class="mt-10 sm:mt-0">
+                                                        @livewire('profile.logout-other-browser-sessions-form')
                                                     </div>
                                         
-                                                    <!-- Two Factor Authentication -->
-                                                    <div class="card mb-4">
-                                                        <div class="card-header">{{ __('Two Factor Authentication') }}</div>
-                                                        <div class="card-body">
-                                                            @if (auth()->user()->two_factor_secret)
-                                                                <form method="POST" action="{{ route('two-factor.disable') }}">
-                                                                    @csrf
-                                                                    @method('DELETE')
-                                                                    <p>{{ __('Two-factor authentication is currently enabled.') }}</p>
-                                                                    <div class="form-group">
-                                                                        <button type="submit" class="btn btn-danger">{{ __('Disable Two-Factor Authentication') }}</button>
-                                                                    </div>
-                                                                </form>
-                                                            @else
-                                                                <form method="POST" action="{{ route('two-factor.enable') }}">
-                                                                    @csrf
-                                                                    <p>{{ __('Two-factor authentication is currently disabled.') }}</p>
-                                                                    <div class="form-group">
-                                                                        <button type="submit" class="btn btn-primary">{{ __('Enable Two-Factor Authentication') }}</button>
-                                                                    </div>
-                                                                </form>
-                                                            @endif
+                                                    @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
+                                                        <x-section-border />
+                                        
+                                                        <div class="mt-10 sm:mt-0">
+                                                            @livewire('profile.delete-user-form')
                                                         </div>
-                                                    </div>
-                                        
-                                                    <!-- Log Out from Other Browser Sessions -->
-                                                   
-                                        
-                                                    <!-- Account Deletion -->
-                                                    <div class="card mb-4">
-                                                        <div class="card-header">{{ __('Delete Account') }}</div>
-                                                      
-                                                    </div>
+                                                    @endif
                                                 </div>
                                             </div>
-                                        </div>
+                                        </x-app-layout>
+                                        
                                     </div>
                                 </div>
                             </div>

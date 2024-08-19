@@ -46,7 +46,10 @@
         @endif
 
         <!-- Name -->
+
         <div class="col-span-6 sm:col-span-4">
+        <h1 style="font-size:1.5rem;margin-bottom:2rem">Update profile information</h1>
+
             <x-label for="name" value="{{ __('Name') }}" />
             <x-input id="name" type="text" class="mt-1 block w-full" wire:model="state.name" required autocomplete="name" />
             <x-input-error for="name" class="mt-2" />

@@ -8,6 +8,7 @@
     </x-slot>
 
     <x-slot name="content">
+        <h1 style="font-size:1.5rem;margin-bottom:2rem">Two Factor Authentication <br> <span style="font-size:12px;">(You need to download google authenticator App)</span></h1>
         <h3 class="text-lg font-medium text-gray-900">
             @if ($this->enabled)
                 @if ($showingConfirmation)

@@ -207,11 +207,15 @@ document.querySelectorAll('.add-to-cart-button').forEach(button => {
                                     buttonElement.classList.remove('animate');
                                     this.classList.remove('disabled-new'); // Re-enable the button after some operation
                                     // Smooth scroll to the top and open cart
-                                    smoothScrollToTopAndOpenCart(1000,updateCartCount)
+                                    if (localStorage.getItem('scrolledToTop') !== 'true') {
+                                    smoothScrollToTopAndOpenCart(500,updateCartCount)
+                                    }else{
+                                        updateCartCount();
+                                    };
                                 }, 500); // Match the duration of confetti animation
                             }, 300); // Fade out delay
 
-                        }, 1000); // Tick display time
+                        }, 600); // Tick display time
                     } else if (data.errors) {
                         let errorMessage = "Please correct the following errors:\n";
                         for (let key in data.errors) {
@@ -241,26 +245,38 @@ document.querySelectorAll('.add-to-cart-button').forEach(button => {
 });
 
 function smoothScrollToTopAndOpenCart(duration, callback) {
-    let start = null;
-    const top = 0;
-    const startScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+    // Check if the user has already been scrolled to the top
+    if (localStorage.getItem('scrolledToTop') !== 'true') {
+        let start = null;
+        const top = 0;
+        const startScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
-    window.requestAnimationFrame(function step(timestamp) {
-        if (!start) start = timestamp;
-        const progress = timestamp - start;
-        const currentStep = Math.min(progress / duration, 1);
-        window.scrollTo(0, startScrollPosition + (top - startScrollPosition) * currentStep);
+        window.requestAnimationFrame(function step(timestamp) {
+            if (!start) start = timestamp;
+            const progress = timestamp - start;
+            const currentStep = Math.min(progress / duration, 1);
+            window.scrollTo(0, startScrollPosition + (top - startScrollPosition) * currentStep);
 
-        if (progress < duration) {
-            window.requestAnimationFrame(step);
-        } else {
-            if (callback){
-                openCartModal() 
-                callback()
-            };
+            if (progress < duration) {
+                window.requestAnimationFrame(step);
+            } else {
+                // After scrolling, set the flag in local storage
+                localStorage.setItem('scrolledToTop', 'true');
+                if (callback) {
+                    openCartModal();
+                    callback();
+                }
+            }
+        });
+    } else {
+        // If the user has already been scrolled to the top once, just open the cart modal
+        if (callback) {
+            openCartModal();
+            callback();
         }
-    });
+    }
 }
+
 
 function updateCartCount() {
     console.log("update cart executed")
@@ -306,6 +322,7 @@ $(function() {
             const data = await response.json();
 
             if (data.status === 'redirect') {
+                console.log("first")
                 console.log(data.url)
                 window.location.href = data.url; // Redirects to login if not authenticated
             } else {

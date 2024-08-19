@@ -106,7 +106,7 @@
                 <div class="d-lg-flex align-items-center gap-2 justify-content-center">
                     <p class="mb-0 text-white">Discover the power of <strong>crystal-clear sound</strong> with our
                         premium</p>
-                    <a href="javascript:;" class="bg-dark text-white px-1 font-13 cursor-pointer">Hearing Aids</a>
+                    <a href="/#featuredProducts" class="bg-dark text-white px-1 font-13 cursor-pointer">Hearing Aids</a>
                     <p class="mb-0 font-13 text-light-3">*Get it now</p>
                 </div>
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -120,12 +120,12 @@
                         <div class="shiping-title text-uppercase font-13 text-white d-none d-sm-flex">Welcome to hearing
                             aid online store!</div>
                         <ul class="navbar-nav ms-auto d-none d-lg-flex">
-                            <li class="nav-item"> <a class="nav-link" href="">Track Order</a>
+                            <li class="nav-item"> <a class="nav-link" href="{{route('track-order')}}">Track Orders</a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="blog">Blogs</a>
+                            <!-- <li class="nav-item"> <a class="nav-link" href="blog">Blogs</a>
                             </li>
                             <li class="nav-item"> <a class="nav-link" href="javascript:;">Help & FAQs</a>
-                            </li>
+                            </li> -->
                         </ul>
                         <ul class="navbar-nav social-link ms-lg-2 ms-auto">
                             <li style="color: white;font-weight:bold;margin-right:20px;border-bottom:1px solid white;"
@@ -197,9 +197,6 @@
                             <div class="top-cart-icons">
                                 <nav class="navbar navbar-expand">
                                     <ul class="navbar-nav ms-auto">
-                                        <li class="nav-item"><a href="wishlist.html" class="nav-link cart-link"><i
-                                                    class='bx bx-heart'></i></a></li>
-
                                         <li class="nav-item dropdown dropdown-large">
                                             <a href="#" id="cart-link"
                                                 class="nav-link dropdown-toggle dropdown-toggle-nocaret position-relative cart-link"
@@ -218,8 +215,8 @@
                                                 <div id="cartContent" style="display: none;">
 
                                                 </div>
-                                                <div class="d-grid p-3 border-top">
-                                                    <a href="javascript:;" class="btn btn-light btn-ecomm">CHECKOUT</a>
+                                                <div id="checkoutbuttoncart" class="d-grid p-3 border-top">
+                                                    <a href="{{ route('product.cart') }}" class="btn btn-light btn-ecomm">CHECKOUT</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -439,9 +436,9 @@
                             </li>
                             <li class="nav-item"> <a class="nav-link" href="{{ route('about') }}">About Us </a>
                             </li>
-                            <li class="nav-item"> <a class="nav-link" href="blog.html">Blogs </a>
-                            </li>
-                            <li class="nav-item"> <a class="nav-link" >Contact Us </a>
+                            <!-- <li class="nav-item"> <a class="nav-link" href="blog.html">Blogs </a>
+                            </li> -->
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('contact-us') }}">Contact Us </a>
                             <li class="nav-item"> <a class="nav-link" href="{{ route('privacypolicies') }}">Privacy policies</a>
                             <li class="nav-item"> <a class="nav-link" href="{{ route('termsandconditions') }}">T & C</a>
                                 <li class="nav-item"> <a class="nav-link" href="{{ route('refundandcancellationpolicies') }}">Refund & Cancellation </a>
@@ -451,7 +448,7 @@
                             <li class="nav-item dropdown"> <a class="nav-link dropdown-toggle dropdown-toggle-nocaret"
                                     href="#" data-bs-toggle="dropdown">My Account <i class='bx bx-chevron-down'></i></a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="account-downloads.html">Track Orders</a>
+                                    <li><a class="dropdown-item" href="{{route('track-order')}}">Track Orders</a>
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('user.dashboard') }}">Dashboard</a>
                                     </li>

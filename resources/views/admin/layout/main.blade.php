@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
+
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -53,7 +54,7 @@
 </head>
 
 <body>
-    
+
     <!-- tap on top start -->
     <div class="tap-top">
         <span class="lnr lnr-chevron-up"></span>
@@ -68,8 +69,10 @@
                 <div class="header-logo-wrapper p-0">
                     <div class="logo-wrapper">
                         <a href="{{ route('admin.products.view') }}">
-                            <img class="img-fluid main-logo" src="{{ asset('adminassets/images/logo/1.png')}}" alt="ultrasonic-logo">
-                            <img class="img-fluid white-logo" src="{{ asset('adminassets/images/logo/1-white.png')}}" alt="ultrasonic-logo">
+                            <img class="img-fluid main-logo" src="{{ asset('adminassets/images/logo/1.png')}}"
+                                alt="ultrasonic-logo">
+                            <img class="img-fluid white-logo" src="{{ asset('adminassets/images/logo/1-white.png')}}"
+                                alt="ultrasonic-logo">
                         </a>
                     </div>
                     <div class="toggle-sidebar">
@@ -102,7 +105,7 @@
                                 <i class="ri-search-line"></i>
                             </span>
                         </li> --}}
-                        <li class="onhover-dropdown">
+                        <!-- <li class="onhover-dropdown">
                             <div class="notification-box">
                                 <i class="ri-notification-line"></i>
                                 <span class="badge rounded-pill badge-theme">4</span>
@@ -140,7 +143,7 @@
                                     <a class="btn btn-primary" href="javascript:void(0)">Check all notification</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
 
                         {{-- <li>
                             <div class="mode">
@@ -149,10 +152,12 @@
                         </li> --}}
                         <li class="profile-nav onhover-dropdown pe-0 me-0">
                             <div class="media profile-media">
-                                <img class="user-profile rounded-circle" src="{{ asset('adminassets/images/users/4.jpg')}}" alt="">
+                                <img class="user-profile rounded-circle"
+                                    src="{{ asset('adminassets/images/users/4.jpg')}}" alt="">
                                 <div class="user-name-hide media-body">
                                     <span>Emay Walter</span>
-                                    <p class="mb-0 font-roboto">Super Admin<i class="middle ri-arrow-down-s-line"></i></p>
+                                    <p class="mb-0 font-roboto">Super Admin<i class="middle ri-arrow-down-s-line"></i>
+                                    </p>
                                 </div>
                             </div>
                             <ul class="profile-dropdown onhover-show-div">
@@ -162,12 +167,6 @@
                                         <span>Users</span>
                                     </a>
                                 </li>
-                                <li>
-                                    <a hreff="">
-                                        <i data-feather="archive"></i>
-                                        <span>Orders</span>
-                                    </a>
-                                </li>
                                 {{-- <li>
                                     <a href="support-ticket.html">
                                         <i data-feather="phone"></i>
@@ -175,26 +174,27 @@
                                     </a>
                                 </li> --}}
                                 <li>
-                                    <a hreff="">
-                                        <i data-feather="settings"></i>
-                                        <span>Settings</span>
+                                    <a href="{{ route('admin.orders') }}">
+                                        <i data-feather="archive"></i>
+                                        <span>Orders</span>
                                     </a>
                                 </li>
                                 <li style="display: flex;">
                                     <a>
                                         <i data-feather="log-out"></i>
                                         <span>
-                                        <form method="POST" action="{{ route('logout') }}" x-data>
-                                            @csrf
-            
-                                            <a onclick="event.preventDefault(); this.closest('form').submit();" href="{{ route('logout') }}">
-                                                {{ __('Log Out') }}
-                                            </a>
-                                        </form>
-                                    </span>
+                                            <form method="POST" action="{{ route('logout') }}" x-data>
+                                                @csrf
+
+                                                <a onclick="event.preventDefault(); this.closest('form').submit();"
+                                                    href="{{ route('logout') }}">
+                                                    {{ __('Log Out') }}
+                                                </a>
+                                            </form>
+                                        </span>
                                     </a>
                                 </li>
-                                
+
                             </ul>
                         </li>
                     </ul>
@@ -211,7 +211,8 @@
                 <div>
                     <div class="logo-wrapper logo-wrapper-center">
                         <a href="{{ route('admin.products.view') }}" data-bs-original-title="" title="">
-                            <img style="height: 5rem;width:8rem;" class="img-fluid for-white" src="{{ asset('adminassets/images/logo/full-white.png')}}" alt="logo">
+                            <img style="height: 5rem;width:8rem;" class="img-fluid for-white"
+                                src="{{ asset('adminassets/images/logo/full-white.png')}}" alt="logo">
                         </a>
                         <div style="padding:35px ;margin-left:15px;" class="back-btn">
                             <i class="fa fa-angle-left"></i>
@@ -223,9 +224,10 @@
                     </div>
                     <div class="logo-icon-wrapper">
                         <a href="{{ route('admin.products.view') }}">
-                            <img class="img-fluid main-logo main-white" src="{{ asset('adminassets/images/logo/logo.png')}}" alt="logo">
-                            <img class="img-fluid main-logo main-dark" src="{{ asset('adminassets/images/logo/logo-white.png')}}"
-                                alt="logo">
+                            <img class="img-fluid main-logo main-white"
+                                src="{{ asset('adminassets/images/logo/logo.png')}}" alt="logo">
+                            <img class="img-fluid main-logo main-dark"
+                                src="{{ asset('adminassets/images/logo/logo-white.png')}}" alt="logo">
                         </a>
                     </div>
                     <nav class="sidebar-main">
@@ -238,7 +240,8 @@
                                 <li class="back-btn"></li>
 
                                 {{-- <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.products.view') }}">
+                                    <a class="sidebar-link sidebar-title link-nav"
+                                        href="{{ route('admin.products.view') }}">
                                         <i class="ri-home-line"></i>
                                         <span>Dashboard</span>
                                     </a>
@@ -293,9 +296,17 @@
                                 </li> --}}
 
                                 <li class="sidebar-list">
-                                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.users.view') }}">
+                                    <a class="sidebar-link sidebar-title link-nav"
+                                        href="{{ route('admin.users.view') }}">
                                         <i class="ri-user-3-line"></i>
                                         <span>Manage Users</span>
+                                    </a>
+                                </li>
+
+                                <li class="sidebar-list">
+                                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('admin.orders') }}">
+                                        <i style="color:white;" data-feather="archive"></i>
+                                        <span>User Orders</span>
                                     </a>
                                 </li>
 
@@ -392,17 +403,6 @@
                                     </a>
                                 </li> --}}
 
-                                <li class="sidebar-list">
-                                    <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
-                                        <i class="ri-settings-line"></i>
-                                        <span>Settings</span>
-                                    </a>
-                                    <ul class="sidebar-submenu">
-                                        <li>
-                                            <a hreff="profile-setting.html">Profile Setting</a>
-                                        </li>
-                                    </ul>
-                                </li>
 
                                 {{-- <li class="sidebar-list">
                                     <a class="sidebar-link sidebar-title link-nav" href="reports.html">
@@ -430,17 +430,19 @@
 
             <!-- index body start -->
             <div class="page-body">
-              
-            @yield('admincontent')
-            
+
+                @yield('admincontent')
+
                 <!-- footer start-->
                 <div class="container-fluid">
                     <footer class="footer">
                         <div class="row">
                             <div class="col-md-12 footer-copyright text-center">
-                              
-                            <p class="mb-0">Copyright © 2024. All right reserved, Designed and developed by <a style="color:#002db3;" href="https://webcrowdsolutions.com" target="_blank">Webcrowd Solution Private Limited.</a>
-                        </p>
+
+                                <p class="mb-0">Copyright © 2024. All right reserved, Designed and developed by <a
+                                        style="color:#002db3;" href="https://webcrowdsolutions.com"
+                                        target="_blank">Webcrowd Solution Private Limited.</a>
+                                </p>
                             </div>
                         </div>
                     </footer>
@@ -493,7 +495,7 @@
 
     <!-- Plugins JS -->
     <script src="{{ asset('adminassets/js/sidebar-menu.js')}}"></script>
-    
+
     <script src="{{ asset('adminassets/js/notify/index.js')}}"></script>
 
     <!-- Apexchar js -->
@@ -521,6 +523,7 @@
 
     <!-- Theme js -->
     <script src="{{ asset('adminassets/js/script.js')}}"></script>
-    
+
 </body>
+
 </html>

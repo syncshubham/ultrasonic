@@ -9,6 +9,7 @@
 
     <x-slot name="content">
         <div class="max-w-xl text-sm text-gray-600">
+                    <h1 style="font-size:1.5rem;margin-bottom:2rem">All logged in Devices</h1>
             {{ __('If necessary, you may log out of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
         </div>
 

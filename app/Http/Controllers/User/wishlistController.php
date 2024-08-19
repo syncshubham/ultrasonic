@@ -40,4 +40,9 @@ class wishlistController extends Controller
 
     return response()->json(['status' => 'ok', 'wished' => $wished]);
 }
+
+public function getData()
+{
+    
+}
 }

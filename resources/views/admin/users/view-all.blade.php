@@ -43,7 +43,7 @@
                             @foreach($users as $user)
                                 <tr>
                                     <td>
-                                        <div style="text-align: center" class="user-name">
+                                        <div style="" class="user-name">
                                             <span>{{$user->name}}</span>
                                         </div>
                                     </td>

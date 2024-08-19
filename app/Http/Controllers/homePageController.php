@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Auth;
 use App\Models\Cart;
 use Illuminate\Http\Request;
@@ -9,38 +10,37 @@ use App\Models\admin\Products;
 class homePageController extends Controller
 {
     public function index()
-{
-    $products = Products::where('status', 1)->orderBy("created_at", "desc")->get();
-    $productCount = $products->count();
+    {
+        $products = Products::where('status', 1)->orderBy("created_at", "desc")->get();
+        $productCount = $products->count();
 
-    $wishlistProductIds = [];
-    if (Auth::check()) {
-        $wishlistProductIds = Auth::user()->wishlist()->pluck('product_id')->toArray();
+        $wishlistProductIds = [];
+        if (Auth::check()) {
+            $wishlistProductIds = Auth::user()->wishlist()->pluck('product_id')->toArray();
+        }
+
+        // Add is_wished flag to each product based on user's wishlist
+        $products = $products->map(function ($product) use ($wishlistProductIds) {
+            $product->is_wished = in_array($product->id, $wishlistProductIds);
+            return $product;
+        });
+
+        return view('home', compact('products', 'productCount', 'wishlistProductIds'));
     }
 
-    // Add is_wished flag to each product based on user's wishlist
-    $products = $products->map(function ($product) use ($wishlistProductIds) {
-        $product->is_wished = in_array($product->id, $wishlistProductIds);
-        return $product;
-    });
-
-    return view('home', compact('products', 'productCount', 'wishlistProductIds'));
-}
-    
 
     public function view_product_detail($id)
     {
         $product = Products::where('id', $id)->where('status', 1)->first();
-        if($product)
-        {
-            if($product->status == 0){
+        if ($product) {
+            if ($product->status == 0) {
                 return "Unauthorised Access";
-            }else{
+            } else {
                 $meta_name = $product->product_name;
                 $userName = Auth::check() ? Auth::user()->name : null; // Fetch the logged-in user's name if available
                 return view("productdetail", compact("product", "meta_name"));
             }
-        }else{
+        } else {
             return "Unauthorised Access";
         }
     }
