@@ -163,7 +163,7 @@
                     <div class="row align-items-center">
                         <div class="col col-md-auto">
                             <div class="d-flex align-items-center">
-                                <div class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i
+                                <div id="mobile-togglernew" class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i
                                         class='fa-solid fa-bars'></i></div>
                                 <div style="margin-left:40px;" class="logo d-lg-flex">
                                     <a href="{{ url('/') }}">
@@ -243,7 +243,6 @@
             </div>
 
             <script>
-
                 document.querySelectorAll('.dropdown-menu').forEach(function (menu) {
                     menu.addEventListener('click', function (event) {
                         console.log("propagation stopped");
@@ -427,7 +426,7 @@
                 <div class="container">
                     <nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg">
                         <div class="offcanvas-header">
-                            <button class="btn-close float-end"></button>
+                            <button id="close_mobile_nav" class="btn-close float-end"></button>
                             <img style="width:4rem;" src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon"
                                 alt="">
                         </div>
@@ -590,42 +589,6 @@
 
     </div>
 
-    <div class="switcher-wrapper">
-        <div class="switcher-btn"> <i class='bx bx-cog bx-spin'></i>
-        </div>
-        <div class="switcher-body">
-            <div class="d-flex align-items-center">
-                <h5 class="mb-0 text-uppercase">Theme Customizer</h5>
-                <button type="button" class="btn-close ms-auto close-switcher" aria-label="Close"></button>
-            </div>
-            <hr>
-            <p class="mb-0">Gaussian Texture</p>
-            <hr>
-            <ul class="switcher">
-                <li id="theme1"></li>
-                <li id="theme2"></li>
-                <li id="theme3"></li>
-                <li id="theme4"></li>
-                <li id="theme5"></li>
-                <li id="theme6"></li>
-            </ul>
-            <hr>
-            <p class="mb-0">Gradient Background</p>
-            <hr>
-            <ul class="switcher">
-                <li id="theme7"></li>
-                <li id="theme8"></li>
-                <li id="theme9"></li>
-                <li id="theme10"></li>
-                <li id="theme11"></li>
-                <li id="theme12"></li>
-                <li id="theme13"></li>
-                <li id="theme14"></li>
-                <li id="theme15"></li>
-            </ul>
-        </div>
-    </div>
-
     <script type="text/javascript" src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/jquery.min.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/plugins/simplebar/js/simplebar.min.js') }}"></script>
@@ -641,6 +604,29 @@
     <script type="text/javascript" src="{{ asset('assets/js/product-details.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/product-gallery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/show-hide-password.js') }}"></script>
+    <script>
+        $('#mobile-togglernew').on('click', function() {
+            console.log("mobile open toggle clicked");
+             // Add the "offcanvas-active" class to the body element
+        $('body').toggleClass('offcanvas-active');
+        
+        // Add the "show" class to the element with the "screen-overlay" class
+        $('.screen-overlay').toggleClass('show');
+        $('#navbar_main').toggleClass('show');
+        });
+        
+
+        $('#close_mobile_nav').on('click', function() {
+            console.log("mobile closer toggle clicked");
+             // Add the "offcanvas-active" class to the body element
+        $('body').removeClass('offcanvas-active');
+        
+        // Add the "show" class to the element with the "screen-overlay" class
+        $('.screen-overlay').removeClass('show');
+        $('#navbar_main').removeClass('show');
+        });
+        
+        </script>
 </body>
 
 </html>

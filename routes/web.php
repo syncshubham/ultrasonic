@@ -128,8 +128,7 @@ Route::middleware([
         Route::get('/track-order', [userMainProfileController::class, 'trackOrder'])->name('track-order');
         Route::get('/track-order-number', [userMainProfileController::class, 'trackOrderNumber'])->name('track-order-number');
     });
-    // ---- 2.2) End - User panel routes
-    
+    // ---- 2.2) End - User panel routes    
 });
 
 // ----- 2.) End - Authenticated routes

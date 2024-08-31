@@ -708,6 +708,7 @@ background-position: right;
         </div>
     </section>
     <!--end brands-->
+   
 </div>
 </div>
 <!--end page wrapper -->
