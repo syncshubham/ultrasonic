@@ -26,11 +26,11 @@ class IsUser
         $retrievedEncryptedRole = Auth::user()->user_role_type;
         $decryptedRole = Crypt::decrypt($retrievedEncryptedRole);
 
-        if (Auth::user() &&  $userRole == $decryptedRole) {
+        if (Auth::user() && $userRole == $decryptedRole) {
 
             return $next($request);
         }
-        
+
         return redirect('/');
     }
 }

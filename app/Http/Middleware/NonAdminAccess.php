@@ -3,14 +3,12 @@
 namespace App\Http\Middleware;
 
 use Auth;
-use App\User;
 use Closure;
-
-use App\Role;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 use App\Constants\RoleConstants;
-class IsAdmin
+
+class NonAdminAccess
 {
     /**
      * Handle an incoming request.
@@ -21,14 +19,20 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        // Define the admin role constant
         $adminRole = RoleConstants::ADMIN;
-        $retrievedEncryptedRole = Auth::user()->user_role_type;
-        $decryptedRole = Crypt::decrypt($retrievedEncryptedRole);
 
-        if (Auth::user() && $adminRole == $decryptedRole) {
-            return $next($request);
+        // Check if the user is logged in
+        if (Auth::check()) {
+            $retrievedEncryptedRole = Auth::user()->user_role_type;
+            $decryptedRole = Crypt::decrypt($retrievedEncryptedRole);
+
+            if ($adminRole == $decryptedRole) {
+                return redirect('/admin/users/view');
+            }
         }
 
-        return redirect('/');
+        return $next($request);
     }
 }
+

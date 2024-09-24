@@ -21,7 +21,7 @@ class AdminProductController extends Controller
     {
         return view("admin.products.create");
     }
-    
+
     public function update_product_status(Request $request, $id, $status)
     {
         $newStatus = ($status == 1) ? 0 : 1;
@@ -29,18 +29,18 @@ class AdminProductController extends Controller
         Products::where('id', $id)
             ->update(['status' => $newStatus]);
 
-            // if($status == 0)
-            // {
-            //     return response()->json(['success' => "verified"], 200);
-            // }
-            // elseif($status == 1)
-            // {
-            //     return response()->json(['success' => "notverified"], 200);
-            // }
+        // if($status == 0)
+        // {
+        //     return response()->json(['success' => "verified"], 200);
+        // }
+        // elseif($status == 1)
+        // {
+        //     return response()->json(['success' => "notverified"], 200);
+        // }
 
-            $response = ($status == 0) ? response()->json(['success' => "verified"], 200) : response()->json(['success' => "notverified"], 200);
+        $response = ($status == 0) ? response()->json(['success' => "verified"], 200) : response()->json(['success' => "notverified"], 200);
 
-            return $response;
+        return $response;
     }
 
     public function create_product(Request $request)
@@ -53,11 +53,11 @@ class AdminProductController extends Controller
                 'sizes' => ['required', new AtLeastOneRequired()],
                 'unit' => 'required|string',
                 'short_desc' => 'required',
-                'image_1' => 'required|mimes:jpeg,png,jpg|max:150',
-                'image_2' => 'nullable|mimes:jpeg,png,jpg|max:150',
-                'image_3' => 'nullable|mimes:jpeg,png,jpg|max:150',
-                'image_4' => 'nullable|mimes:jpeg,png,jpg|max:150',
-                'image_5' => 'nullable|mimes:jpeg,png,jpg|max:150',
+                'image_1' => 'required|mimes:jpeg,png,jpg|max:550',
+                'image_2' => 'nullable|mimes:jpeg,png,jpg|max:350',
+                'image_3' => 'nullable|mimes:jpeg,png,jpg|max:350',
+                'image_4' => 'nullable|mimes:jpeg,png,jpg|max:350',
+                'image_5' => 'nullable|mimes:jpeg,png,jpg|max:350',
                 'price' => 'required|numeric',
                 // 'disc_rate' => 'numeric',
                 // 'disc_price' => 'numeric',
@@ -130,8 +130,8 @@ class AdminProductController extends Controller
                 'sizes' => ['required', new AtLeastOneRequired()],
                 'unit' => 'required|string',
                 'short_desc' => 'required',
-                'image_1' => 'nullable|mimes:jpeg,png,jpg|max:150',
-                'image_2' => 'nullable|mimes:jpeg,png,jpg|max:150',
+                'image_1' => 'nullable|mimes:jpeg,png,jpg|max:350',
+                'image_2' => 'nullable|mimes:jpeg,png,jpg|max:350',
                 'image_3' => 'nullable|mimes:jpeg,png,jpg|max:150',
                 'image_4' => 'nullable|mimes:jpeg,png,jpg|max:150',
                 'image_5' => 'nullable|mimes:jpeg,png,jpg|max:150',

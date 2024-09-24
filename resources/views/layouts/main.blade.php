@@ -41,7 +41,7 @@
             display: none;
         }
     }
-    
+
     .loadercartdeletion {
         display: flex;
         align-items: center;
@@ -163,8 +163,8 @@
                     <div class="row align-items-center">
                         <div class="col col-md-auto">
                             <div class="d-flex align-items-center">
-                                <div id="mobile-togglernew" class="mobile-toggle-menu d-lg-none px-lg-2" data-trigger="#navbar_main"><i
-                                        class='fa-solid fa-bars'></i></div>
+                                <div id="mobile-togglernew" class="mobile-toggle-menu d-lg-none px-lg-2"
+                                    data-trigger="#navbar_main"><i class='fa-solid fa-bars'></i></div>
                                 <div style="margin-left:40px;" class="logo d-lg-flex">
                                     <a href="{{ url('/') }}">
                                         <img style="width:4rem;" src="{{ asset('assets/images/logo-icon.png') }}"
@@ -216,7 +216,8 @@
 
                                                 </div>
                                                 <div id="checkoutbuttoncart" class="d-grid p-3 border-top">
-                                                    <a href="{{ route('product.cart') }}" class="btn btn-light btn-ecomm">CHECKOUT</a>
+                                                    <a href="{{ route('product.cart') }}"
+                                                        class="btn btn-light btn-ecomm">CHECKOUT</a>
                                                 </div>
                                             </div>
                                         </li>
@@ -438,9 +439,11 @@
                             <!-- <li class="nav-item"> <a class="nav-link" href="blog.html">Blogs </a>
                             </li> -->
                             <li class="nav-item"> <a class="nav-link" href="{{ route('contact-us') }}">Contact Us </a>
-                            <li class="nav-item"> <a class="nav-link" href="{{ route('privacypolicies') }}">Privacy policies</a>
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('privacypolicies') }}">Privacy
+                                    policies</a>
                             <li class="nav-item"> <a class="nav-link" href="{{ route('termsandconditions') }}">T & C</a>
-                                <li class="nav-item"> <a class="nav-link" href="{{ route('refundandcancellationpolicies') }}">Refund & Cancellation </a>
+                            <li class="nav-item"> <a class="nav-link"
+                                    href="{{ route('refundandcancellationpolicies') }}">Refund & Cancellation </a>
                             </li>
                             <!-- <li class="nav-item"> <a class="nav-link" href="shop-categories.html">Our Store</a>
                             </li> -->
@@ -453,9 +456,11 @@
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('user.orders') }}">Orders</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ route('user.addresses') }}">Shipping Addresses</a>
+                                    <li><a class="dropdown-item" href="{{ route('user.addresses') }}">Shipping
+                                            Addresses</a>
                                     </li>
-                                    <li><a class="dropdown-item" href="{{ route('user.paymentmethods') }}">Payment Methods</a>
+                                    <li><a class="dropdown-item" href="{{ route('user.paymentmethods') }}">Payment
+                                            Methods</a>
                                     </li>
                                     <li><a class="dropdown-item" href="{{ route('user.profile') }}">User Details</a>
                                     </li>
@@ -510,11 +515,11 @@
                                 <div class="download-app mt-3">
                                     <h6 class="mb-3 text-uppercase">Download our app</h6>
                                     <div id="footerappdownload" class="d-flex align-items-center gap-2">
-                                        <a href="javascript:;">
+                                        <a href="{{ route('coming-soon') }}">
                                             <img src="{{ asset('assets/images/icons/apple-store.png') }}" class=""
                                                 width="160" alt="">
                                         </a>
-                                        <a href="javascript:;">
+                                        <a href="{{ route('coming-soon') }}">
                                             <img src="{{ asset('assets/images/icons/play-store.png') }}" class=""
                                                 width="160" alt="">
                                         </a>
@@ -525,13 +530,12 @@
                         <div class="col">
                             <div class="footer-section3 mb-3">
                                 <h6 class="mb-3 text-uppercase">Popular Tags</h6>
-                                <div class="tags-box"> <a href="javascript:;" class="tag-link">Able</a>
-                                    <a href="javascript:;" class="tag-link">Able Plus</a>
-                                    <a href="javascript:;" class="tag-link">Able Aid</a>
+                                <div class="tags-box"> <a href="javascript:;" class="tag-link">Olive</a>
+                                    <a href="javascript:;" class="tag-link">Olive Plus</a>
+                                    <a href="javascript:;" class="tag-link">Olive max</a>
                                     <a href="javascript:;" class="tag-link">Hearing Aid</a>
                                     <a href="javascript:;" class="tag-link">Ear Problem</a>
-                                    <a href="javascript:;" class="tag-link">Able EQ</a>
-                                    <a href="javascript:;" class="tag-link">Able Glass</a>
+                                    <a href="javascript:;" class="tag-link">Olive pro</a>
                                 </div>
                             </div>
                         </div>
@@ -583,9 +587,8 @@
                 </div>
             </section>
         </footer>
-            
-        <a href="javaScript:;" class="back-to-top"><i
-                class='bx bxs-up-arrow-alt'></i></a>
+
+        <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
 
     </div>
 
@@ -605,28 +608,28 @@
     <script type="text/javascript" src="{{ asset('assets/js/product-gallery.js') }}"></script>
     <script type="text/javascript" src="{{ asset('assets/js/show-hide-password.js') }}"></script>
     <script>
-        $('#mobile-togglernew').on('click', function() {
+        $('#mobile-togglernew').on('click', function () {
             console.log("mobile open toggle clicked");
-             // Add the "offcanvas-active" class to the body element
-        $('body').toggleClass('offcanvas-active');
-        
-        // Add the "show" class to the element with the "screen-overlay" class
-        $('.screen-overlay').toggleClass('show');
-        $('#navbar_main').toggleClass('show');
-        });
-        
+            // Add the "offcanvas-active" class to the body element
+            $('body').toggleClass('offcanvas-active');
 
-        $('#close_mobile_nav').on('click', function() {
-            console.log("mobile closer toggle clicked");
-             // Add the "offcanvas-active" class to the body element
-        $('body').removeClass('offcanvas-active');
-        
-        // Add the "show" class to the element with the "screen-overlay" class
-        $('.screen-overlay').removeClass('show');
-        $('#navbar_main').removeClass('show');
+            // Add the "show" class to the element with the "screen-overlay" class
+            $('.screen-overlay').toggleClass('show');
+            $('#navbar_main').toggleClass('show');
         });
-        
-        </script>
+
+
+        $('#close_mobile_nav').on('click', function () {
+            console.log("mobile closer toggle clicked");
+            // Add the "offcanvas-active" class to the body element
+            $('body').removeClass('offcanvas-active');
+
+            // Add the "show" class to the element with the "screen-overlay" class
+            $('.screen-overlay').removeClass('show');
+            $('#navbar_main').removeClass('show');
+        });
+
+    </script>
 </body>
 
 </html>

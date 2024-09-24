@@ -12,43 +12,45 @@ use App\Http\Controllers\user\userMainProfileController;
 use App\Http\Controllers\admin\AdminGeneralUsersController;
 
 // ----- 1.) Begin - Main website routes
-    // ---- 1.1) Begin - static page routes
-    Route::get('/', [homePageController::class, 'index']);
+// ---- 1.1) Begin - static page routes
 
-    Route::get('about',  function () {
-        return view('about');
-    })->name('about');
-    Route::get('termsandconditions',  function () {
-        return view('termsandconditions');
-    })->name('termsandconditions');
-    Route::get('privacypolicies',  function () {
-        return view('privacypolicies');
-    })->name('privacypolicies');
-    Route::get('refundandcancellationpolicies',  function () {
-        return view('refundandcancellationpolicies');
-    })->name('refundandcancellationpolicies');
-    Route::get('contact-us',  function () {
-        return view('contactUs');
-    })->name('contact-us');
-    
-    
-    // ---- 1.1) End - static page routes
+Route::get('about', function () {
+    return view('about');
+})->name('about');
+Route::get('termsandconditions', function () {
+    return view('termsandconditions');
+})->name('termsandconditions');
+Route::get('privacypolicies', function () {
+    return view('privacypolicies');
+})->name('privacypolicies');
+Route::get('refundandcancellationpolicies', function () {
+    return view('refundandcancellationpolicies');
+})->name('refundandcancellationpolicies');
+Route::get('contact-us', function () {
+    return view('contactUs');
+})->name('contact-us');
+Route::get('coming-soon', function () {
+    return view('comingsoon');
+})->name('coming-soon');
 
-    // ---- 1.2) Begin - dynamic pages route
-    Route::get('/product/view/{id}', [homePageController::class, 'view_product_detail'])->name('onepagerview.product');
-    // ---- 1.2) End - dynamic pages route
-
-// ----- 1.) End - Main website routes
+Route::get('blogs/Best-Affordable-Bluetooth-Hearing-Aids-in-2024', function () {
+    return view('blog1');
+})->name('blog1');
 
 
-Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
-Route::get('/api/cart', [CartController::class, 'getCartData']);
-Route::get('/api/cart/count', [CartController::class, 'getCartItemsCount']);
-Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem'])->name('delete-cart-item');
-Route::get('/api/cart-totals', [CartController::class, 'getCartTotals']);
-Route::get('/product/cart', [CartController::class, 'productCart'])->name("product.cart");
-Route::post('/delete-cart-products', [CartController::class, 'deleteCartProducts'])->name('delete-cart-products');
-Route::post('/wishlist-toggle', [wishlistController::class, 'toggle'])->name('wishlist-toggle');
+Route::get('blogs/Bluetooth-Hearing-Aids-vs-Bluetooth-Earbuds', function () {
+    return view('blog2');
+})->name('blog2');
+
+Route::get('blogs/5-Important-Things-to-Look-For-When-Buying-Affordable-Hearing-Aids', function () {
+    return view('blog3');
+})->name('blog3');
+
+
+Route::get('blogs/Rising-Hearing-Loss-in-Young-Adults', function () {
+    return view('blog4');
+})->name('blog4');
+
 
 //testing cookie
 Route::get('/test-cookie', function () {
@@ -56,6 +58,34 @@ Route::get('/test-cookie', function () {
     $cartData = json_decode($cart, true);
     return response()->json($cartData);
 });
+
+
+
+Route::group(['middleware' => 'non_admin'], function () {
+
+    Route::get('/', [homePageController::class, 'index']);
+
+    // ---- 1.1) End - static page routes
+
+    // ---- 1.2) Begin - dynamic pages route
+    Route::get('/product/view/{id}', [homePageController::class, 'view_product_detail'])->name('onepagerview.product');
+    // ---- 1.2) End - dynamic pages route
+
+    // ----- 1.) End - Main website routes
+
+
+    Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('add-to-cart');
+    Route::get('/api/cart', [CartController::class, 'getCartData']);
+    Route::get('/api/cart/count', [CartController::class, 'getCartItemsCount']);
+    Route::post('/delete-cart-item', [CartController::class, 'deleteCartItem'])->name('delete-cart-item');
+    Route::get('/api/cart-totals', [CartController::class, 'getCartTotals']);
+    Route::get('/product/cart', [CartController::class, 'productCart'])->name("product.cart");
+    Route::post('/delete-cart-products', [CartController::class, 'deleteCartProducts'])->name('delete-cart-products');
+    Route::post('/wishlist-toggle', [wishlistController::class, 'toggle'])->name('wishlist-toggle');
+    Route::get('/product/cart', [CartController::class, 'productCart'])->name("product.cart");
+
+});
+
 
 // ----- 2.) Begin - Authenticated routes
 // this is the middleware wrapped around all routes which requires logged in user
@@ -71,7 +101,7 @@ Route::middleware([
             return view('dashboard');
         })->name('dashboard');
 
-        
+
         // --- 2.1.1) Begin - Admin Dashboard routes
         Route::get('/admin/dashboard', [AdminDashboardController::class, 'index']);
         // --- 2.1.1) End - Admin Dashboard routes
@@ -101,7 +131,7 @@ Route::middleware([
     });
     // ---- 2.1) End - Admin panel routes
 
-    
+
     // ---- 2.2) Begin - User panel routes
     Route::group(['middleware' => 'isuser'], function () {
         Route::get('/dashboard', function () {
@@ -115,7 +145,7 @@ Route::middleware([
         Route::get('/user-profile', [userMainProfileController::class, 'user_profile'])->name('user.profile');
         Route::get('/add-address', [userMainProfileController::class, 'add_address'])->name('add.address');
         Route::post('/create-address', [userMainProfileController::class, 'create_address'])->name('create.address');
-        Route::get('/address/{id}/edit',  [userMainProfileController::class, 'address_edit'])->name('address.edit');
+        Route::get('/address/{id}/edit', [userMainProfileController::class, 'address_edit'])->name('address.edit');
         Route::post('/address/{id}/update', [userMainProfileController::class, 'address_update'])->name('address.update');
         Route::post('/address/{id}/delete', [userMainProfileController::class, 'address_delete'])->name('address.delete');
         Route::post('/select-address', [checkoutController::class, 'addressSavingAndPaymentSelection'])->name('select.address');

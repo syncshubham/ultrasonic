@@ -827,7 +827,7 @@
         } else {
             // Check file size
             var fileSize = fileInput.files[0].size; // in bytes
-            var maxSize = 1024 * 158; // 1 MB
+            var maxSize = 10024 * 158; // 1 MB
 
             if (fileSize > maxSize) {
                 customAlert.alert('File size exceeds' + '<br>' + 'Max allowed size (150 KB)', 'Alert !!!');

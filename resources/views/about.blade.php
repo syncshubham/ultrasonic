@@ -848,18 +848,30 @@
                 <br>
             </p>
             <p class="text-blk subHeadingText">
-                Enhancing auditory experiences, one click at a time. Discover top-notch ear aid technology with Ultrasonic Ltd.
+                Enhancing auditory experiences, one click at a time. Discover top-notch ear aid technology with
+                Ultrasonic Ltd.
             </p>
             <p class="text-blk description">
-                At Ultrasonic Ltd., we believe that access to high-quality hearing solutions should be convenient, reliable, and personalized. Founded in 1990 by Mr. kidokoro, who recognized the growing need for innovation in the ear aid technology sector, our platform aims to revolutionize the way people shop for hearing products.
+                At Ultrasonic Ltd., we believe that access to high-quality hearing solutions should be convenient,
+                reliable, and personalized. Founded in 1990 by Mr. kidokoro, who recognized the growing need for
+                innovation in the ear aid technology sector, our platform aims to revolutionize the way people shop for
+                hearing products.
                 <br><br>
-                Driven by Mr. kidokoro deep understanding and insights gained from his experience in the industry, Ultrasonic Ltd. was established to address the challenges and inefficiencies in the traditional hearing aid market.
+                Driven by Mr. kidokoro deep understanding and insights gained from his experience in the industry,
+                Ultrasonic Ltd. was established to address the challenges and inefficiencies in the traditional hearing
+                aid market.
             </p>
             <p class="extraptag" style="color:whitesmoke;">
-                After witnessing the complexities and limitations of conventional purchasing methods, Mr. kidokoro envisioned a digital platform that would simplify the process of finding and buying ear aid products while empowering users to make informed choices about their auditory health.
+                After witnessing the complexities and limitations of conventional purchasing methods, Mr. kidokoro
+                envisioned a digital platform that would simplify the process of finding and buying ear aid products
+                while empowering users to make informed choices about their auditory health.
                 <br><br>
-                At Ultrasonic Ltd., we are committed to delivering a seamless and user-friendly shopping experience for individuals seeking cutting-edge hearing solutions. Our platform features a curated selection of reputable brands, offering a wide range of products to meet various hearing needs. Whether you're searching for advanced hearing aids, assistive listening devices, or accessories, Ultrasonic Ltd. has you covered.
-            </p>            
+                At Ultrasonic Ltd., we are committed to delivering a seamless and user-friendly shopping experience for
+                individuals seeking cutting-edge hearing solutions. Our platform features a curated selection of
+                reputable brands, offering a wide range of products to meet various hearing needs. Whether you're
+                searching for advanced hearing aids, assistive listening devices, or accessories, Ultrasonic Ltd. has
+                you covered.
+            </p>
             <a class="explore" href="/#featuredProducts">
                 View Products
             </a>
@@ -1062,7 +1074,7 @@
     .timeline__event--type3 .timeline__event__icon:after {
         background: #aff1b6;
     }
-    
+
     .timeline__event--type3 .timeline__event__title {
         color: #24b47e;
     }
