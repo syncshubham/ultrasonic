@@ -113,8 +113,9 @@
                             <!-- Blog Section Wrapper -->
                             <!-- Blog Section Wrapper -->
                             <section class="blog-content">
-                                <img style="height:25rem;" src="{{ asset('assets/images/blogs/blog4/74_1200x.webp') }}"
-                                    class="card-img-top" alt="">
+                                <img style="height:25rem;"
+                                    src="{{ asset('assets/images/blogs/blog4/best-hearing-protection-for-shooting.webp') }}"
+                                    class="card-img-top" alt="best hearing protection for shooting">
 
                                 <div class="list-inline mt-4"> <a href="javascript:;" class="list-inline-item"><i
                                             class='bx bx-user me-1'></i>By Admin</a>
@@ -292,8 +293,8 @@
                                     <div class="mb-3">
                                         <a href="/#featuredProducts">
                                             <img style="width:100%;height:20rem;"
-                                                src="{{ asset('assets/images/blogs/blog4/pexels-wendy-wei-1190298-1024x682.jpg') }}"
-                                                alt="olive smart ear plus">
+                                                src="{{ asset('assets/images/blogs/blog4/best-hearing-aids-for-teens.jpg') }}"
+                                                alt="best hearing aids for teens">
                                         </a>
                                     </div>
                                 </div>

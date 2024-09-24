@@ -602,6 +602,100 @@
         <br>
         <!--end support info-->
         <!--start News-->
+        <style>
+            .rounded-circle {
+                border-radius: 50% !important;
+            }
+
+            .apecialityimages .ourdifferenceimg {
+                width: 7rem;
+                height: 7rem;
+                vertical-align: top;
+            }
+
+            .specialmiddleimg {
+                width: 20rem;
+                height: 20rem;
+                vertical-align: top;
+            }
+
+            .apecialityimages {
+                padding-bottom: 50px;
+            }
+
+            .sub-info {
+                font-weight: 600;
+                font-family: 'Poppins', sans-serif;
+                color: #e7ebeee7;
+            }
+
+            .display-30 {
+                font-size: 0.9rem;
+            }
+        </style>
+        <section class="py-4">
+            <div class="container">
+                <div class="text-center mb-2-8 mb-lg-6">
+                    <h2 class="display-18 display-md-16 display-lg-14 font-weight-700">Making Life <strong
+                            class="font-weight-700" style="color:wheat;">Better</strong></h2>
+                    <span>How Hearing Better Leads to Living Better</span>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-lg-4 mb-2-9 mb-sm-0">
+                        <div class="pr-md-3">
+                            <div class="text-center text-sm-right mb-2-9 apecialityimages">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/images/speciality/mental-health.png') }}"
+                                        alt="mental health" class="rounded-circle ourdifferenceimg">
+                                </div>
+                                <h4 class="sub-info">Mental health</h4>
+                                <p class="display-30 mb-0">Hearing better helps keep our minds attentive and sharp.</p>
+                            </div>
+                            <div class="text-center text-sm-right apecialityimages">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/images/speciality/physical-health.png') }}"
+                                        alt="physical health" class="rounded-circle ourdifferenceimg">
+                                </div>
+                                <h4 class="sub-info">Physical health</h4>
+                                <p class="display-30 mb-0">Hearing better helps us maintain an active lifestyle.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                        <div class="why-choose-center-image">
+                            <img src="{{ asset('assets/images/speciality/special-edition-hearing-aids.png') }}"
+                                alt="special edition hearing aids" class="rounded-circle specialmiddleimg">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="pl-md-3">
+                            <div class="text-center text-sm-left mb-2-9 apecialityimages">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/images/speciality/relationships.png') }}"
+                                        alt="relationships" class="rounded-circle ourdifferenceimg">
+                                </div>
+                                <h4 class="sub-info">Relationships</h4>
+                                <p class="display-30 mb-0">Hearing better helps keep us connected to loved ones.</p>
+                            </div>
+
+                            <div class="text-center text-sm-left apecialityimages">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/images/speciality/everyday-life.png') }}"
+                                        alt="everyday life" class="rounded-circle ourdifferenceimg">
+                                </div>
+                                <h4 class="sub-info">Everyday life</h4>
+                                <p class="display-30 mb-0">Hearing better makes everyday life easier.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
         <section class="py-4">
             <div class="container">
                 <div class="d-flex align-items-center">
@@ -695,8 +789,10 @@
                                     <div style="color:black;width:2rem;" class="date-month">SEP 2024</div>
                                 </div>
                                 <a href="{{route('blog4')}}">
-                                    <img id="blogimages" src="{{ asset('assets/images/blogs/blog4/74_1200x.webp') }}"
-                                        class="card-img-top border-bottom bg-dark-1" alt="...">
+                                    <img id="blogimages"
+                                        src="{{ asset('assets/images/blogs/blog4/best-hearing-protection-for-shooting.webp') }}"
+                                        class="card-img-top border-bottom bg-dark-1"
+                                        alt="best hearing protection for shooting">
                                 </a>
                                 <div class="card-body">
                                     <div class="news-title">

@@ -316,8 +316,8 @@
                                     <div class="d-flex align-items-center">
                                         <a href="{{route('blog4')}}">
                                             <img style="height:4rem;"
-                                                src="{{ asset('assets/images/blogs/blog4/74_1200x.webp') }}" width="75"
-                                                alt="">
+                                                src="{{ asset('assets/images/blogs/blog4/best-hearing-protection-for-shooting.webp') }}"
+                                                width="75" alt="best hearing protection for shooting">
                                         </a>
                                         <div class="ms-3"> <a href="{{route('blog4')}}" class="fs-6">Rising Hearing
                                                 Loss</a>

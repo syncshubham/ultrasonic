@@ -832,7 +832,7 @@
 <div class="responsive-container-block bigContainer">
     <div class="responsive-container-block Container bottomContainer">
         <div class="ultimateImg">
-            <img class="mainImg" src="{{ asset('assets/images/other-images/aboutus.jpg')}}">
+            <img class="mainImg" src="{{ asset('assets/images/ultrasonic-journey.webp')}}" alt="ultrasonic journey">
             <div class="purpleBox">
                 <p class="purpleText">
                     "Bringing healthcare closer to you. Book medical tests from top companies effortlessly on our web
