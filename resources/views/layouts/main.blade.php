@@ -9,6 +9,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- ============================== GOOGLE WEB FONT ========================== -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:300,400" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo-icon.png') }}">
+
     <!-- =============================== BASE CSS stylesheet ======================================== -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/OwlCarousel/css/owl.carousel.min.css') }}"
         media="all" />

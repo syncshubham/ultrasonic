@@ -550,7 +550,167 @@
 
         <br>
         <br>
+        <section class="py-4 bg-dark-1">
+            <div class="why-choose-us-container">
+                <div class="why-choose-us-content">
+                    <h2 class="section-title">Why Choose Ultrasonic Ltd.?</h2>
+                    <h3 class="section-subtitle">Your Trusted Partner in Hearing Health</h3>
 
+                    <div class="why-choose-us-features">
+                        <div class="feature">
+                            <h4>Innovative Technology</h4>
+                            <p>Stay ahead with the latest in hearing aid technology. We offer cutting-edge Bluetooth
+                                hearing aids, including the Olive Air wireless rechargeable hearing aid, designed for
+                                top performance. Explore the best hearing aids for seniors and the smallest hearing aids
+                                on the market.</p>
+                        </div>
+
+                        <div class="feature">
+                            <h4>Quality Assurance</h4>
+                            <p>We partner with reputable brands to bring you reliable hearing aids, from invisible
+                                hearing aids to waterproof hearing aids and affordable hearing aids. Our selection
+                                includes high-quality options like the Olive Max hearing aid and Olive Air Hearing aids,
+                                as well as options for mild to profound hearing loss.</p>
+                        </div>
+
+                        <div class="feature">
+                            <h4>Personalized Experience</h4>
+                            <p>Find the perfect hearing solution tailored to your unique needs. Whether you need
+                                behind-the-ear hearing devices, custom hearing aids, or the best hearing aid for one ear
+                                only, we have you covered. Discover the best noise-canceling hearing aids and digital
+                                hearing aids that fit your lifestyle.</p>
+                        </div>
+
+                        <div class="feature">
+                            <h4>Convenient Shopping</h4>
+                            <p>Browse and purchase hearing aids for sale from the comfort of your home with our
+                                easy-to-use platform. Our selection includes inexpensive hearing aids, hearing aid
+                                accessories, and over-the-counter hearing aids. Enjoy shopping for high-quality hearing
+                                aids and hearing amplifiers without needing to visit local stores.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <br>
+        <br>
+        <section class="py-4">
+            <div class="container">
+                <div class="d-flex align-items-center">
+                    <h5 class="text-uppercase mb-0">Our blogs</h5>
+                    <!-- <a href="blog.html" class="btn btn-light ms-auto rounded-0">View All Blogs<i
+                        class='bx bx-chevron-right'></i></a> -->
+                </div>
+                <hr>
+                <div class="product-grid">
+                    <div class="latest-news owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="card rounded-0 product-card border">
+                                <div class="news-date">
+                                    <div style="color:black;" class="date-number">08</div>
+                                    <div style="color:black;width:2rem;" class="date-month">SEP 2024</div>
+                                </div>
+                                <a href="{{route('blog1')}}">
+                                    <img id="blogimages"
+                                        src="{{ asset('assets/images/blogs/blog1/olive-max-wireless-rechargeable-hearing-aids.webp') }}"
+                                        class="card-img-top border-bottom bg-dark-1" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <div class="news-title">
+                                        <a href="{{route('blog1')}}">
+                                            <h5 class="mb-3 text-capitalize">Best Affordable Bluetooth Hearing Aids in
+                                                2024: For Apple and Android Users</h5>
+                                        </a>
+                                    </div>
+                                    <p class="news-content mb-0">If you’re in the market for a hearing aid machine,
+                                        you’ve likely come across devices with Bluetooth functionality. But is Bluetooth
+                                        really necessary in a hearing aid?
+                                    </p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card rounded-0 product-card border">
+                                <div class="news-date">
+                                    <div style="color:black;" class="date-number">15</div>
+                                    <div style="color:black;width:2rem;" class="date-month">SEP 2024</div>
+                                </div>
+                                <a href="{{route('blog2')}}">
+                                    <img id="blogimages"
+                                        src="{{ asset('assets/images/blogs/blog2/hearing-aid-machine.webp') }}"
+                                        class="card-img-top border-bottom bg-dark-1" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <div class="news-title">
+                                        <a href="{{route('blog2')}}">
+                                            <h5 class="mb-3 text-capitalize">Bluetooth Hearing Aids vs. Bluetooth
+                                                Earbuds: What's the Difference? And What Should You Consider?</h5>
+                                        </a>
+                                    </div>
+                                    <p class="news-content mb-0">As Bluetooth technology has become more widespread,
+                                        people of all ages now use wireless earbuds, whether it's for music, calls, or
+                                        videos.</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card rounded-0 product-card border">
+                                <div class="news-date">
+                                    <div style="color:black;" class="date-number">25</div>
+                                    <div style="color:black;width:2rem;" class="date-month">AUG 2024</div>
+                                </div>
+                                <a href="{{route('blog3')}}">
+                                    <img id="blogimages"
+                                        src="{{ asset('assets/images/blogs/blog3/otc-bluetooth-hearing-aids.webp') }}"
+                                        class="card-img-top border-bottom bg-dark-1" alt="...">
+                                </a>
+                                <div class="card-body">
+                                    <div class="news-title">
+                                        <a href="{{route('blog3')}}">
+                                            <h5 class="mb-3 text-capitalize">5 Important Things to Look For When Buying
+                                                Affordable Hearing Aids</h5>
+                                        </a>
+                                    </div>
+                                    <p class="news-content mb-0">If you're new to hearing aids or experiencing mild to
+                                        moderate hearing loss, you may consider purchasing over-the-counter (OTC)
+                                        hearing aids. While Bluetooth earbuds like AirPods have...</p>
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="card rounded-0 product-card border">
+                                <div class="news-date">
+                                    <div style="color:black;" class="date-number">03</div>
+                                    <div style="color:black;width:2rem;" class="date-month">SEP 2024</div>
+                                </div>
+                                <a href="{{route('blog4')}}">
+                                    <img id="blogimages"
+                                        src="{{ asset('assets/images/blogs/blog4/best-hearing-protection-for-shooting.webp') }}"
+                                        class="card-img-top border-bottom bg-dark-1"
+                                        alt="best hearing protection for shooting">
+                                </a>
+                                <div class="card-body">
+                                    <div class="news-title">
+                                        <a href="{{route('blog4')}}">
+                                            <h5 class="mb-3 text-capitalize">Rising Hearing Loss in Young Adults: Best
+                                                Hearing Aids and Prevention Tips</h5>
+                                        </a>
+                                    </div>
+                                    <p class="news-content mb-0">While hearing loss is commonly associated with older
+                                        adults, young adults can also experience hearing loss due to congenital or
+                                        acquired According to the Hearing...</p>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <!--start support info-->
         <section class="py-4 bg-dark-1">
             <h4 style="text-align:center;font-size: 2.5rem;"> What Sets Us Apart</h4>
@@ -696,127 +856,11 @@
         </section>
         <br>
         <br>
-        <section class="py-4">
-            <div class="container">
-                <div class="d-flex align-items-center">
-                    <h5 class="text-uppercase mb-0">Our blogs</h5>
-                    <!-- <a href="blog.html" class="btn btn-light ms-auto rounded-0">View All Blogs<i
-                        class='bx bx-chevron-right'></i></a> -->
-                </div>
-                <hr>
-                <div class="product-grid">
-                    <div class="latest-news owl-carousel owl-theme">
-                        <div class="item">
-                            <div class="card rounded-0 product-card border">
-                                <div class="news-date">
-                                    <div style="color:black;" class="date-number">08</div>
-                                    <div style="color:black;width:2rem;" class="date-month">SEP 2024</div>
-                                </div>
-                                <a href="{{route('blog1')}}">
-                                    <img id="blogimages"
-                                        src="{{ asset('assets/images/blogs/blog1/olive-max-wireless-rechargeable-hearing-aids.webp') }}"
-                                        class="card-img-top border-bottom bg-dark-1" alt="...">
-                                </a>
-                                <div class="card-body">
-                                    <div class="news-title">
-                                        <a href="{{route('blog1')}}">
-                                            <h5 class="mb-3 text-capitalize">Best Affordable Bluetooth Hearing Aids in
-                                                2024: For Apple and Android Users</h5>
-                                        </a>
-                                    </div>
-                                    <p class="news-content mb-0">If you’re in the market for a hearing aid machine,
-                                        you’ve likely come across devices with Bluetooth functionality. But is Bluetooth
-                                        really necessary in a hearing aid?
-                                    </p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0 product-card border">
-                                <div class="news-date">
-                                    <div style="color:black;" class="date-number">15</div>
-                                    <div style="color:black;width:2rem;" class="date-month">SEP 2024</div>
-                                </div>
-                                <a href="{{route('blog2')}}">
-                                    <img id="blogimages"
-                                        src="{{ asset('assets/images/blogs/blog2/hearing-aid-machine.webp') }}"
-                                        class="card-img-top border-bottom bg-dark-1" alt="...">
-                                </a>
-                                <div class="card-body">
-                                    <div class="news-title">
-                                        <a href="{{route('blog2')}}">
-                                            <h5 class="mb-3 text-capitalize">Bluetooth Hearing Aids vs. Bluetooth
-                                                Earbuds: What's the Difference? And What Should You Consider?</h5>
-                                        </a>
-                                    </div>
-                                    <p class="news-content mb-0">As Bluetooth technology has become more widespread,
-                                        people of all ages now use wireless earbuds, whether it's for music, calls, or
-                                        videos.</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0 product-card border">
-                                <div class="news-date">
-                                    <div style="color:black;" class="date-number">25</div>
-                                    <div style="color:black;width:2rem;" class="date-month">AUG 2024</div>
-                                </div>
-                                <a href="{{route('blog3')}}">
-                                    <img id="blogimages"
-                                        src="{{ asset('assets/images/blogs/blog3/otc-bluetooth-hearing-aids.webp') }}"
-                                        class="card-img-top border-bottom bg-dark-1" alt="...">
-                                </a>
-                                <div class="card-body">
-                                    <div class="news-title">
-                                        <a href="{{route('blog3')}}">
-                                            <h5 class="mb-3 text-capitalize">5 Important Things to Look For When Buying
-                                                Affordable Hearing Aids</h5>
-                                        </a>
-                                    </div>
-                                    <p class="news-content mb-0">If you're new to hearing aids or experiencing mild to
-                                        moderate hearing loss, you may consider purchasing over-the-counter (OTC)
-                                        hearing aids. While Bluetooth earbuds like AirPods have...</p>
-                                </div>
-
-                            </div>
-                        </div>
-                        <div class="item">
-                            <div class="card rounded-0 product-card border">
-                                <div class="news-date">
-                                    <div style="color:black;" class="date-number">03</div>
-                                    <div style="color:black;width:2rem;" class="date-month">SEP 2024</div>
-                                </div>
-                                <a href="{{route('blog4')}}">
-                                    <img id="blogimages"
-                                        src="{{ asset('assets/images/blogs/blog4/best-hearing-protection-for-shooting.webp') }}"
-                                        class="card-img-top border-bottom bg-dark-1"
-                                        alt="best hearing protection for shooting">
-                                </a>
-                                <div class="card-body">
-                                    <div class="news-title">
-                                        <a href="{{route('blog4')}}">
-                                            <h5 class="mb-3 text-capitalize">Rising Hearing Loss in Young Adults: Best
-                                                Hearing Aids and Prevention Tips</h5>
-                                        </a>
-                                    </div>
-                                    <p class="news-content mb-0">While hearing loss is commonly associated with older
-                                        adults, young adults can also experience hearing loss due to congenital or
-                                        acquired According to the Hearing...</p>
-                                </div>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
         <!--end News-->
         <!--start brands-->
         <section class="py-4">
             <div class="container">
-                <h3 class="d-none">Brands</h3>
+                <h3 class="">Our Partners</h3>
                 <div class="brand-grid">
                     <div class="brands-shops owl-carousel owl-theme border">
                         <div class="item border-end">

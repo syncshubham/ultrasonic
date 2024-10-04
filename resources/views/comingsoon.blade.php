@@ -105,7 +105,7 @@
 <body>
     <div class="wrapper">
         <h1>coming soon<span class="dot">.</span></h1>
-        <p>HOLD ON !! you seamless experience via our application is on the way</p>
+        <p>HOLD ON !! Seamless application experience is on the way</p>
     </div>
 </body>
 
