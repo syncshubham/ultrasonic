@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Products extends Model
-{   
+{
     use HasFactory;
     protected $fillable = [
         'id',
@@ -32,6 +32,12 @@ class Products extends Model
         'disc_price',
         'final_price',
         'status',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'meta_link',
+        'unique_product_id',
+        'schema_description',
     ];
 
     protected $primaryKey = 'id';

@@ -2,29 +2,112 @@
 <html lang="en">
 
 <head>
-	<!-- ===================================== Meta site ================================================ -->
+	<!-- Google Tag Manager -->
+	<script>(function (w, d, s, l, i) {
+			w[l] = w[l] || []; w[l].push({
+				'gtm.start':
+					new Date().getTime(), event: 'gtm.js'
+			}); var f = d.getElementsByTagName(s)[0],
+				j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+					'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+		})(window, document, 'script', 'dataLayer', 'GTM-WZTRVWRP');</script>
+	<!-- End Google Tag Manager -->
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
-	<!-- ============================== GOOGLE WEB FONT ========================== -->
-	<link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:300,400" rel="stylesheet">
-	<!-- =============================== BASE CSS stylesheet ======================================== -->
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/OwlCarousel/css/owl.carousel.min.css') }}"
-		media="all" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}"
-		media="all" />
-	<link rel="stylesheet" type="text/css"
-		href="{{ asset('assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css') }}" media="all" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/metismenu/css/metisMenu.min.css') }}"
-		media="all" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pace.min.css') }}" media="all" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/bootstrap.min.css') }}" media="all" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/app.css') }}" media="all" />
-	<link rel="stylesheet" type="text/css" href="{{ asset('assets/css/icons.css') }}" media="all" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+	<title>Login to Your Account | Ultra-Sonic Hearing Aids</title>
+	<meta name="description"
+		content="Access your Ultra-Sonic account to manage orders, review hearing aid purchases, and explore the latest products. Secure and quick login to your account.">
+	<meta name="keywords"
+		content="ultra-sonic login, access account, manage orders, hearing aids login, secure login, customer account access">
+	<link rel="canonical" href="https://ultra-sonicltd.com/login">
+	<meta content="en_US" property="og:locale">
+	<meta content="Ultrasonic Ltd." property="og:site_name">
+	<meta content="website" property="og:type">
+	<meta content="https://ultra-sonicltd.com/login" property="og:url">
+	<meta content="Login to Your Account | Ultra-Sonic Hearing Aids" property="og:title">
+	<meta
+		content="Access your Ultra-Sonic account to manage orders, review hearing aid purchases, and explore the latest products. Secure and quick login to your account."
+		property="og:description">
+
+
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:site" content="@ultrasonicltd">
+	<meta name="twitter:creator" content="@ultrasonicltd">
+	<meta name="twitter:title" content="Login to Your Account | Ultra-Sonic Hearing Aids">
+	<meta name="twitter:description"
+		content="Access your Ultra-Sonic account to manage orders, review hearing aid purchases, and explore the latest products. Secure and quick login to your account.">
+
+	<meta property="og:title" content="Login to Your Account | Ultra-Sonic Hearing Aids" />
+	<meta property="og:description"
+		content="Access your Ultra-Sonic account to manage orders, review hearing aid purchases, and explore the latest products. Secure and quick login to your account." />
+	<meta property="og:url" content="https://ultra-sonicltd.com/login" />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="{{ asset('assets/images/company-ultrasonic.png') }}" />
+	<meta property="og:image:alt" content="our logo" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+
+	<!--favicon-->
+	<link rel="icon" type="image/x-icon" href="{{ asset('assets/images/company-ultrasonic.png') }}">
+	<!--plugins-->
+	<link href="assets/plugins/OwlCarousel/css/owl.carousel.min.css" rel="stylesheet">
+	<link href="assets/plugins/simplebar/css/simplebar.css" rel="stylesheet">
+	<link href="assets/plugins/perfect-scrollbar/css/perfect-scrollbar.css" rel="stylesheet">
+	<link href="assets/plugins/metismenu/css/metisMenu.min.css" rel="stylesheet">
+	<link href="assets/plugins/nouislider/nouislider.min.css" rel="stylesheet">
+	<!-- loader-->
+	<link href="assets/css/pace.min.css" rel="stylesheet">
+	<script src="assets/js/pace.min.js"></script>
+	<!-- Bootstrap CSS -->
+	<link href="assets/css/bootstrap.min.css" rel="stylesheet">
+	<link href="../../css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet">
+	<link href="assets/css/app.css" rel="stylesheet">
+	<link href="assets/css/icons.css" rel="stylesheet">
+	<script type="application/ld+json">
+		{
+	  "@context": "https://schema.org",
+	  "@type": "Organization",
+	  "name": "Ultrasonic Ltd.",
+	  "url": "https://ultra-sonicltd.com/",
+	  "contactPoint": {
+		"@type": "ContactPoint",
+		"telephone": "+81-9093651168",
+		"contactType": "Customer Service"
+	  },
+	  "address": {
+		"@type": "PostalAddress",
+		"streetAddress": "3-33-6, Nishi-ikebukuro",
+		"addressLocality": "Toshima-ku",
+		"addressRegion": "Tokyo",
+		"postalCode": "171-0021",
+		"addressCountry": "Japan"
+	  },
+	  "geo": {
+		"@type": "GeoCoordinates",
+		"latitude": 35.731310,
+		"longitude": 139.714231
+	  }
+	}
+	  </script>
+	<script async src="https://www.googletagmanager.com/gtag/js?id=G-QRNZWRYP5Q"></script>
+	<script>
+		window.dataLayer = window.dataLayer || [];
+		function gtag() { dataLayer.push(arguments); }
+		gtag('js', new Date());
+
+		gtag('config', 'G-QRNZWRYP5Q');
+	</script>
+
 </head>
 
 <body class="bg-theme bg-theme2"> <b class="screen-overlay"></b>
-
+	<!-- Google Tag Manager (noscript) -->
+	<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZTRVWRP" height="0" width="0"
+			style="display:none;visibility:hidden"></iframe></noscript>
+	<!-- End Google Tag Manager (noscript) -->
 	<!-- In page styling, in future it should be settled to main style sheets order wise. -->
 	<style>
 		.font-medium {
@@ -61,7 +144,7 @@
 												<div class="d-grid">
 													<a class="btn my-4 shadow-sm btn-light" href="javascript:;"> <span
 															class="d-flex justify-content-center align-items-center">
-															<img class="me-2" src="assets/images/icons/search.svg"
+															<img class="me-2" src="assets/images/icons/google-icon.svg"
 																width="16" alt="Image Description">
 															<span>Sign in with Google</span>
 														</span>

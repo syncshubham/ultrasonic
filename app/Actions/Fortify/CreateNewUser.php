@@ -21,7 +21,7 @@ class CreateNewUser implements CreatesNewUsers
      * @param  array<string, string>  $input
      */
     public function create(array $input): User
-    {   
+    {
         // Accessing constants
         $adminRole = RoleConstants::ADMIN;
         $userRole = RoleConstants::USER;
@@ -39,7 +39,7 @@ class CreateNewUser implements CreatesNewUsers
         ])->validate();
 
         return User::create([
-            'name' => $input['name']. " ".$input['last_name'],
+            'name' => $input['name'] . " " . $input['last_name'],
             'number' => $input['number'],
             'user_role_type' => $encryptedRole,
             'email' => $input['email'],

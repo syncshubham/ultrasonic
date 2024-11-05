@@ -1,10 +1,69 @@
 @extends('layouts.main')
-@section('content')
+@section('meta')
+<title>Best Affordable Bluetooth Hearing Aids 2024 | Apple & Android Compatible</title>
+<meta name="description"
+    content="Discover the best affordable Bluetooth hearing aids for Apple and Android in 2024. Learn about their pros, cons, and how they enhance your hearing experience.">
+<meta name="keywords"
+    content="best affordable bluetooth hearing aids 2024, apple bluetooth hearing aids, android hearing aids, bluetooth hearing aids review, wireless hearing aids">
+<link rel="canonical" href="https://ultra-sonicltd.com/blogs/Best-Affordable-Bluetooth-Hearing-Aids-in-2024">
+<meta content="en_US" property="og:locale">
+<meta content="Ultrasonic Ltd." property="og:site_name">
+<meta content="website" property="og:type">
+<meta content="https://ultra-sonicltd.com/blogs/Best-Affordable-Bluetooth-Hearing-Aids-in-2024" property="og:url">
+<meta content="Best Affordable Bluetooth Hearing Aids 2024 | Apple & Android Compatible" property="og:title">
+<meta
+    content="Discover the best affordable Bluetooth hearing aids for Apple and Android in 2024. Learn about their pros, cons, and how they enhance your hearing experience."
+    property="og:description">
 
-<head>
-    <title>Online Able Plus, Hearing Aid - Ultrasonic Ltd</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ultrasonicltd">
+<meta name="twitter:creator" content="@ultrasonicltd">
+<meta name="twitter:title" content="Best Affordable Bluetooth Hearing Aids 2024 | Apple & Android Compatible">
+<meta name="twitter:description"
+    content="Discover the best affordable Bluetooth hearing aids for Apple and Android in 2024. Learn about their pros, cons, and how they enhance your hearing experience.">
+
+<meta property="og:title" content="Best Affordable Bluetooth Hearing Aids 2024 | Apple & Android Compatible" />
+<meta property="og:description"
+    content="Discover the best affordable Bluetooth hearing aids for Apple and Android in 2024. Learn about their pros, cons, and how they enhance your hearing experience." />
+<meta property="og:url" content="https://ultra-sonicltd.com/blogs/Best-Affordable-Bluetooth-Hearing-Aids-in-2024" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="{{ asset('assets/images/company-ultrasonic.png') }}" />
+<meta property="og:image:alt" content="our logo" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+@endsection
+@section('schema')
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ultrasonic Ltd.",
+  "url": "https://ultra-sonicltd.com/",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+81-9093651168",
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3-33-6, Nishi-ikebukuro",
+    "addressLocality": "Toshima-ku",
+    "addressRegion": "Tokyo",
+    "postalCode": "171-0021",
+    "addressCountry": "Japan"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.731310,
+    "longitude": 139.714231
+  }
+}
+  </script>
+@endsection
+
+@section('content')
 <div class="page-wrapper">
     <div class="page-content">
         <!--start breadcrumb-->
@@ -102,6 +161,12 @@
 
                 /* Slightly darker transparent background */
             }
+
+            .advantage-list li h3 {
+                display: inline;
+                font-size: 1rem;
+                font-weight: bold;
+            }
         </style>
         <!--end breadcrumb-->
         <!--start page content-->
@@ -122,8 +187,8 @@
                                             class='bx bx-calendar me-1'></i>September 8, 2024</a>
                                 </div>
                                 <br>
-                                <h3 class="breadcrumb-title pe-3">Best Affordable Bluetooth Hearing Aids in 2024: For
-                                    Apple and Android Users</h3>
+                                <h1 class="breadcrumb-title pe-3">Best Affordable Bluetooth Hearing Aids in 2024: For
+                                    Apple and Android Users</h1>
                                 <br>
                                 <div class="intro-section">
                                     <p class="intro-text">
@@ -157,18 +222,26 @@
                                 <section class="advantage-section">
                                     <h2 class="advantage-title">2. Advantages of Hearing Devices with Bluetooth</h2>
                                     <ul class="advantage-list">
-                                        <li><strong>Dual Functionality:</strong> Use your hearing device for sound
+                                        <li>
+                                            <h3>Dual Functionality:</h3> Use your hearing device for sound
                                             amplification and also to stream music, videos, or phone calls from your
-                                            phone or tablet.</li>
-                                        <li><strong>Hands-Free Calls:</strong> Make and receive hands-free phone calls
+                                            phone or tablet.
+                                        </li>
+                                        <li>
+                                            <h3>Hands-Free Calls:</h3> Make and receive hands-free phone calls
                                             without removing your phone. Olive Max includes a built-in microphone for
-                                            easy conversation.</li>
-                                        <li><strong>Customizable Settings via Smartphone App:</strong> With dedicated
+                                            easy conversation.
+                                        </li>
+                                        <li>
+                                            <h3>Customizable Settings via Smartphone App:</h3> With dedicated
                                             apps, users can adjust volume, bass, and noise reduction. Olive Max’s My
-                                            Olive app lets users tailor sound profiles.</li>
-                                        <li><strong>Smart Device Integration:</strong> Bluetooth hearing aids can
+                                            Olive app lets users tailor sound profiles.
+                                        </li>
+                                        <li>
+                                            <h3>Smart Device Integration:</h3> Bluetooth hearing aids can
                                             connect to TVs, computers, and tablets, delivering amplified sound for
-                                            entertainment and communication.</li>
+                                            entertainment and communication.
+                                        </li>
                                     </ul>
                                 </section>
 
@@ -214,9 +287,9 @@
                                         Olive Max hearing aid is highly recommended. Here’s why:
                                     </p>
                                     <ul class="best-product-list">
-                                        <li><strong>Affordable Price:</strong> Olive Max offers Bluetooth 5.2 technology
-                                            at just $199 for both ears, making it one of the most affordable options
-                                            available.</li>
+                                        <li><strong>Affordable Price:</strong> Olive Max delivers advanced Bluetooth 5.2
+                                            technology for both ears, offering exceptional value at an unbeatable price.
+                                        </li>
                                         <li><strong>Smooth Bluetooth Connectivity:</strong> Olive Max utilizes
                                             cutting-edge Bluetooth 5.2, avoiding the common issues found in cheaper
                                             hearing aids with outdated Bluetooth versions.</li>
@@ -230,7 +303,7 @@
                                 </section>
 
                                 <section class="conclusion-section">
-                                    <h2 class="conclusion-title">Conclusion</h2>
+                                    <h5 class="conclusion-title">Conclusion</h5>
                                     <p class="conclusion-text">
                                         When looking for a hearing aid that combines functionality, affordability, and
                                         convenience, Olive Max stands out. Whether you're after a device for streaming

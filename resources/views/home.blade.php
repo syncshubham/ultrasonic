@@ -1,10 +1,69 @@
 @extends('layouts.main')
-@section('content')
+@section('meta')
+<title>Affordable Digital & Bluetooth Hearing Aids - Ultrasonic Ltd</title>
+<meta name="description"
+    content="Discover the best hearing aids for seniors, including Bluetooth and rechargeable models. Shop affordable hearing aids for sale with superior sound quality and comfort.">
+<meta name="keywords"
+    content="hearing aid machine, affordable hearing aids, bluetooth hearing aids, best hearing aids for seniors, rechargeable hearing aids, cheap hearing aids, digital hearing aids, ear hearing aid">
+<link rel="canonical" href="https://ultra-sonicltd.com/">
+<meta content="en_US" property="og:locale">
+<meta content="Ultrasonic Ltd." property="og:site_name">
+<meta content="website" property="og:type">
+<meta content="https://ultra-sonicltd.com" property="og:url">
+<meta content="Affordable Digital & Bluetooth Hearing Aids - Ultrasonic Ltd" property="og:title">
+<meta
+    content="Discover the best hearing aids for seniors, including Bluetooth and rechargeable models. Shop affordable hearing aids for sale with superior sound quality and comfort."
+    property="og:description">
 
-<head>
-    <title>Online Able Plus, Hearing Aid - Ultrasonic Ltd</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ultrasonicltd">
+<meta name="twitter:creator" content="@ultrasonicltd">
+<meta name="twitter:title" content="Affordable Digital & Bluetooth Hearing Aids - Ultrasonic Ltd">
+<meta name="twitter:description"
+    content="Discover the best hearing aids for seniors, including Bluetooth and rechargeable models. Shop affordable hearing aids for sale with superior sound quality and comfort.">
+
+<meta property="og:title" content="Affordable Digital & Bluetooth Hearing Aids - Ultrasonic Ltd" />
+<meta property="og:description"
+    content="Discover the best hearing aids for seniors, including Bluetooth and rechargeable models. Shop affordable hearing aids for sale with superior sound quality and comfort." />
+<meta property="og:url" content="https://ultra-sonicltd.com/" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="{{ asset('assets/images/company-ultrasonic.png') }}" />
+<meta property="og:image:alt" content="our logo" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="google-site-verification" content="-2ZwcqqQ5IHFac-40jdazbioO2DYghzTRLsZaIUV8xc" />
+
+@endsection
+@section('schema')
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ultrasonic Ltd.",
+  "url": "https://ultra-sonicltd.com/",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+81-9093651168",
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3-33-6, Nishi-ikebukuro",
+    "addressLocality": "Toshima-ku",
+    "addressRegion": "Tokyo",
+    "postalCode": "171-0021",
+    "addressCountry": "Japan"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.731310,
+    "longitude": 139.714231
+  }
+}
+  </script>
+@endsection
+@section('content')
 
 <style>
     .bannertwo {
@@ -203,9 +262,8 @@
         <section id="featuredProducts" class="py-4">
             <div class="container">
                 <div class="align-items-center">
-                    <h2 class="text-uppercase mb-0" style="text-align:center;width:100%;">OUR CUTTING-EDGE <span
-                            style="">HEARING
-                            PRODUCTS</span></h2>
+                    <h2 class="text-uppercase mb-0" style="text-align:center;width:100%;">OUR CUTTING-EDGE HEARING
+                        PRODUCTS</h2>
                     <br>
                     <p style="text-align:center;">At Ultrasonic Ltd., we offer a diverse range of products designed to
                         enhance your auditory
@@ -219,7 +277,7 @@
                     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 row-cols-xl-4">
                         @foreach ($products as $product)
                         <div class="col">
-                            <div class="border card rounded-0 product-card">
+                            <div style="margin-bottom:20px;" class="border card rounded-0 product-card">
                                 <div class="card-header bg-transparent border-bottom-0">
                                     <div class="d-flex align-items-center justify-content-end gap-3">
                                         @if($product->disc_rate)
@@ -242,15 +300,19 @@
                                     </a>
                                 </div>
                             </div>
-                            <a href="{{ url('product/view', ['id' => $product->id]) }}">
+                            <a
+                                href="{{ url('viewproduct', ['id' => $product->id, 'slug' => strtolower(str_replace(' ', '-', $product->product_name))]) }}">
                                 <img src="{{ asset($product->image_1) }}" class="card-img-top product_image_homepage"
-                                    alt="...">
+                                    alt="{{$product->alt_image_1}}">
                             </a>
                             <div class="card-body">
                                 <div class="product-info">
                                     <p class="product-catergory font-13 mb-1">Hearing Aid</p>
-                                    <a href="{{ url('product/view', ['id' => $product->id]) }}">
-                                        <h6 class="product-name mb-2">{{$product->product_name}}</h6>
+                                    <a
+                                        href="{{ url('product', ['id' => $product->id, 'slug' => strtolower(str_replace(' ', '-', $product->product_name))]) }}">
+                                        <h6 class="product-name mb-2">{{ $product->product_name
+                                            }}
+                                        </h6>
                                     </a>
                                     <div class="d-flex align-items-center">
                                         <div class="mb-1 product-price">
@@ -297,13 +359,16 @@
                                                 <div class="product-gallery owl-carousel owl-theme border mb-3 p-3"
                                                     data-slider-id="1">
                                                     @for($i = 1; $i <= 5; $i++) @php $imageVariable="image_" . $i;
-                                                        $imageUrl=$product->$imageVariable;
+                                                        $imagealtVariable="alt_image_" . $i; $imageUrl=$product->
+                                                        $imageVariable;
+                                                        $imagealttext=$product->$imagealtVariable;
                                                         @endphp
 
                                                         @if($imageUrl != null)
                                                         <div class="item quickviewimagesection">
                                                             <img src="{{ asset($imageUrl) }}"
-                                                                class="img-fluid quickviewimages" alt="">
+                                                                class="img-fluid quickviewimages"
+                                                                alt="{{$imagealttext}}">
                                                         </div>
                                                         @endif
                                                         @endfor
@@ -314,13 +379,15 @@
                                                 <div class="owl-thumbs d-flex justify-content-center"
                                                     data-slider-id="1">
                                                     @for($i = 1; $i <= 5; $i++) @php $imageVariable="image_" . $i;
-                                                        $imageUrl=$product->$imageVariable;
+                                                        $imagealtVariable="alt_image_" . $i; $imageUrl=$product->
+                                                        $imageVariable;
+                                                        $imagealttext=$product->$imagealtVariable;
                                                         @endphp
 
                                                         @if($imageUrl != null)
                                                         <button class="owl-thumb-item">
                                                             <img src="{{ asset($imageUrl) }}"
-                                                                class="quickviewbuttonimages" alt="">
+                                                                class="quickviewbuttonimages" alt="{{$imagealttext}}">>
                                                         </button>
                                                         @endif
                                                         @endfor
@@ -460,7 +527,7 @@
                                 </div>
                                 <div class="card-body">
                                     <h5 class="card-title">Hearing Solutions</h5>
-                                    <p class="card-text">Affordable hearing aids with modern techonology</p> <a
+                                    <p class="card-text">Affordable hearing aids with modern technology</p> <a
                                         href="/#featuredProducts" class="btn btn-light btn-ecomm">SHOP NOW</a>
                                 </div>
                             </div>
@@ -525,7 +592,7 @@
 
                     <div class="col-md-6 col-12">
                         <img style="width: 100%;border-radius:10px;"
-                            src="{{ asset('assets/images/homepage/report.jpeg') }}">
+                            src="{{ asset('assets/images/homepage/population-of-hearing-aids.jpeg') }}">
                     </div>
                     <div id="reportsectiontwo" class="col-md-6 col-12">
                         <h5 class="card-title">Population with Hearing Difficulty in Percentage</h5>
@@ -550,150 +617,49 @@
 
         <br>
         <br>
-
-        <!--start support info-->
         <section class="py-4 bg-dark-1">
-            <h4 style="text-align:center;font-size: 2.5rem;"> What Sets Us Apart</h4>
-            <br>
-            <br>
-            <div class="container">
-                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 row-group">
-                    <div class="col">
-                        <div class="text-center">
-                            <div class="font-50 text-white"> <i class='bx bx-cart'></i>
-                            </div>
-                            <h2 class="fs-5 text-uppercase mb-0">Timely delivery</h2>
-                            <p class="text-capitalize">Ultrasoinc delivery, always on time.</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="text-center">
-                            <div class="font-50 text-white"> <i class='bx bx-credit-card'></i>
-                            </div>
-                            <h2 class="fs-5 text-uppercase mb-0">Secure payment</h2>
-                            <p class="text-capitalize">We possess SSL / Secure сertificate</p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="text-center">
-                            <div class="font-50 text-white"> <i class='bx bx-dollar-circle'></i>
-                            </div>
-                            <h2 class="fs-5 text-uppercase mb-0">Health Investment</h2>
-                            <p class="text-capitalize">"Invest in clear hearing with our affordable and effective ear
-                                aids.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col">
-                        <div class="text-center">
-                            <div class="font-50 text-white"> <i class='bx bx-support'></i>
-                            </div>
-                            <h2 class="fs-5 text-uppercase mb-0">Customer Support</h2>
-                            <p class="text-capitalize">Friendly 24/7 customer support</p>
-                        </div>
-                    </div>
-                </div>
-                <!--end row-->
-            </div>
-        </section>
-        <br>
-        <br>
-        <br>
-        <br>
-        <!--end support info-->
-        <!--start News-->
-        <style>
-            .rounded-circle {
-                border-radius: 50% !important;
-            }
+            <div class="why-choose-us-container">
+                <div class="why-choose-us-content">
+                    <h2 class="section-title">Why Choose Ultrasonic Ltd.?</h2>
+                    <h3 class="section-subtitle">Your Trusted Partner in Hearing Health</h3>
 
-            .apecialityimages .ourdifferenceimg {
-                width: 7rem;
-                height: 7rem;
-                vertical-align: top;
-            }
-
-            .specialmiddleimg {
-                width: 20rem;
-                height: 20rem;
-                vertical-align: top;
-            }
-
-            .apecialityimages {
-                padding-bottom: 50px;
-            }
-
-            .sub-info {
-                font-weight: 600;
-                font-family: 'Poppins', sans-serif;
-                color: #e7ebeee7;
-            }
-
-            .display-30 {
-                font-size: 0.9rem;
-            }
-        </style>
-        <section class="py-4">
-            <div class="container">
-                <div class="text-center mb-2-8 mb-lg-6">
-                    <h2 class="display-18 display-md-16 display-lg-14 font-weight-700">Making Life <strong
-                            class="font-weight-700" style="color:wheat;">Better</strong></h2>
-                    <span>How Hearing Better Leads to Living Better</span>
-                </div>
-                <br>
-                <br>
-                <br>
-                <div class="row align-items-center">
-                    <div class="col-sm-6 col-lg-4 mb-2-9 mb-sm-0">
-                        <div class="pr-md-3">
-                            <div class="text-center text-sm-right mb-2-9 apecialityimages">
-                                <div class="mb-4">
-                                    <img src="{{ asset('assets/images/speciality/mental-health.png') }}"
-                                        alt="mental health" class="rounded-circle ourdifferenceimg">
-                                </div>
-                                <h4 class="sub-info">Mental health</h4>
-                                <p class="display-30 mb-0">Hearing better helps keep our minds attentive and sharp.</p>
-                            </div>
-                            <div class="text-center text-sm-right apecialityimages">
-                                <div class="mb-4">
-                                    <img src="{{ asset('assets/images/speciality/physical-health.png') }}"
-                                        alt="physical health" class="rounded-circle ourdifferenceimg">
-                                </div>
-                                <h4 class="sub-info">Physical health</h4>
-                                <p class="display-30 mb-0">Hearing better helps us maintain an active lifestyle.</p>
-                            </div>
+                    <div class="why-choose-us-features">
+                        <div class="feature">
+                            <h4>Innovative Technology</h4>
+                            <p>Stay ahead with the latest in hearing aid technology. We offer cutting-edge Bluetooth
+                                hearing aids, including the Olive Air wireless rechargeable hearing aid, designed for
+                                top performance. Explore the best hearing aids for seniors and the smallest hearing aids
+                                on the market.</p>
                         </div>
-                    </div>
-                    <div class="col-lg-4 d-none d-lg-block">
-                        <div class="why-choose-center-image">
-                            <img src="{{ asset('assets/images/speciality/special-edition-hearing-aids.png') }}"
-                                alt="special edition hearing aids" class="rounded-circle specialmiddleimg">
-                        </div>
-                    </div>
-                    <div class="col-sm-6 col-lg-4">
-                        <div class="pl-md-3">
-                            <div class="text-center text-sm-left mb-2-9 apecialityimages">
-                                <div class="mb-4">
-                                    <img src="{{ asset('assets/images/speciality/relationships.png') }}"
-                                        alt="relationships" class="rounded-circle ourdifferenceimg">
-                                </div>
-                                <h4 class="sub-info">Relationships</h4>
-                                <p class="display-30 mb-0">Hearing better helps keep us connected to loved ones.</p>
-                            </div>
 
-                            <div class="text-center text-sm-left apecialityimages">
-                                <div class="mb-4">
-                                    <img src="{{ asset('assets/images/speciality/everyday-life.png') }}"
-                                        alt="everyday life" class="rounded-circle ourdifferenceimg">
-                                </div>
-                                <h4 class="sub-info">Everyday life</h4>
-                                <p class="display-30 mb-0">Hearing better makes everyday life easier.</p>
-                            </div>
+                        <div class="feature">
+                            <h4>Quality Assurance</h4>
+                            <p>We partner with reputable brands to bring you reliable hearing aids, from invisible
+                                hearing aids to waterproof hearing aids and affordable hearing aids. Our selection
+                                includes high-quality options like the Olive Max hearing aid and Olive Air Hearing aids,
+                                as well as options for mild to profound hearing loss.</p>
+                        </div>
+
+                        <div class="feature">
+                            <h4>Personalized Experience</h4>
+                            <p>Find the perfect hearing solution tailored to your unique needs. Whether you need
+                                behind-the-ear hearing devices, custom hearing aids, or the best hearing aid for one ear
+                                only, we have you covered. Discover the best noise-canceling hearing aids and digital
+                                hearing aids that fit your lifestyle.</p>
+                        </div>
+
+                        <div class="feature">
+                            <h4>Convenient Shopping</h4>
+                            <p>Browse and purchase hearing aids for sale from the comfort of your home with our
+                                easy-to-use platform. Our selection includes inexpensive hearing aids, hearing aid
+                                accessories, and over-the-counter hearing aids. Enjoy shopping for high-quality hearing
+                                aids and hearing amplifiers without needing to visit local stores.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
+
         <br>
         <br>
         <section class="py-4">
@@ -812,26 +778,171 @@
                 </div>
             </div>
         </section>
+        <!--start support info-->
+        <section class="py-4 bg-dark-1">
+            <h4 style="text-align:center;font-size: 2.5rem;"> What Sets Us Apart</h4>
+            <br>
+            <br>
+            <div class="container">
+                <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4 row-group">
+                    <div class="col">
+                        <div class="text-center">
+                            <div class="font-50 text-white"> <i class='bx bx-cart'></i>
+                            </div>
+                            <h2 class="fs-5 text-uppercase mb-0">Timely delivery</h2>
+                            <p class="text-capitalize">Ultrasoinc delivery, always on time.</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <div class="font-50 text-white"> <i class='bx bx-credit-card'></i>
+                            </div>
+                            <h2 class="fs-5 text-uppercase mb-0">Secure payment</h2>
+                            <p class="text-capitalize">We possess SSL / Secure сertificate</p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <div class="font-50 text-white"> <i class='bx bx-dollar-circle'></i>
+                            </div>
+                            <h2 class="fs-5 text-uppercase mb-0">Health Investment</h2>
+                            <p class="text-capitalize">"Invest in clear hearing with our affordable and effective ear
+                                aids.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="text-center">
+                            <div class="font-50 text-white"> <i class='bx bx-support'></i>
+                            </div>
+                            <h2 class="fs-5 text-uppercase mb-0">Customer Support</h2>
+                            <p class="text-capitalize">Friendly 24/7 customer support</p>
+                        </div>
+                    </div>
+                </div>
+                <!--end row-->
+            </div>
+        </section>
+        <br>
+        <br>
+        <br>
+        <br>
+        <!--end support info-->
+        <!--start News-->
+        <style>
+            .rounded-circle {
+                border-radius: 50% !important;
+            }
+
+            .apecialityimages .ourdifferenceimg {
+                width: 7rem;
+                height: 7rem;
+                vertical-align: top;
+            }
+
+            .specialmiddleimg {
+                width: 20rem;
+                height: 20rem;
+                vertical-align: top;
+            }
+
+            .apecialityimages {
+                padding-bottom: 50px;
+            }
+
+            .sub-info {
+                font-weight: 600;
+                font-family: 'Poppins', sans-serif;
+                color: #e7ebeee7;
+            }
+
+            .display-30 {
+                font-size: 0.9rem;
+            }
+        </style>
+        <section class="py-4">
+            <div class="container">
+                <div class="text-center mb-2-8 mb-lg-6">
+                    <h2 class="display-18 display-md-16 display-lg-14 font-weight-700">Making Life <strong
+                            class="font-weight-700" style="color:wheat;">Better</strong></h2>
+                    <h5>How Hearing Better Leads to Living Better</h5>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row align-items-center">
+                    <div class="col-sm-6 col-lg-4 mb-2-9 mb-sm-0">
+                        <div class="pr-md-3">
+                            <div class="text-center text-sm-right mb-2-9 apecialityimages">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/images/speciality/mental-health.png') }}"
+                                        alt="mental health" class="rounded-circle ourdifferenceimg">
+                                </div>
+                                <h4 class="sub-info">Mental health</h4>
+                                <p class="display-30 mb-0">Hearing better helps keep our minds attentive and sharp.</p>
+                            </div>
+                            <div class="text-center text-sm-right apecialityimages">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/images/speciality/physical-health.png') }}"
+                                        alt="physical health" class="rounded-circle ourdifferenceimg">
+                                </div>
+                                <h4 class="sub-info">Physical health</h4>
+                                <p class="display-30 mb-0">Hearing better helps us maintain an active lifestyle.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 d-none d-lg-block">
+                        <div class="why-choose-center-image">
+                            <img src="{{ asset('assets/images/speciality/special-edition-hearing-aids.png') }}"
+                                alt="special edition hearing aids" class="rounded-circle specialmiddleimg">
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="pl-md-3">
+                            <div class="text-center text-sm-left mb-2-9 apecialityimages">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/images/speciality/relationships.png') }}"
+                                        alt="relationships" class="rounded-circle ourdifferenceimg">
+                                </div>
+                                <h4 class="sub-info">Relationships</h4>
+                                <p class="display-30 mb-0">Hearing better helps keep us connected to loved ones.</p>
+                            </div>
+
+                            <div class="text-center text-sm-left apecialityimages">
+                                <div class="mb-4">
+                                    <img src="{{ asset('assets/images/speciality/hearing-aid-life.png') }}"
+                                        alt="everyday life" class="rounded-circle ourdifferenceimg">
+                                </div>
+                                <h4 class="sub-info">Everyday life</h4>
+                                <p class="display-30 mb-0">Hearing better makes everyday life easier.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <br>
+        <br>
         <!--end News-->
         <!--start brands-->
         <section class="py-4">
             <div class="container">
-                <h3 class="d-none">Brands</h3>
+                <h5 style="font-size:2rem;" class="">Our Partners</h5>
                 <div class="brand-grid">
                     <div class="brands-shops owl-carousel owl-theme border">
                         <div class="item border-end">
                             <div class="p-4">
                                 <a href="javascript:;">
-                                    <img src="{{ asset('assets/images/brands/main/1.png') }}" class="img-fluid"
-                                        alt="...">
+                                    <img src="{{ asset('assets/images/brands/main/partners-yamada.png') }}"
+                                        class="img-fluid" alt="...">
                                 </a>
                             </div>
                         </div>
                         <div class="item border-end">
                             <div class="p-4">
                                 <a href="javascript:;">
-                                    <img src="{{ asset('assets/images/brands/main/2.png') }}" class="img-fluid"
-                                        alt="...">
+                                    <img src="{{ asset('assets/images/brands/main/partners-rakuten.png') }}"
+                                        class="img-fluid" alt="...">
                                 </a>
                             </div>
                         </div>

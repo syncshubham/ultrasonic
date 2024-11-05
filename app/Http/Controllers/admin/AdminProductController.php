@@ -59,9 +59,10 @@ class AdminProductController extends Controller
                 'image_4' => 'nullable|mimes:jpeg,png,jpg|max:350',
                 'image_5' => 'nullable|mimes:jpeg,png,jpg|max:350',
                 'price' => 'required|numeric',
-                // 'disc_rate' => 'numeric',
-                // 'disc_price' => 'numeric',
                 'final_price' => 'required|numeric',
+                'title' => 'nullable|string',
+                'description' => 'nullable|string',
+                'keywords' => 'nullable|string',
             ],
             [
                 'sizes.required' => 'Kindly check at least one of the above checkboxes.',
@@ -88,6 +89,15 @@ class AdminProductController extends Controller
         $product->final_price = $request->input('final_price');
         $product->status = 1;
 
+        // Handling meta information
+        $product->meta_title = $request->input('title');
+        $product->meta_description = $request->input('description');
+        $product->meta_keywords = $request->input('keywords');
+
+        // Generating unique product ID and meta link
+        $uniqueId = strtoupper(substr(base_convert(sha1(uniqid(mt_rand())), 16, 36), 0, 6));
+        $product->unique_product_id = $uniqueId;
+
         // Setting the number of images that are need to handle
         $numberOfImages = 5;
 
@@ -109,6 +119,7 @@ class AdminProductController extends Controller
         return redirect()->route('create.productview')
             ->with('success', 'Task done.');
     }
+
 
 
     public function edit_product_view($id)
@@ -158,6 +169,9 @@ class AdminProductController extends Controller
         $product->bulletin_3 = $request->input('bulletin_3');
         $product->bulletin_4 = $request->input('bulletin_4');
         $product->bulletin_5 = $request->input('bulletin_5');
+        $product->meta_title = $request->input('title');
+        $product->meta_description = $request->input('description');
+        $product->meta_keywords = $request->input('keywords');
         $product->price = $request->input('price');
         $product->disc_rate = $request->input('disc_rate');
         $product->disc_price = $request->input('disc_price');

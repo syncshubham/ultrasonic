@@ -747,6 +747,53 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="card-header-2">
+                                <h5>Product Meta</h5>
+                            </div>
+
+                            <div class="theme-form theme-form-2 mega-form">
+                                <div class="mb-4 row align-items-center">
+                                    <label class="col-sm-3 form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;"></span>Title</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" name="title"
+                                            value="{{old('title', $product->meta_title)}}" type="text"
+                                            placeholder="Enter page title here">
+                                        @if ($errors->has('title'))
+                                        <div class="alert alert-danger">{{ $errors->first('title') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="mb-4 row align-items-center">
+                                    <label class="col-sm-3 form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;"></span>Description</label>
+                                    <div class="col-sm-9">
+                                        <input class="form-control" name="description"
+                                            value="{{old('description',$product->meta_description)}}" type="text"
+                                            placeholder="Enter page description here">
+                                        @if ($errors->has('description'))
+                                        <div class="alert alert-danger">{{ $errors->first('description') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="mb-4 row align-items-center">
+                                    <label class="col-sm-3 form-label-title"><span
+                                            style="color:red;font-size:20px;display:inline-block;"></span>Keywords</label>
+                                    <div class="col-sm-9">
+                                        <p>Kindly provide keywords in comma seperated for best performance</p>
+                                        <input class="form-control" name="keywords"
+                                            value="{{old('keywords',$product->meta_keywords)}}" type="text"
+                                            placeholder="Enter page keywords title here">
+                                        @if ($errors->has('keywords'))
+                                        <div class="alert alert-danger">{{ $errors->first('keywords') }}</div>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     <button class="button-23">Publish</button>
                 </form>
             </div>

@@ -1,10 +1,68 @@
 @extends('layouts.main')
-@section('content')
+@section('meta')
+<title>Hearing Loss in Young Adults | Best Hearing Aids & Prevention Tips</title>
+<meta name="description"
+    content="Understand the rise of hearing loss in young adults and discover the best hearing aids and prevention tips. Protect your hearing with expert advice.">
+<meta name="keywords"
+    content="hearing loss in young adults, best hearing aids for young adults, hearing aids prevention tips, noise-induced hearing loss, bluetooth hearing aids">
+<link rel="canonical" href="https://ultra-sonicltd.com/blogs/Rising-Hearing-Loss-in-Young-Adults">
+<meta content="en_US" property="og:locale">
+<meta content="Ultrasonic Ltd." property="og:site_name">
+<meta content="website" property="og:type">
+<meta content="https://ultra-sonicltd.com/blogs/Rising-Hearing-Loss-in-Young-Adults" property="og:url">
+<meta content="Hearing Loss in Young Adults | Best Hearing Aids & Prevention Tips" property="og:title">
+<meta
+    content="Understand the rise of hearing loss in young adults and discover the best hearing aids and prevention tips. Protect your hearing with expert advice."
+    property="og:description">
 
-<head>
-    <title>Online Able Plus, Hearing Aid - Ultrasonic Ltd</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ultrasonicltd">
+<meta name="twitter:creator" content="@ultrasonicltd">
+<meta name="twitter:title" content="Hearing Loss in Young Adults | Best Hearing Aids & Prevention Tips">
+<meta name="twitter:description"
+    content="Understand the rise of hearing loss in young adults and discover the best hearing aids and prevention tips. Protect your hearing with expert advice.">
+
+<meta property="og:title" content="Hearing Loss in Young Adults | Best Hearing Aids & Prevention Tips" />
+<meta property="og:description"
+    content="Understand the rise of hearing loss in young adults and discover the best hearing aids and prevention tips. Protect your hearing with expert advice." />
+<meta property="og:url" content="https://ultra-sonicltd.com/blogs/Rising-Hearing-Loss-in-Young-Adults" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="{{ asset('assets/images/company-ultrasonic.png') }}" />
+<meta property="og:image:alt" content="our logo" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+@endsection
+@section('schema')
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ultrasonic Ltd.",
+  "url": "https://ultra-sonicltd.com/",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+81-9093651168",
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3-33-6, Nishi-ikebukuro",
+    "addressLocality": "Toshima-ku",
+    "addressRegion": "Tokyo",
+    "postalCode": "171-0021",
+    "addressCountry": "Japan"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.731310,
+    "longitude": 139.714231
+  }
+}
+  </script>
+@endsection
+
+@section('content')
 <div class="page-wrapper">
     <div class="page-content">
         <!--start breadcrumb-->
@@ -102,6 +160,11 @@
 
                 /* Slightly darker transparent background */
             }
+
+            .point-list h3 {
+                font-size: 0.9rem;
+                color: #cecece;
+            }
         </style>
         <!--end breadcrumb-->
         <!--start page content-->
@@ -124,8 +187,8 @@
                                             class='bx bx-calendar me-1'></i>September 03, 2024</a>
                                 </div>
                                 <br>
-                                <h3 class="breadcrumb-title pe-3">Rising Hearing Loss in Young Adults: Best Hearing Aids
-                                    and Prevention Tips</h3>
+                                <h1 class="breadcrumb-title pe-3">Rising Hearing Loss in Young Adults: Best Hearing Aids
+                                    and Prevention Tips</h1>
                                 <br>
                                 <!-- Intro Section -->
                                 <div class="intro-section">
@@ -151,9 +214,16 @@
                                         of noise-induced hearing loss in one or both ears. This can be attributed to:
                                     </p>
                                     <ul class="point-list">
-                                        <li>The frequent use of personal music devices without volume restrictions.</li>
-                                        <li>Participation in noisy activities like concerts or clubs.</li>
-                                        <li>Employment in loud environments without proper ear protection.</li>
+                                        <h3><span style="font-size:3rem;line-height: 1px;">.</span> The frequent use of
+                                            personal music
+                                            devices without volume
+                                            restrictions.</h3>
+                                        <h3><span style="font-size:3rem;line-height: 1px;">.</span> Participation in
+                                            noisy activities
+                                            like concerts or clubs.</h3>
+                                        <h3><span style="font-size:3rem;line-height: 1px;">.</span> Employment in loud
+                                            environments
+                                            without proper ear protection.</h3>
                                     </ul>
                                 </section>
 
@@ -218,7 +288,7 @@
 
                                 <!-- Conclusion -->
                                 <section class="conclusion-section">
-                                    <h2 class="conclusion-title">Conclusion</h2>
+                                    <h6 class="conclusion-title">Conclusion</h6>
                                     <p class="conclusion-text">
                                         Hearing loss among young adults is becoming more prevalent due to lifestyle
                                         factors such as exposure to loud environments. Choosing the right hearing aid

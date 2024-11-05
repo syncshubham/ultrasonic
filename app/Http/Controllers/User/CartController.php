@@ -195,7 +195,7 @@ class CartController extends Controller
             return [
                 'id' => $item->id,
                 'product_id' => $item->product_id,
-                'product_name' => Str::limit($item->product->product_name, 4, '...'),
+                'product_name' => Str::limit($item->product->product_name, 12, '...'),
                 'size' => $item->size,
                 'quantity' => $quantity,
                 'image_1' => $item->product->image_1,
@@ -247,7 +247,7 @@ class CartController extends Controller
 
             $enrichedCart[] = [
                 'product_id' => $productId,
-                'product_name' => Str::limit($productName, 4, '...'),
+                'product_name' => Str::limit($productName, 12, '...'),
                 'size' => $size,
                 'quantity' => $quantity,
                 'image_1' => $productImage,
@@ -308,6 +308,7 @@ class CartController extends Controller
             'totalAmount' => $totalAmount
         ]);
     }
+
 
     private function getCartTotalsFromCookies()
     {

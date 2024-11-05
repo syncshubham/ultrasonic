@@ -1,11 +1,68 @@
 @extends('layouts.main')
+@section('meta')
+<title>About Ultrasonic Ltd | Premium Hearing Aid Solutions Since 1990</title>
+<meta name="description"
+    content="Learn about Ultrasonic Ltd's journey in providing innovative hearing aids and assistive listening devices. Founded in 1990, offering trusted solutions for auditory health.">
+<meta name="keywords"
+    content="ultrasonic ltd, about hearing aids, ear aid technology, hearing aid company, innovative hearing solutions, affordable hearing aids, digital hearing aids">
+<link rel="canonical" href="https://ultra-sonicltd.com/about">
+<meta content="en_US" property="og:locale">
+<meta content="Ultrasonic Ltd." property="og:site_name">
+<meta content="website" property="og:type">
+<meta content="https://ultra-sonicltd.com/about" property="og:url">
+<meta content="About Ultrasonic Ltd | Premium Hearing Aid Solutions Since 1990" property="og:title">
+<meta
+    content="Learn about Ultrasonic Ltd's journey in providing innovative hearing aids and assistive listening devices. Founded in 1990, offering trusted solutions for auditory health."
+    property="og:description">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ultrasonicltd">
+<meta name="twitter:creator" content="@ultrasonicltd">
+<meta name="twitter:title" content="About Ultrasonic Ltd | Premium Hearing Aid Solutions Since 1990">
+<meta name="twitter:description"
+    content="Learn about Ultrasonic Ltd's journey in providing innovative hearing aids and assistive listening devices. Founded in 1990, offering trusted solutions for auditory health.">
+
+<meta property="og:title" content="About Ultrasonic Ltd | Premium Hearing Aid Solutions Since 1990" />
+<meta property="og:description"
+    content="Learn about Ultrasonic Ltd's journey in providing innovative hearing aids and assistive listening devices. Founded in 1990, offering trusted solutions for auditory health." />
+<meta property="og:url" content="https://ultra-sonicltd.com/about" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="{{ asset('assets/images/company-ultrasonic.png') }}" />
+<meta property="og:image:alt" content="our logo" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+@endsection
+
+@section('schema')
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ultrasonic Ltd.",
+  "url": "https://ultra-sonicltd.com/",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+81-9093651168",
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3-33-6, Nishi-ikebukuro",
+    "addressLocality": "Toshima-ku",
+    "addressRegion": "Tokyo",
+    "postalCode": "171-0021",
+    "addressCountry": "Japan"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.731310,
+    "longitude": 139.714231
+  }
+}
+  </script>
+@endsection
+
 @section('content')
-
-<head>
-    <title>Who are Ultrasonic</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
-
 <div class="page-wrapper">
     <div class="page-content">
         <!--start breadcrumb-->
@@ -832,7 +889,8 @@
 <div class="responsive-container-block bigContainer">
     <div class="responsive-container-block Container bottomContainer">
         <div class="ultimateImg">
-            <img class="mainImg" src="{{ asset('assets/images/ultrasonic-journey.webp')}}" alt="ultrasonic journey">
+            <img class="mainImg" src="{{ asset('assets/images/olive-max-hearing-aid-machine.webp')}}"
+                alt="olive max hearing aid machine">
             <div class="purpleBox">
                 <p class="purpleText">
                     "Bringing healthcare closer to you. Book medical tests from top companies effortlessly on our web
@@ -842,11 +900,11 @@
             </div>
         </div>
         <div class="allText bottomText">
-            <p class="text-blk headingText">
+            <h1 class="text-blk headingText">
                 About Us
                 <br>
                 <br>
-            </p>
+            </h1>
             <p class="text-blk subHeadingText">
                 Enhancing auditory experiences, one click at a time. Discover top-notch ear aid technology with
                 Ultrasonic Ltd.
@@ -1151,23 +1209,23 @@
 </style>
 
 <div class="timeline">
-    <h1 class="timelineheading" style="color: whitesmoke;
+    <h2 class="timelineheading" style="color: whitesmoke;
     line-height: 32px;
     font-weight: 700;text-align:center;">What sets us apart is our dedication to customer satisfaction and our
-        unwavering commitment to transparency and reliability. With Intest Bazar, you can expect:</h1>
+        unwavering commitment to transparency and reliability. With Intest Bazar, you can expect:</h2>
     <!--first-->
     <div class="timeline__event  animated fadeInUp delay-3s timeline__event--type2">
         <div class="timeline__event__icon ">
             <!-- <i class="lni-sport"></i>-->
 
         </div>
-        <div class="timeline__event__date">
+        <h3 class="timeline__event__date">
             Convenience
-        </div>
+        </h3>
         <div class="timeline__event__content ">
-            <div class="timeline__event__title">
+            <h4 class="timeline__event__title">
                 Convenience at your fingertips
-            </div>
+            </h4>
             <div class="timeline__event__description">
                 <p>Book appointments online at Intest Bazaar from the comfort of your home, eliminating the need for
                     tedious paperwork and phone calls</p>
@@ -1182,13 +1240,13 @@
             <!-- <i class="lni-sport"></i>-->
 
         </div>
-        <div class="timeline__event__date">
+        <h3 class="timeline__event__date">
             Best Choice
-        </div>
+        </h3>
         <div class="timeline__event__content">
-            <div class="timeline__event__title">
+            <h4 class="timeline__event__title">
                 Empowering your healthcare decisions
-            </div>
+            </h4>
             <div class="timeline__event__description">
                 <p>Browse through a comprehensive list of medical tests offered by trusted companies, and select the
                     option that best fits your requirements.</p>
@@ -1203,13 +1261,13 @@
             <!-- <i class="lni-sport"></i>-->
 
         </div>
-        <div class="timeline__event__date">
+        <h3 class="timeline__event__date">
             Best Quality
-        </div>
+        </h3>
         <div class="timeline__event__content">
-            <div class="timeline__event__title">
+            <h4 class="timeline__event__title">
                 Assurance you can trust
-            </div>
+            </h4>
             <div class="timeline__event__description">
                 <p>Rest assured knowing that all tests available on our platform are conducted by accredited
                     laboratories and healthcare providers, ensuring accuracy and reliability.</p>
@@ -1224,13 +1282,13 @@
         <div class="timeline__event__icon">
             <!-- <i class="lni-sport"></i>-->
         </div>
-        <div class="timeline__event__date">
+        <h3 class="timeline__event__date">
             Empowerment
-        </div>
+        </h3>
         <div class="timeline__event__content">
-            <div class="timeline__event__title">
+            <h4 class="timeline__event__title">
                 Take control of your health journey
-            </div>
+            </h4>
             <div class="timeline__event__description">
                 <p>Take control of your health journey by accessing comprehensive information about each test, including
                     pricing, turnaround times, and locations.</p>

@@ -2,14 +2,25 @@
 <html lang="en">
 
 <head>
-    <!-- ===================================== Meta site ================================================ -->
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-WZTRVWRP');</script>
+    <!-- End Google Tag Manager -->
+
     <meta charset="utf-8">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <meta name="robots" content="index, follow" />
+    @yield('meta')
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- ============================== GOOGLE WEB FONT ========================== -->
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto:300,400" rel="stylesheet">
-    <!-- =============================== BASE CSS stylesheet ======================================== -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/company-ultrasonic.png') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/OwlCarousel/css/owl.carousel.min.css') }}"
         media="all" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/plugins/simplebar/css/simplebar.css') }}"
@@ -28,7 +39,18 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
         integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    @yield('schema')
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-QRNZWRYP5Q"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-QRNZWRYP5Q');
+    </script>
+
 </head>
+
 <style>
     @media(min-width:515px) {
         .mobile-item {
@@ -96,6 +118,10 @@
 </style>
 
 <body class="bg-theme bg-theme2">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WZTRVWRP" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
 
     <b class="screen-overlay"></b>
     <!--wrapper-->
@@ -117,8 +143,8 @@
             <div class="top-menu border-bottom">
                 <div class="container">
                     <nav class="navbar navbar-expand">
-                        <div class="shiping-title text-uppercase font-13 text-white d-none d-sm-flex">Welcome to hearing
-                            aid online store!</div>
+                        <h1 class="shiping-title text-uppercase font-13 text-white d-none d-sm-flex">Welcome to hearing
+                            aid online store!</h1>
                         <ul class="navbar-nav ms-auto d-none d-lg-flex">
                             <li class="nav-item"> <a class="nav-link" href="{{route('track-order')}}">Track Orders</a>
                             </li>
@@ -167,8 +193,9 @@
                                     data-trigger="#navbar_main"><i class='fa-solid fa-bars'></i></div>
                                 <div style="margin-left:40px;" class="logo d-lg-flex">
                                     <a href="{{ url('/') }}">
-                                        <img style="width:4rem;" src="{{ asset('assets/images/logo-icon.png') }}"
-                                            class="logo-icon" alt="">
+                                        <img style="width:4rem;"
+                                            src="{{ asset('assets/images/company-ultrasonic.png') }}" class="logo-icon"
+                                            alt="">
                                     </a>
                                 </div>
                             </div>
@@ -428,8 +455,8 @@
                     <nav id="navbar_main" class="mobile-offcanvas navbar navbar-expand-lg">
                         <div class="offcanvas-header">
                             <button id="close_mobile_nav" class="btn-close float-end"></button>
-                            <img style="width:4rem;" src="{{ asset('assets/images/logo-icon.png') }}" class="logo-icon"
-                                alt="">
+                            <img style="width:4rem;" src="{{ asset('assets/images/company-ultrasonic.png') }}"
+                                class="logo-icon" alt="">
                         </div>
                         <ul class="navbar-nav">
                             <li class="nav-item active"> <a class="nav-link" href="{{ url('/') }}">Home </a>
@@ -444,6 +471,12 @@
                             <li class="nav-item"> <a class="nav-link" href="{{ route('termsandconditions') }}">T & C</a>
                             <li class="nav-item"> <a class="nav-link"
                                     href="{{ route('refundandcancellationpolicies') }}">Refund & Cancellation </a>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('products') }}">Products
+                                </a>
+                            </li>
+                            <li class="nav-item"> <a class="nav-link" href="{{ route('blogs') }}">Blogs
+                                </a>
                             </li>
                             <!-- <li class="nav-item"> <a class="nav-link" href="shop-categories.html">Our Store</a>
                             </li> -->
@@ -502,7 +535,7 @@
                                 <div class="phone mb-3">
                                     <p class="mb-0 text-uppercase text-white">Phone</p>
                                     <!-- <p class="mb-0 font-13">Toll Free (123) 472-796</p> -->
-                                    <p class="mb-0 font-13">Mobile : +81 3 5962 0611</p>
+                                    <p class="mb-0 font-13">Mobile : +81 90-9365-1168</p>
                                 </div>
                                 <div class="email mb-3">
                                     <p class="mb-0 text-uppercase text-white">Email</p>
@@ -516,12 +549,12 @@
                                     <h6 class="mb-3 text-uppercase">Download our app</h6>
                                     <div id="footerappdownload" class="d-flex align-items-center gap-2">
                                         <a href="{{ route('coming-soon') }}">
-                                            <img src="{{ asset('assets/images/icons/apple-store.png') }}" class=""
-                                                width="160" alt="">
+                                            <img src="{{ asset('assets/images/icons/apple-app-store-icon.png') }}"
+                                                class="" width="160" alt="">
                                         </a>
                                         <a href="{{ route('coming-soon') }}">
-                                            <img src="{{ asset('assets/images/icons/play-store.png') }}" class=""
-                                                width="160" alt="">
+                                            <img src="{{ asset('assets/images/icons/google-play-store-icon.png') }}"
+                                                class="" width="160" alt="">
                                         </a>
                                     </div>
                                 </div>
@@ -577,7 +610,7 @@
                                         <img src="{{ asset('assets/images/icons/mastercard.png') }}" alt="">
                                     </div>
                                     <div class="col">
-                                        <img src="{{ asset('assets/images/icons/american-express.png') }}" alt="">
+                                        <img src="{{ asset('assets/images/icons/american-express-icon.png') }}" alt="">
                                     </div>
                                 </div>
                             </div>

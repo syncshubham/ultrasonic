@@ -1,10 +1,72 @@
 @extends('layouts.main')
-@section('content')
+@section('meta')
+<title>5 Things to Look for When Buying Affordable Hearing Aids | Olive SmartEar Plus</title>
+<meta name="description"
+    content="Learn 5 important factors for buying affordable hearing aids like the Olive SmartEar Plus. Discover customizable options and Bluetooth-enabled devices.">
+<meta name="keywords"
+    content="affordable hearing aids, cheap hearing aids for sale, Olive SmartEar Plus hearing aid, best small hearing aids, buy hearing aid, Bluetooth hearing aids">
+<link rel="canonical"
+    href="https://ultra-sonicltd.com/blogs/5-Important-Things-to-Look-For-When-Buying-Affordable-Hearing-Aids">
+<meta content="en_US" property="og:locale">
+<meta content="Ultrasonic Ltd." property="og:site_name">
+<meta content="website" property="og:type">
+<meta content="https://ultra-sonicltd.com/blogs/5-Important-Things-to-Look-For-When-Buying-Affordable-Hearing-Aids"
+    property="og:url">
+<meta content="5 Things to Look for When Buying Affordable Hearing Aids | Olive SmartEar Plus" property="og:title">
+<meta
+    content="Learn 5 important factors for buying affordable hearing aids like the Olive SmartEar Plus. Discover customizable options and Bluetooth-enabled devices."
+    property="og:description">
 
-<head>
-    <title>Online Able Plus, Hearing Aid - Ultrasonic Ltd</title>
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-</head>
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:site" content="@ultrasonicltd">
+<meta name="twitter:creator" content="@ultrasonicltd">
+<meta name="twitter:title" content="5 Things to Look for When Buying Affordable Hearing Aids | Olive SmartEar Plus">
+<meta name="twitter:description"
+    content="Learn 5 important factors for buying affordable hearing aids like the Olive SmartEar Plus. Discover customizable options and Bluetooth-enabled devices.">
+
+<meta property="og:title" content="5 Things to Look for When Buying Affordable Hearing Aids | Olive SmartEar Plus" />
+<meta property="og:description"
+    content="Learn 5 important factors for buying affordable hearing aids like the Olive SmartEar Plus. Discover customizable options and Bluetooth-enabled devices." />
+<meta property="og:url"
+    content="https://ultra-sonicltd.com/blogs/5-Important-Things-to-Look-For-When-Buying-Affordable-Hearing-Aids" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="{{ asset('assets/images/company-ultrasonic.png') }}" />
+<meta property="og:image:alt" content="our logo" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+
+@endsection
+@section('schema')
+<script type="application/ld+json">
+    {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Ultrasonic Ltd.",
+  "url": "https://ultra-sonicltd.com/",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+81-9093651168",
+    "contactType": "Customer Service"
+  },
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "3-33-6, Nishi-ikebukuro",
+    "addressLocality": "Toshima-ku",
+    "addressRegion": "Tokyo",
+    "postalCode": "171-0021",
+    "addressCountry": "Japan"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 35.731310,
+    "longitude": 139.714231
+  }
+}
+  </script>
+@endsection
+
+@section('content')
 <div class="page-wrapper">
     <div class="page-content">
         <!--start breadcrumb-->
@@ -124,8 +186,8 @@
                                             class='bx bx-calendar me-1'></i>August 25, 2024</a>
                                 </div>
                                 <br>
-                                <h3 class="breadcrumb-title pe-3">5 Important Things to Look For When Buying Affordable
-                                    Hearing Aids</h3>
+                                <h1 class="breadcrumb-title pe-3">5 Important Things to Look For When Buying Affordable
+                                    Hearing Aids</h1>
                                 <br>
                                 <!-- Intro Section -->
                                 <!-- Intro Section -->
@@ -240,8 +302,8 @@
 
                                 <!-- Where to Buy Section -->
                                 <section class="best-product-section">
-                                    <h2 class="best-product-title">Where to Buy Affordable Hearing Aids: Online vs.
-                                        In-Store</h2>
+                                    <h5 class="best-product-title">Where to Buy Affordable Hearing Aids: Online vs.
+                                        In-Store</h5>
                                     <p class="best-product-description">
                                         Many people wonder whether they should buy affordable hearing aids locally or
                                         online. While big-box retailers may offer some affordable options, the selection

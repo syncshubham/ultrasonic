@@ -4,11 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\homePageController;
 use App\Http\Controllers\User\CartController;
 use App\Http\Controllers\User\checkoutController;
-use App\Http\Controllers\user\wishlistController;
+use App\Http\Controllers\User\wishlistController;
 use App\Http\Controllers\admin\AdminOrdersController;
 use App\Http\Controllers\admin\AdminProductController;
 use App\Http\Controllers\admin\AdminDashboardController;
-use App\Http\Controllers\user\userMainProfileController;
+use App\Http\Controllers\User\userMainProfileController;
 use App\Http\Controllers\admin\AdminGeneralUsersController;
 
 // ----- 1.) Begin - Main website routes
@@ -65,10 +65,13 @@ Route::group(['middleware' => 'non_admin'], function () {
 
     Route::get('/', [homePageController::class, 'index']);
 
+    Route::get('products', [homePageController::class, 'products'])->name('products');
+    Route::get('blogs', [homePageController::class, 'blogs'])->name('blogs');
+
     // ---- 1.1) End - static page routes
 
     // ---- 1.2) Begin - dynamic pages route
-    Route::get('/product/view/{id}', [homePageController::class, 'view_product_detail'])->name('onepagerview.product');
+    Route::get('/viewproduct/{id}/{slug}', [homePageController::class, 'view_product_detail'])->name('onepagerview.product');
     // ---- 1.2) End - dynamic pages route
 
     // ----- 1.) End - Main website routes
